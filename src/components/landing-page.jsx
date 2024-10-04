@@ -122,15 +122,15 @@ export default function LandingPage() {
                 <Globe className="h-12 w-12 text-white mb-4" />
                 <h3 className="text-xl font-bold text-white">Our Community</h3>
                 <p className="text-white">
-                  A diverse group of passionate developers from various
-                  disciplines, united by our love for technology.
+                  A diverse group of developers from haramaya university
+                  with a passion for tech and innovation
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-2 text-center">
                 <Rocket className="h-12 w-12 text-white mb-4" />
                 <h3 className="text-xl font-bold text-white">Our Vision</h3>
                 <p className="text-white">
-                  To become a leading hub for tech innovation and talent
+                  To become a platform for tech innovation and talent
                   development in Haramaya University and beyond.
                 </p>
               </div>
@@ -168,9 +168,9 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
-      <footer className="py-6 w-full px-4 md:px-6 bg-gray-100 text-black">
+      <footer className="py-6 w-full px-4 md:px-6 bg-blue-800 text-white">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-gray-600 mb-4 md:mb-0">
+          <p className="text-sm text-white mb-4 md:mb-0">
             © 2024 Haramaya University Developers Community. All rights
             reserved.
           </p>
