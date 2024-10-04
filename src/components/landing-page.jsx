@@ -18,7 +18,7 @@ export default function LandingPage() {
       <header className="px-4 lg:px-6 h-16 flex items-center bg-blue-800 text-white">
         <a className="flex items-center justify-center" href="#">
           <Code className="h-6 w-6" />
-          <span className="ml-2 text-lg font-bold">Haramaya Developers</span>
+          <span className="ml-2 text-lg font-bold">HUDC</span>
         </a>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <a
