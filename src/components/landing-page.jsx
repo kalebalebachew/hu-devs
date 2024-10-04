@@ -55,7 +55,7 @@ export default function LandingPage() {
                   rel="noopener noreferrer"
                 >
                   <div className="bg-white text-blue-600 hover:bg-blue-50 font-semibold text-lg px-6 py-3 rounded-lg">
-                    Join now
+                    Become a member
                   </div>
                 </a>
               </div>
