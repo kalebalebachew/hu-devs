@@ -14,6 +14,7 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "Haramaya University devs",
+  description: "Built by student devs at haramaya university",
 };
 
 export default function RootLayout({ children }) {
