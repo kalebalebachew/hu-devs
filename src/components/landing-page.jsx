@@ -44,8 +44,8 @@ export default function LandingPage() {
                   Haramaya University Developers Community
                 </h1>
                 <p className="mx-auto max-w-[700px] text-xl md:text-2xl font-light">
-                  Connecting, learning, and building together. Join our vibrant
-                  community of student developers.
+                  Learning and building together at Haramaya
+                  University. Join our growing community of student developers
                 </p>
               </div>
               <div className="space-x-4">
@@ -68,15 +68,15 @@ export default function LandingPage() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12 text-blue-600">
-              Why Join Us?
+              why join us?
             </h2>
             <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
               <div className="flex flex-col items-center space-y-2 p-6 bg-blue-50 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105">
                 <Users className="h-12 w-12 text-blue-600" />
                 <h3 className="text-xl font-bold text-black">Networking</h3>
                 <p className="text-sm text-gray-600 text-center">
-                  Connect with like-minded developers and build lasting
-                  relationships.
+                  Connect with developers at haramaya university and build
+                  lasting relationships.
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-2 p-6 bg-blue-50 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105">
@@ -86,7 +86,7 @@ export default function LandingPage() {
                 </h3>
                 <p className="text-sm text-gray-600 text-center">
                   Enhance your coding skills through workshops, projects, and
-                  mentorship.
+                  mentorship
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-2 p-6 bg-blue-50 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105">
@@ -95,7 +95,7 @@ export default function LandingPage() {
                   Project Collaboration
                 </h3>
                 <p className="text-sm text-gray-600 text-center">
-                  Work on real-world projects and build your portfolio.
+                  Work on real-world projects with devs in our community.
                 </p>
               </div>
             </div>
@@ -122,8 +122,8 @@ export default function LandingPage() {
                 <Globe className="h-12 w-12 text-white mb-4" />
                 <h3 className="text-xl font-bold text-white">Our Community</h3>
                 <p className="text-white">
-                  A diverse group of developers from haramaya university
-                  with a passion for tech and innovation
+                  A diverse group of developers from haramaya university with a
+                  passion for tech and innovation
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-2 text-center">
@@ -144,8 +144,8 @@ export default function LandingPage() {
           <div className="container px-4 md:px-6 flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
               <h1 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-2xl">
-              Scan this QR code to join our Telegram group or click the
-              button below!
+                Scan this QR code to join our Telegram group or click the button
+                below!
               </h1>
             </div>
 
@@ -154,7 +154,6 @@ export default function LandingPage() {
               alt="Telegram QR Code"
               className="w-64 h-64 object-contain"
             />
-
 
             <a
               href="https://t.me/hudevhub"
