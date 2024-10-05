@@ -41,7 +41,7 @@ export default function LandingPage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none">
-                  Haramaya University Developers Community
+                  Haramaya University Developers <br></br>  Community
                 </h1>
                 <p className="mx-auto max-w-[700px] text-xl md:text-2xl font-light">
                   Learning and building together at Haramaya
