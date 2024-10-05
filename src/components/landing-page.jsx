@@ -41,11 +41,11 @@ export default function LandingPage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none">
-                  Haramaya University Developers <br></br>  Community
+                  Haramaya University Developers <br></br> Community
                 </h1>
                 <p className="mx-auto max-w-[700px] text-xl md:text-2xl font-light">
-                  Learning and building together at Haramaya
-                  University. Join our growing community of student developers
+                  Learning and building together at Haramaya University. Join
+                  our growing community of student developers
                 </p>
               </div>
               <div className="space-x-4">
@@ -165,6 +165,25 @@ export default function LandingPage() {
               </Button>
             </a>
           </div>
+        </section>
+        <section
+          id="latest-news"
+          className="w-full py-12 bg-gray-200"
+        >
+           <div className="container px-4 md:px-6  ">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12 text-blue-700">
+              Latest news
+            </h2>
+            <iframe className="items-center"
+            src="https://www.linkedin.com/embed/feed/update/urn:li:share:7248282131754356736"
+            height="500"
+            width="400"
+            frameborder="0"
+            allowfullscreen=""
+            title="Embedded post"
+          ></iframe>
+          </div>
+         
         </section>
       </main>
       <footer className="py-6 w-full px-4 md:px-6 bg-blue-800 text-white">
