@@ -181,7 +181,7 @@ export default function LandingPage() {
               Latest news
             </h2>
             <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7248312412922155008" 
-            height="600" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+            height="500" width="400" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
           </div>
          
         </section>
