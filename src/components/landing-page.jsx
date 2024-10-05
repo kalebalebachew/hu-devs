@@ -180,14 +180,8 @@ export default function LandingPage() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12 text-blue-700">
               Latest news
             </h2>
-            <iframe className="items-center"
-            src="https://www.linkedin.com/embed/feed/update/urn:li:share:7248282131754356736"
-            height="500"
-            width="400"
-            frameborder="0"
-            allowfullscreen=""
-            title="Embedded post"
-          ></iframe>
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7248312412922155008" 
+            height="600" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
           </div>
          
         </section>
