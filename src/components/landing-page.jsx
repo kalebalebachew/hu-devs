@@ -10,6 +10,7 @@ import {
   Globe,
   Rocket,
 } from "lucide-react";
+import { FaLinkedin, FaTelegramPlane, FaInstagram } from "react-icons/fa";
 import Link from "next/link";
 
 export default function LandingPage() {
@@ -172,34 +173,72 @@ export default function LandingPage() {
             </a>
           </div>
         </section>
-        <section
-          id="latest-news"
-          className="w-full py-12 bg-gray-200"
-        >
-           <div className="container px-4 md:px-6  ">
+        <section id="latest-news" className="w-full py-12 bg-gray-200">
+          <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12 text-blue-700">
-              Latest news
+              Latest News
             </h2>
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7248312412922155008" 
-            height="500" width="400" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+            <div className="flex flex-col md:flex-row justify-center gap-16">
+              <iframe
+                src="https://www.linkedin.com/embed/feed/update/urn:li:share:7248312412922155008"
+                height="500"
+                width="100%"
+                className="max-w-md"
+                frameborder="0"
+                allowfullscreen=""
+                title="Embedded post 1"
+              ></iframe>
+              <iframe
+                src="https://www.linkedin.com/embed/feed/update/urn:li:share:7249078841464225795"
+                height="500"
+                width="100%"
+                className="max-w-md"
+                frameborder="0"
+                allowfullscreen=""
+                title="Embedded post 2"
+              ></iframe>
+            </div>
           </div>
-         
         </section>
       </main>
       <footer className="py-6 w-full px-4 md:px-6 bg-blue-800 text-white">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <div className="container mx-auto flex flex-col justify-center items-center">
           <p className="text-sm text-white mb-4 md:mb-0">
             © 2024 Haramaya University Developers Community. All rights
             reserved.
           </p>
-          <nav className="flex gap-4">
+          <div className="flex justify-center mt-8 space-x-6">
             <a
-              className="text-sm hover:text-blue-600 transition-colors"
-              href="#"
+              href="https://www.linkedin.com/company/haramaya-university-developers-community"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Contact Us
+              <FaLinkedin
+                size={30}
+                className="text-white hover:text-blue-900"
+              />
             </a>
-          </nav>
+            <a
+              href="https://t.me/hudevhub"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTelegramPlane
+                size={30}
+                className="text-blue-400 hover:text-white"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram
+                size={30}
+                className="text-pink-500 hover:text-pink-700"
+              />
+            </a>
+          </div>
         </div>
       </footer>
     </div>
