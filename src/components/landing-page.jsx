@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,6 +35,7 @@ export default function LandingPage() {
           >
             about
           </a>
+
           <a
             className="text-sm font-bold hover:underline underline-offset-4"
             href="#contact"
@@ -184,8 +186,8 @@ export default function LandingPage() {
                 height="500"
                 width="100%"
                 className="max-w-md"
-                frameborder="0"
-                allowfullscreen=""
+                frameBorder="0"
+                allowFullScreen=""
                 title="Embedded post 1"
               ></iframe>
               <iframe
@@ -193,9 +195,97 @@ export default function LandingPage() {
                 height="500"
                 width="100%"
                 className="max-w-md"
-                frameborder="0"
-                allowfullscreen=""
+                frameBorder="0"
+                allowFullScreen=""
                 title="Embedded post 2"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+        <section
+          id="contact"
+          className="container max-sm:px-4 px-10 py-10 w-full"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div>
+              <h2 className="text-3xl font-bold mb-6">
+                We would love to hear from you.
+              </h2>
+
+              <form>
+                <div className="mb-4">
+                  <label
+                    className="block text-lg font-medium mb-2 text-black"
+                    htmlFor="firstName"
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    className="w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    className="block text-lg font-medium mb-2"
+                    htmlFor="phoneNumber"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    className="block text-lg font-medium mb-2"
+                    htmlFor="email"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    className="block text-lg font-medium mb-2"
+                    htmlFor="message"
+                  >
+                    Leave Us a Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-600 transition duration-200"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+            <div>
+              <iframe
+                title="Haramaya University Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.9816181743527!2d42.034773374830586!3d9.423014382697337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1631a5a8e441e64d%3A0xdafe11071687f9d!2sHaramaya%20University!5e0!3m2!1sen!2set!4v1728500560513!5m2!1sen!2set"
+                width="100%"
+                height="100%"
+                className="rounded-md border-0"
+                allowFullScreen=""
+                loading="lazy"
               ></iframe>
             </div>
           </div>
