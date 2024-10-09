@@ -218,7 +218,7 @@ export default function LandingPage() {
                     className="block text-lg font-medium mb-2 text-black"
                     htmlFor="firstName"
                   >
-                    First Name
+                    Full Name
                   </label>
                   <input
                     type="text"
