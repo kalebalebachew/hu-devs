@@ -191,7 +191,37 @@ export function CommunityTabsComponent() {
                 className="bg-gray-800 text-white border-gray-700"
               />
             </div>
-           
+            <div className="space-y-2 mb-4">
+              <Label htmlFor="resume" className="text-purple-500">
+                Upload Resume
+              </Label>
+              <div className="flex items-center space-x-4">
+                <label
+                  htmlFor="resume"
+                  className="bg-gray-700 border-purple-500 text-purple-500 px-4 py-2 rounded-md cursor-pointer hover:bg-purple-700 transition duration-200"
+                >
+                  Choose File
+                </label>
+                <span id="file-selected" className="text-gray-400 text-sm">
+                  No file chosen
+                </span>
+                <Input
+                  id="resume"
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  className="hidden"
+                  onChange={(e) => {
+                    const fileName =
+                      e.target.files[0]?.name || "No file chosen";
+                    document.getElementById("file-selected").textContent =
+                      fileName;
+                  }}
+                />
+              </div>
+              <span className="text-gray-400 text-sm">
+                PDF, DOC, or DOCX
+              </span>
+            </div>
           </CardContent>
           <CardFooter>
             <Button className="w-full bg-purple-500 text-black hover:bg-purple-700">

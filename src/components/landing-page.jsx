@@ -79,7 +79,7 @@ export default function LandingPage() {
                 Haramaya University <br /> Developers Community
               </h1>
               <p className="mx-auto max-w-[700px] text-xl md:text-2xl font-light text-gray-300">
-                Learning and building together at Haramaya University. Join our
+                Learning and building together at Haramaya university <br/> join our
                 growing community of student developers.
               </p>
             </div>
