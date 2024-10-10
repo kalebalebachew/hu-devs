@@ -14,16 +14,7 @@ import {
 } from "lucide-react";
 import { LinkedinIcon, SendIcon } from "lucide-react";
 import { CommunityTabsComponent } from "./community-tabs";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+import { NavBar } from "./layout/Navbar";
 
 export default function LandingPage() {
   return (
@@ -36,37 +27,13 @@ export default function LandingPage() {
     >
       <header className="bg-black text-purple-500 py-4">
         <div className="w-5/6 mx-auto flex items-center justify-between">
-          <div>
-            <a className="flex gap-x-2" href="/">
-              <Code className="h-6 w-6 text-purple-500" />
-              <p className="text-lg font-bold">HUDC</p>
-            </a>
-          </div>
-          <nav className="space-x-4 sm:space-x-6 f">
-            <a
-              className="font-bold hover:underline underline-offset-4 text-purple-500"
-              href="#features"
-            >
-              Why join us
-            </a>
-            <a
-              className="font-bold hover:underline underline-offset-4 text-purple-500"
-              href="#about"
-            >
-              About
-            </a>
-            <a
-              className="font-bold hover:underline underline-offset-4 text-purple-500"
-              href="#contact"
-            >
-              Contact
-            </a>
-          </nav>
+         
+         <NavBar></NavBar>
         </div>
       </header>
 
       <main className="flex-1 ">
-        <section
+        <section id="home"
           className="py-24 md:py-36 lg:py-40 xl:py-24 text-white bg-opacity-90 bg-black w-full"
           style={{
             backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
