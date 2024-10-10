@@ -17,7 +17,7 @@ import { LinkedinIcon, SendIcon } from "lucide-react";
 
 export function CommunityTabsComponent() {
   return (
-    <Tabs defaultValue="social" className="w-[600px]">
+    <Tabs defaultValue="social" className="w-[700]">
       <TabsList className="grid w-full grid-cols-3 bg-gray-900 text-purple-500">
         <TabsTrigger
           value="social"
@@ -29,7 +29,7 @@ export function CommunityTabsComponent() {
           value="exclusive"
           className="hover:bg-purple-500 hover:text-black focus:bg-purple-500 focus:text-black"
         >
-          Exclusive Membership
+          Membership
         </TabsTrigger>
         <TabsTrigger
           value="organizers"
@@ -130,16 +130,6 @@ export function CommunityTabsComponent() {
                 className="bg-gray-800 text-white border-gray-700"
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="reason" className="text-purple-500">
-                Why Join the Exclusive Membership?
-              </Label>
-              <Textarea
-                id="reason"
-                placeholder="Tell us why you would like to join the exclusive membership"
-                className="bg-gray-800 text-white border-gray-700"
-              />
-            </div>
           </CardContent>
           <CardFooter>
             <Button className="w-full bg-purple-500 text-black hover:bg-purple-700">
@@ -201,16 +191,7 @@ export function CommunityTabsComponent() {
                 className="bg-gray-800 text-white border-gray-700"
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="experience" className="text-purple-500">
-                Relevant Experience
-              </Label>
-              <Textarea
-                id="experience"
-                placeholder="Tell us about your experience in organizing events or community management"
-                className="bg-gray-800 text-white border-gray-700"
-              />
-            </div>
+           
           </CardContent>
           <CardFooter>
             <Button className="w-full bg-purple-500 text-black hover:bg-purple-700">
