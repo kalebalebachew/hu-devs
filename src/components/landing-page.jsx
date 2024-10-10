@@ -50,7 +50,7 @@ export default function LandingPage() {
       <main className="flex-1 ">
         <section
           id="home"
-          className="py-24 md:py-36 lg:py-40 xl:py-24 text-white bg-opacity-90 bg-black w-full"
+          className="py-24 md:py-16 lg:py-18 xl:py-24 text-white bg-opacity-90 bg-black w-full"
           style={{
             backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
             backgroundSize: "10px 10px",
@@ -71,10 +71,10 @@ export default function LandingPage() {
                 href="https://t.me/hudevhub"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-purple-500 text-black hover:bg-purple-700 font-semibold text-lg px-6 py-3 rounded-lg flex items-center justify-center space-x-2"
+                className="bg-transparent text-white hover:bg-black text-lg px-6 py-3 rounded-3xl flex items-center justify-center space-x-2 border border-purple-500  "
               >
                 <SendIcon className="h-5 w-5" />
-                <span>Join our Telegram Channel</span>
+                <span>Telegram Channel</span>
               </a>
             </div>
           </div>
@@ -115,10 +115,10 @@ export default function LandingPage() {
             <Card className="bg-black text-white border border-purple-500 border-opacity-35">
               <CardHeader>
                 <CardTitle className="text-purple-500">
-                 We would love to hear from you
+                  We would love to hear from you
                 </CardTitle>
                 <CardDescription className="text-gray-300">
-                 leave us a message and we will get back to you
+                  leave us a message and we will get back to you
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -156,7 +156,7 @@ export default function LandingPage() {
               </CardContent>
               <CardFooter>
                 <Button className="w-full bg-purple-500 text-black hover:bg-purple-700">
-                 Send
+                  Send
                 </Button>
               </CardFooter>
             </Card>
@@ -175,7 +175,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-     <Footer></Footer>
+      <Footer></Footer>
     </div>
   );
 }
