@@ -70,7 +70,7 @@ export function CommunityTabsComponent() {
                 className="w-full bg-purple-500 text-black hover:bg-purple-700 inline-flex items-center justify-center px-4 py-2 rounded-md font-semibold"
               >
                 <SendIcon className="mr-2 h-4 w-4" />
-                Join our Telegram Group
+                Join our Telegram
               </a>
             </div>
 
