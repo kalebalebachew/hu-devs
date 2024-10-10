@@ -25,7 +25,10 @@ export default function LandingPage() {
         backgroundSize: "10px 10px",
       }}
     >
-      <header className="bg-black text-purple-500 py-4">
+      <header className=" text-purple-500 py-4" style={{
+        backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
+        backgroundSize: "10px 10px",
+      }}>
         <div className="w-5/6 mx-auto flex items-center justify-between">
          
          <NavBar></NavBar>
