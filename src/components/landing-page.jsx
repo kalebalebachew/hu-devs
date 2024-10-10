@@ -50,7 +50,7 @@ export default function LandingPage() {
       <main className="flex-1 ">
         <section
           id="home"
-          className="pt-36 pb-18 md:py-32 lg:py-40 xl:py-40 text-white bg-opacity-90 bg-black w-full"
+          className="pt-36 pb-18 md:pb-4 lg:pb-8 xl:pb-8 text-white bg-opacity-90 bg-black w-full"
           style={{
             backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
             backgroundSize: "10px 10px",
@@ -61,8 +61,8 @@ export default function LandingPage() {
               <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
                 Haramaya University <br /> Developers Community
               </h1>
-              <p className="mx-auto max-w-[700px] text-xl md:text-2xl font-light text-gray-300">
-                Learning and building together at Haramaya university <br />{" "}
+              <p className="mx-auto max-w-[700px] text-xl md:text-xl font-light text-gray-300">
+              Learning and building together at Haramaya University and beyond <br />{" "}
                 join our growing community of student developers.
               </p>
             </div>
