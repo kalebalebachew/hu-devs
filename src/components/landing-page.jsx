@@ -12,9 +12,19 @@ import {
   Rocket,
   InstagramIcon,
 } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { LinkedinIcon, SendIcon } from "lucide-react";
 import { CommunityTabsComponent } from "./community-tabs";
 import { NavBar } from "./layout/Navbar";
+import { Label } from "@radix-ui/react-label";
+import { Footer } from "./layout/Footer";
 
 export default function LandingPage() {
   return (
@@ -25,18 +35,21 @@ export default function LandingPage() {
         backgroundSize: "10px 10px",
       }}
     >
-      <header className=" text-purple-500 py-4" style={{
-        backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
-        backgroundSize: "10px 10px",
-      }}>
+      <header
+        className=" text-purple-500 py-4"
+        style={{
+          backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
+          backgroundSize: "10px 10px",
+        }}
+      >
         <div className="w-5/6 mx-auto flex items-center justify-between">
-         
-         <NavBar></NavBar>
+          <NavBar></NavBar>
         </div>
       </header>
 
       <main className="flex-1 ">
-        <section id="home"
+        <section
+          id="home"
           className="py-24 md:py-36 lg:py-40 xl:py-24 text-white bg-opacity-90 bg-black w-full"
           style={{
             backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
@@ -49,8 +62,8 @@ export default function LandingPage() {
                 Haramaya University <br /> Developers Community
               </h1>
               <p className="mx-auto max-w-[700px] text-xl md:text-2xl font-light text-gray-300">
-                Learning and building together at Haramaya university <br/> join our
-                growing community of student developers.
+                Learning and building together at Haramaya university <br />{" "}
+                join our growing community of student developers.
               </p>
             </div>
             <div className="space-y-4">
@@ -98,77 +111,55 @@ export default function LandingPage() {
             backgroundSize: "10px 10px",
           }}
         >
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 w-5/6 mx-auto">
-            <div>
-              <h2 className="text-3xl font-bold mb-6 text-purple-500">
-                We would love to hear from you.
-              </h2>
-              <form>
-                <div className="mb-4">
-                  <label
-                    className="block text-lg font-medium mb-2 text-white"
-                    htmlFor="firstName"
-                  >
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    className="w-3/4 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
+            <Card className="bg-black text-white border border-purple-500 border-opacity-35">
+              <CardHeader>
+                <CardTitle className="text-purple-500">
+                 We would love to hear from you
+                </CardTitle>
+                <CardDescription className="text-gray-300">
+                 leave us a message and we will get back to you
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-purple-500">
+                    Name
+                  </Label>
+                  <Input
+                    id="name"
+                    placeholder="Your full name"
+                    className="bg-gray-800 text-white border-gray-700"
                   />
                 </div>
-                <div className="mb-4">
-                  <label
-                    className="block text-lg font-medium mb-2 text-white"
-                    htmlFor="phoneNumber"
-                  >
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    className="w-3/4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label
-                    className="block text-lg font-medium mb-2 text-white"
-                    htmlFor="email"
-                  >
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-purple-500">
+                    Email
+                  </Label>
+                  <Input
                     id="email"
-                    name="email"
-                    className="w-3/4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
+                    type="email"
+                    placeholder="Your email address"
+                    className="bg-gray-800 text-white border-gray-700"
                   />
                 </div>
-                <div className="mb-4">
-                  <label
-                    className="block text-lg font-medium mb-2 text-white"
-                    htmlFor="message"
-                  >
-                    Leave Us a Message
-                  </label>
-                  <textarea
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-purple-500">
+                    Message
+                  </Label>
+                  <Input
                     id="message"
-                    name="message"
-                    rows="4"
-                    className="w-3/4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
-                  ></textarea>
+                    placeholder="Your message"
+                    className="bg-gray-800 text-white border-gray-700"
+                  />
                 </div>
-                <button
-                  type="submit"
-                  className="w-3/4 bg-purple-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-700 transition duration-200"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full bg-purple-500 text-black hover:bg-purple-700">
+                 Send
+                </Button>
+              </CardFooter>
+            </Card>
             <div>
               <iframe
                 title="Haramaya University Map"
@@ -184,46 +175,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="py-6 w-full px-4 md:px-6 bg-black text-white">
-        <div className="container mx-auto flex flex-col justify-center items-center">
-          <p className="text-sm text-purple-500 mb-4 md:mb-0">
-            © 2024 Haramaya University Developers Community. All rights
-            reserved.
-          </p>
-          <div className="flex justify-center mt-8 space-x-6">
-            <a
-              href="https://www.linkedin.com/company/haramaya-university-developers-community"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedinIcon
-                size={30}
-                className="text-purple-500 hover:text-white"
-              />
-            </a>
-            <a
-              href="https://t.me/hudevhub"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SendIcon
-                size={30}
-                className="text-purple-500 hover:text-white"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <InstagramIcon
-                size={30}
-                className="text-purple-500 hover:text-white"
-              />
-            </a>
-          </div>
-        </div>
-      </footer>
+     <Footer></Footer>
     </div>
   );
 }

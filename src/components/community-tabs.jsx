@@ -17,11 +17,11 @@ import { LinkedinIcon, SendIcon } from "lucide-react";
 
 export function CommunityTabsComponent() {
   return (
-    <Tabs defaultValue="social" className="w-[700]">
-      <TabsList className="grid w-full grid-cols-3 bg-gray-900 text-purple-500">
+    <Tabs defaultValue="social" className="w-[700] ">
+      <TabsList className="grid w-full grid-cols-3 bg-gray-900 font-semibold text-purple-500">
         <TabsTrigger
           value="social"
-          className="hover:bg-purple-500 hover:text-black focus:bg-purple-500 focus:text-black"
+          className=" hover:bg-purple-500 hover:text-black focus:bg-purple-500 focus:text-black"
         >
           Connect
         </TabsTrigger>
@@ -40,7 +40,7 @@ export function CommunityTabsComponent() {
       </TabsList>
 
       <TabsContent value="social">
-        <Card className="bg-black text-white p-4">
+        <Card className="bg-black text-white p-4 border border-purple-500 border-opacity-35">
           <CardHeader>
             <CardTitle className="text-purple-500">
               Connect with Our Community
