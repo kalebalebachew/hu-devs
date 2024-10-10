@@ -50,7 +50,7 @@ export default function LandingPage() {
       <main className="flex-1 ">
         <section
           id="home"
-          className="py-24 md:py-16 lg:py-18 xl:py-24 text-white bg-opacity-90 bg-black w-full"
+          className="pt-36 pb-18 md:py-32 lg:py-40 xl:py-40 text-white bg-opacity-90 bg-black w-full"
           style={{
             backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
             backgroundSize: "10px 10px",
