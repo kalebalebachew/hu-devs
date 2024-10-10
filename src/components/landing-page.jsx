@@ -10,8 +10,9 @@ import {
   BookOpen,
   Globe,
   Rocket,
+  InstagramIcon,
 } from "lucide-react";
-import { FaLinkedin, FaTelegramPlane, FaInstagram } from "react-icons/fa";
+import { LinkedinIcon, SendIcon } from "lucide-react";
 import { CommunityTabsComponent } from "./community-tabs";
 
 export default function LandingPage() {
@@ -299,9 +300,9 @@ export default function LandingPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaLinkedin
+              <LinkedinIcon
                 size={30}
-                className="text-white hover:text-purple-500"
+                className="text-purple-500 hover:text-white"
               />
             </a>
             <a
@@ -309,9 +310,9 @@ export default function LandingPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaTelegramPlane
+              <SendIcon
                 size={30}
-                className="text-blue-400 hover:text-purple-500"
+                className="text-purple-500 hover:text-white"
               />
             </a>
             <a
@@ -319,9 +320,9 @@ export default function LandingPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaInstagram
+              <InstagramIcon
                 size={30}
-                className="text-pink-500 hover:text-purple-500"
+                className="text-purple-500 hover:text-white"
               />
             </a>
           </div>
