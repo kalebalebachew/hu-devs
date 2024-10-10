@@ -93,7 +93,12 @@ export default function LandingPage() {
         <section
           id="contact"
           className="py-12 md:py-24 lg:py-12 bg-black text-white"
+          style={{
+            backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
+            backgroundSize: "10px 10px",
+          }}
         >
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 w-5/6 mx-auto">
             <div>
               <h2 className="text-3xl font-bold mb-6 text-purple-500">
@@ -179,7 +184,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="py-6 w-full px-4 md:px-6 bg-gray-900 text-white">
+      <footer className="py-6 w-full px-4 md:px-6 bg-black text-white">
         <div className="container mx-auto flex flex-col justify-center items-center">
           <p className="text-sm text-purple-500 mb-4 md:mb-0">
             © 2024 Haramaya University Developers Community. All rights
