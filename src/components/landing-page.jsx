@@ -224,7 +224,7 @@ export default function LandingPage() {
                     type="text"
                     id="firstName"
                     name="firstName"
-                    className="w-full px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
+                    className="w-3/4 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
                   />
                 </div>
                 <div className="mb-4">
@@ -238,7 +238,7 @@ export default function LandingPage() {
                     type="tel"
                     id="phoneNumber"
                     name="phoneNumber"
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
+                    className="w-3/4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
                   />
                 </div>
                 <div className="mb-4">
@@ -252,7 +252,7 @@ export default function LandingPage() {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
+                    className="w-3/4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
                   />
                 </div>
                 <div className="mb-4">
@@ -266,12 +266,12 @@ export default function LandingPage() {
                     id="message"
                     name="message"
                     rows="4"
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
+                    className="w-3/4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-800 text-white"
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-purple-500 text-black font-semibold py-2 px-4 rounded-md hover:bg-purple-700 transition duration-200"
+                  className="w-3/4 bg-purple-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-700 transition duration-200"
                 >
                   Send Message
                 </button>
