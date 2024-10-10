@@ -17,13 +17,19 @@ import { LinkedinIcon, SendIcon } from "lucide-react";
 
 export function CommunityTabsComponent() {
   return (
-    <Tabs defaultValue="social" className="w-[400px]">
-      <TabsList className="grid w-full grid-cols-2 bg-gray-900 text-purple-500">
+    <Tabs defaultValue="social" className="w-[600px]">
+      <TabsList className="grid w-full grid-cols-3 bg-gray-900 text-purple-500">
         <TabsTrigger
           value="social"
           className="hover:bg-purple-500 hover:text-black focus:bg-purple-500 focus:text-black"
         >
           Connect
+        </TabsTrigger>
+        <TabsTrigger
+          value="exclusive"
+          className="hover:bg-purple-500 hover:text-black focus:bg-purple-500 focus:text-black"
+        >
+          Exclusive Membership
         </TabsTrigger>
         <TabsTrigger
           value="organizers"
@@ -74,9 +80,72 @@ export function CommunityTabsComponent() {
                 alt="Telegram QR Code"
                 className="w-32 h-32 object-contain"
               />
-              <h2 className="text-gray-300 font-semi">Scan this Qr-code our Telegram group!</h2>
+              <h2 className="text-gray-300 font-semi">
+                Scan this QR code to join our Telegram group!
+              </h2>
             </div>
           </CardContent>
+        </Card>
+      </TabsContent>
+
+      <TabsContent value="exclusive">
+        <Card className="bg-black text-white">
+          <CardHeader>
+            <CardTitle className="text-purple-500">
+              Exclusive Membership Registration
+            </CardTitle>
+            <CardDescription className="text-gray-300">
+              Register for exclusive access to resources, events, and more.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-purple-500">
+                Name
+              </Label>
+              <Input
+                id="name"
+                placeholder="Your full name"
+                className="bg-gray-800 text-white border-gray-700"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-purple-500">
+                Email
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Your email address"
+                className="bg-gray-800 text-white border-gray-700"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="student-id" className="text-purple-500">
+                Student ID
+              </Label>
+              <Input
+                id="student-id"
+                placeholder="Your student ID number"
+                className="bg-gray-800 text-white border-gray-700"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="reason" className="text-purple-500">
+                Why Join the Exclusive Membership?
+              </Label>
+              <Textarea
+                id="reason"
+                placeholder="Tell us why you would like to join the exclusive membership"
+                className="bg-gray-800 text-white border-gray-700"
+              />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button className="w-full bg-purple-500 text-black hover:bg-purple-700">
+              Register Now
+            </Button>
+          </CardFooter>
         </Card>
       </TabsContent>
 
@@ -113,22 +182,22 @@ export function CommunityTabsComponent() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-purple-500">
-               Department
+              <Label htmlFor="department" className="text-purple-500">
+                Department
               </Label>
               <Input
-                id="name"
-                placeholder="which department are you in?"
+                id="department"
+                placeholder="Which department are you in?"
                 className="bg-gray-800 text-white border-gray-700"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-purple-500">
-               Year of Study
+              <Label htmlFor="year" className="text-purple-500">
+                Year of Study
               </Label>
               <Input
-                id="name"
-                placeholder="year of study"
+                id="year"
+                placeholder="Year of study"
                 className="bg-gray-800 text-white border-gray-700"
               />
             </div>
@@ -142,7 +211,6 @@ export function CommunityTabsComponent() {
                 className="bg-gray-800 text-white border-gray-700"
               />
             </div>
-            
           </CardContent>
           <CardFooter>
             <Button className="w-full bg-purple-500 text-black hover:bg-purple-700">
