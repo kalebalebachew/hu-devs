@@ -55,7 +55,7 @@ export default function LandingPage() {
         </div>
       </header>
 
-      <main className="flex-1  ">
+      <main className="flex-1 ">
         <section
           className="py-12 md:py-24 lg:py-32 xl:py-48 text-white bg-opacity-90 bg-black h-full w-full"
           style={{
@@ -66,7 +66,7 @@ export default function LandingPage() {
           <div className="flex flex-col items-center gap-y-8">
             <div className="space-y-2 text-center">
               <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-                Haramaya University Developers <br></br> Community
+                Haramaya University <br></br> Developers Community
               </h1>
               <p className="mx-auto max-w-[700px] text-xl md:text-2xl font-light text-gray-300">
                 Learning and building together at Haramaya University. Join our
@@ -183,10 +183,10 @@ export default function LandingPage() {
         <section
           id="join"
           className="min-h-screen bg-black text-white font-nunito flex items-center justify-center bg-opacity-90 h-full w-full"
-      style={{
-        backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
-        backgroundSize: "10px 10px",
-      }}
+          style={{
+            backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
+            backgroundSize: "10px 10px",
+          }}
         >
           <div className="w-full max-w-6xl text-center px-2">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold ">
@@ -205,7 +205,7 @@ export default function LandingPage() {
 
         <section
           id="contact"
-          className="py-12 md:py-24 lg:py-32 bg-black text-white"
+          className="py-12 md:py-24 lg:py-12 bg-black text-white"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 w-5/6 mx-auto">
             <div>
