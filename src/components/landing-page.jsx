@@ -99,7 +99,7 @@ export default function LandingPage() {
 
         <section
           id="join"
-          className=" bg-black text-white font-nunito flex items-center justify-center bg-opacity-90  w-full"
+          className=" bg-black text-white font-nunito flex items-center justify-center bg-opacity-90 p-12 w-full"
           style={{
             backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
             backgroundSize: "10px 10px",
