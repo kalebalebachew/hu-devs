@@ -25,6 +25,7 @@ import { CommunityTabsComponent } from "./community-tabs";
 import { NavBar } from "./layout/Navbar";
 import { Label } from "@radix-ui/react-label";
 import { Footer } from "./layout/Footer";
+import { Contributors } from "./contributors";
 
 export default function LandingPage() {
   return (
@@ -62,8 +63,8 @@ export default function LandingPage() {
                 Haramaya University <br /> Developers Community
               </h1>
               <p className="mx-auto max-w-[700px] text-xl md:text-xl font-light text-gray-300">
-              Learning and building together at Haramaya University and beyond <br />{" "}
-                join our growing community of student developers.
+                Learning and building together at Haramaya University and beyond{" "}
+                <br /> join our growing community of student developers.
               </p>
             </div>
             <div className="space-y-4">
@@ -79,7 +80,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
         <section
           id="join"
           className=" bg-black text-white font-nunito flex items-center justify-center bg-opacity-90 p-12 w-full"
@@ -174,6 +174,12 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
+      <div className="flex items-center justify-center">
+  <div className="p-8 bg-transparent shadow-lg">
+    <Contributors className="flex items-center justify-center"></Contributors>
+  </div>
+</div>
+
 
       <Footer></Footer>
     </div>
