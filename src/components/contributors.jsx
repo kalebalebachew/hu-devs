@@ -17,7 +17,6 @@ export function Contributors() {
         const data = await response.json();
         setContributors(data);
       } catch (error) {
-        setError('Failed to fetch contributors');
       } finally {
         setLoading(false);
       }
