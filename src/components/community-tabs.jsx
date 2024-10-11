@@ -89,7 +89,7 @@ export function CommunityTabsComponent() {
       </TabsContent>
 
       <TabsContent value="exclusive">
-        <Card className="bg-black text-white">
+        <Card className="bg-black text-white border-purple-500 border-opacity-40">
           <CardHeader>
             <CardTitle className="text-purple-500">
               Exclusive Membership Registration
@@ -99,16 +99,6 @@ export function CommunityTabsComponent() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-purple-500">
-                Name
-              </Label>
-              <Input
-                id="name"
-                placeholder="Your full name"
-                className="bg-gray-800 text-white border-gray-700"
-              />
-            </div>
             <div className="space-y-2">
               <Label htmlFor="email" className="text-purple-500">
                 Email
@@ -130,6 +120,16 @@ export function CommunityTabsComponent() {
                 className="bg-gray-800 text-white border-gray-700"
               />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-purple-500">
+                Password
+              </Label>
+              <Input
+                id="password"
+                placeholder="enter your password"
+                className="bg-gray-800 text-white border-gray-700"
+              />
+            </div>
           </CardContent>
           <CardFooter>
             <Button className="w-full bg-purple-500 text-black hover:bg-purple-700">
@@ -140,7 +140,7 @@ export function CommunityTabsComponent() {
       </TabsContent>
 
       <TabsContent value="organizers">
-        <Card className="bg-black text-white">
+        <Card className="bg-black text-white border-purple-500 border-opacity-40">
           <CardHeader>
             <CardTitle className="text-purple-500">
               Join the Organizers Team
