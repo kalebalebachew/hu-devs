@@ -43,7 +43,7 @@ export function Contributors() {
             <img
               src={contributor.avatar_url}
               alt={contributor.login}
-              className="w-16 h-16 rounded-full"
+              className="w-12 h-12 rounded-full"
             />
           </a>
         ))}
