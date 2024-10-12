@@ -35,7 +35,7 @@ export function CommunityTabsComponent() {
           value="organizers"
           className="hover:bg-purple-500 hover:text-black focus:bg-purple-500 focus:text-black"
         >
-          Join Organizers
+          Organizers
         </TabsTrigger>
       </TabsList>
 
