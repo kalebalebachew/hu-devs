@@ -3,12 +3,14 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { LoginDialog } from "../LoginDialog";
 
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false); 
 
   const toggleMenu = () => setIsOpen(!isOpen);
-
+  const toggleLogin = () => setIsLoginOpen(!isLoginOpen); 
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
@@ -44,7 +46,7 @@ export function NavBar() {
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Button className="text-black font-medium">Login</Button>
+              <Button className="text-black font-medium" onClick={toggleLogin}>Login</Button> 
               <Button
                 variant="ghost"
                 className="sm:hidden text-gray-300 hover:text-purple-500"
@@ -71,6 +73,8 @@ export function NavBar() {
           </div>
         )}
       </nav>
+
+      <LoginDialog isOpen={isLoginOpen} onClose={toggleLogin} />
     </div>
   );
 }
