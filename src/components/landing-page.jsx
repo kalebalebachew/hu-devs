@@ -26,6 +26,7 @@ import { NavBar } from "./layout/Navbar";
 import { Label } from "@radix-ui/react-label";
 import { Footer } from "./layout/Footer";
 import { Contributors } from "./contributors";
+import { UpcomingEventsTab } from "./UpcomingEvents";
 
 export default function LandingPage() {
   return (
@@ -99,6 +100,9 @@ export default function LandingPage() {
 
             <div className="flex justify-center ">
               <CommunityTabsComponent />
+            </div>
+            <div className="flex justify-center ">
+              <UpcomingEventsTab />
             </div>
           </div>
         </section>
