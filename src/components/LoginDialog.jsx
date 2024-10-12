@@ -32,7 +32,7 @@ export function LoginDialog({ isOpen, onClose }) {
   
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="sm:max-w-[425px] bg-black border-purple-500 border-opacity-40 text-white">
+        <DialogContent className="sm:max-w-[350px] bg-black border-purple-500 border-opacity-40 text-white">
           <DialogHeader>
             <DialogTitle className="text-purple-500">Log in to your account</DialogTitle>
             <DialogDescription className="text-gray-300">
@@ -75,7 +75,7 @@ export function LoginDialog({ isOpen, onClose }) {
                     disabled={isLoading}
                   >
                     {showPassword ? (
-                      <EyeOff className="h-4 w-4 hover:bg-white" aria-hidden="true" />
+                      <EyeOff className="h-4 w-4 focus:bg-purple-500" aria-hidden="true" />
                     ) : (
                       <Eye className="h-4 w-4" aria-hidden="true" />
                     )}
