@@ -9,8 +9,10 @@ module.exports = {
   ],
   theme: {
   	extend: {
-		fontFamily: {
-			nunito: ['Nunito', 'sans-serif'],
+		fontFamily:{
+			nunito:[
+			  "Nunito", "sans-serif"
+			]
 		  },
   		colors: {
   			background: 'hsl(var(--background))',

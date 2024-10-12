@@ -32,7 +32,7 @@ export function LoginDialog({ isOpen, onClose }) {
   
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="sm:max-w-[350px] bg-black border-purple-500 border-opacity-40 text-white">
+        <DialogContent className="font-nunito sm:max-w-[350px] bg-black border-purple-500 border-opacity-40 text-white">
           <DialogHeader>
             <DialogTitle className="text-purple-500">Log in to your account</DialogTitle>
             <DialogDescription className="text-gray-300">
