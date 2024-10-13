@@ -3,16 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Code,
-  Users,
-  Zap,
-  ChevronRight,
-  BookOpen,
-  Globe,
-  Rocket,
-  InstagramIcon,
-} from "lucide-react";
-import {
   Card,
   CardContent,
   CardDescription,
@@ -27,6 +17,7 @@ import { Label } from "@radix-ui/react-label";
 import { Footer } from "./layout/Footer";
 import { Contributors } from "./contributors";
 import { UpcomingEventsTab } from "./UpcomingEvents";
+
 
 export default function LandingPage() {
   return (
@@ -164,26 +155,50 @@ export default function LandingPage() {
                 </Button>
               </CardFooter>
             </Card>
-            <div>
-              <iframe
-                title="Haramaya University Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.9816181743527!2d42.034773374830586!3d9.423014382697337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1631a5a8e441e64d%3A0xdafe11071687f9d!2sHaramaya%20University!5e0!3m2!1sen!2set!4v1728500560513!5m2!1sen!2set"
-                width="100%"
-                height="100%"
-                className="rounded-md border-0"
-                allowFullScreen=""
-                loading="lazy"
-              ></iframe>
+            <div className="space-y-4">
+              <h2 className="text-purple-500 font-semibold text-2xl">
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-2">
+                <p className="text-white font-semibold">What is HUDC?</p>
+                <p className="text-gray-300">
+                  HUDC stands for Haramaya University Developers Community, a
+                  group of passionate student developers.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-white font-semibold">
+                  How do I join the community?
+                </p>
+                <p className="text-gray-300">
+                  You can join our community by signing up for membership or
+                  connecting with us on Telegram.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-white font-semibold">
+                  Are there any exclusive benefits?
+                </p>
+                <p className="text-gray-300">
+                  Yes, exclusive members can showcase their projects, get free
+                  access to paid courses, and more!
+                </p>
+                <p className="text-white font-semibold">
+                Can I contribute to HUDC projects?
+                </p>
+                <p className="text-gray-300">
+                We encourage all members to contribute to our open-source projects. Its a great way to gain experience and collaborate with fellow developers.
+                </p>
+              </div>
             </div>
           </div>
         </section>
       </main>
       <div className="flex items-center justify-center">
-  <div className="p-8 bg-transparent shadow-lg">
-    <Contributors className="flex items-center justify-center"></Contributors>
-  </div>
-</div>
-
+        <div className="p-8 bg-transparent shadow-lg">
+          <Contributors className="flex items-center justify-center"></Contributors>
+        </div>
+      </div>
 
       <Footer></Footer>
     </div>
