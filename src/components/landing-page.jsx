@@ -17,7 +17,8 @@ import { Label } from "@radix-ui/react-label";
 import { Footer } from "./layout/Footer";
 import { Contributors } from "./contributors";
 import { UpcomingEventsTab } from "./UpcomingEvents";
-
+import { CTA } from "./CTA";
+import { ContactForm } from "./ContactUs";
 
 export default function LandingPage() {
   return (
@@ -100,100 +101,23 @@ export default function LandingPage() {
 
         <section
           id="contact"
-          className="py-12 md:py-24 lg:py-12 bg-black text-white"
+          className="bg-black text-white"
           style={{
             backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
             backgroundSize: "10px 10px",
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-20 w-5/6 mx-auto">
-            <Card className="bg-black text-white border border-purple-500 border-opacity-35">
-              <CardHeader>
-                <CardTitle className="text-purple-500">
-                  We would love to hear from you
-                </CardTitle>
-                <CardDescription className="text-gray-300">
-                  leave us a message and we will get back to you
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-purple-500">
-                    Name
-                  </Label>
-                  <Input
-                    id="name"
-                    placeholder="Your full name"
-                    className="bg-gray-800 text-white border-gray-700"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-purple-500">
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Your email address"
-                    className="bg-gray-800 text-white border-gray-700"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-purple-500">
-                    Message
-                  </Label>
-                  <Input
-                    id="message"
-                    placeholder="Your message"
-                    className="bg-gray-800 text-white border-gray-700"
-                  />
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-purple-500 text-black hover:bg-purple-700">
-                  Send
-                </Button>
-              </CardFooter>
-            </Card>
-            <div className="space-y-4">
-              <h2 className="text-purple-500 font-semibold text-2xl">
-                Frequently Asked Questions
-              </h2>
-              <div className="space-y-2">
-                <p className="text-white font-semibold">What is HUDC?</p>
-                <p className="text-gray-300">
-                  HUDC stands for Haramaya University Developers Community, a
-                  group of passionate student developers.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-white font-semibold">
-                  How do I join the community?
-                </p>
-                <p className="text-gray-300">
-                  You can join our community by signing up for membership or
-                  connecting with us on Telegram.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-white font-semibold">
-                  Are there any exclusive benefits?
-                </p>
-                <p className="text-gray-300">
-                  Yes, exclusive members can showcase their projects, get free
-                  access to paid courses, and more!
-                </p>
-                <p className="text-white font-semibold">
-                Can I contribute to HUDC projects?
-                </p>
-                <p className="text-gray-300">
-                We encourage all members to contribute to our open-source projects. Its a great way to gain experience and collaborate with fellow developers.
-                </p>
-              </div>
+          <div className="flex flex-col md:flex-row gap-20 w-5/6 mx-auto items-start">
+            <div className="flex-1">
+              <ContactForm />
+            </div>
+            <div className="flex-1">
+              <CTA />
             </div>
           </div>
         </section>
       </main>
+
       <div className="flex items-center justify-center">
         <div className="p-8 bg-transparent shadow-lg">
           <Contributors className="flex items-center justify-center"></Contributors>
