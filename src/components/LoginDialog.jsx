@@ -63,6 +63,7 @@ export function LoginDialog({ isOpen, onClose }) {
                     autoCapitalize="none"
                     autoComplete="current-password"
                     autoCorrect="off"
+                    placeholder="Password"
                     disabled={isLoading}
                     className="bg-gray-800 text-white border-gray-700"
                   />
