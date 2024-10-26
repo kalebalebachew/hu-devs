@@ -24,17 +24,17 @@ export default function LandingPage() {
   return (
     <div
       className="min-h-screen bg-black text-white font-nunito bg-opacity-90 h-full w-full"
-      style={{
-        backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
-        backgroundSize: "10px 10px",
-      }}
+      // style={{
+      //   backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
+      //   backgroundSize: "10px 10px",
+      // }}
     >
       <header
-        className=" text-purple-500 py-4"
-        style={{
-          backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
-          backgroundSize: "10px 10px",
-        }}
+        className="bg-black text-purple-500 py-4"
+        // style={{
+        //   backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
+        //   backgroundSize: "10px 10px",
+        // }}
       >
         <div className="w-5/6 mx-auto flex items-center justify-between">
           <NavBar></NavBar>
@@ -45,10 +45,10 @@ export default function LandingPage() {
         <section
           id="home"
           className="pt-36 pb-18 md:pb-4 lg:pb-8 xl:pb-8 text-white bg-opacity-90 bg-black w-full"
-          style={{
-            backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
-            backgroundSize: "10px 10px",
-          }}
+          // style={{
+          //   backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
+          //   backgroundSize: "10px 10px",
+          // }}
         >
           <div className="flex flex-col items-center justify-center gap-y-8 h-full">
             <div className="space-y-4 text-center">
@@ -76,10 +76,10 @@ export default function LandingPage() {
         <section
           id="join"
           className=" bg-black text-white font-nunito flex items-center justify-center bg-opacity-90 p-12 w-full"
-          style={{
-            backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
-            backgroundSize: "10px 10px",
-          }}
+          // style={{
+          //   backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
+          //   backgroundSize: "10px 10px",
+          // }}
         >
           <div className="w-full max-w-6xl text-center px-2">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold ">
@@ -102,10 +102,10 @@ export default function LandingPage() {
         <section
           id="contact"
           className="bg-black text-white"
-          style={{
-            backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
-            backgroundSize: "10px 10px",
-          }}
+          // style={{
+          //   backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
+          //   backgroundSize: "10px 10px",
+          // }}
         >
           <div className="flex flex-col md:flex-row gap-20 w-5/6 mx-auto items-start">
             <div className="flex-1">
@@ -118,7 +118,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center bg-black">
         <div className="p-8 bg-transparent shadow-lg">
           <Contributors className="flex items-center justify-center"></Contributors>
         </div>
