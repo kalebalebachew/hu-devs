@@ -2,7 +2,7 @@
 -  Welcome to the official repository for the Haramaya University Developers Community Website! This platform is created by and for the student developers at Haramaya University, and we’re always open to new contributions.
 
 ## Website
-* Check out the live site here -  https://hu-devs.vercel.app/
+* Check out the live site here -  https://hudc.org
 
 ## Tech stack
 - Nextjs
