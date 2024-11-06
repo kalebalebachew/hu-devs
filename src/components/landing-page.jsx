@@ -44,7 +44,7 @@ export default function LandingPage() {
       <main className="flex-1 ">
         <section
           id="home"
-          className="pt-36 pb-18 md:pb-4 lg:pb-8 xl:pb-8 text-white bg-opacity-90 bg-black w-full"
+          className="pt-36 pb-18 md:pb-4 lg:pb-8 xl:pb-8 text-white bg-opacity-90 bg-black w-full "
           // style={{
           //   backgroundImage: "radial-gradient(#5a3fff 0.5px, #141414 0.5px)",
           //   backgroundSize: "10px 10px",

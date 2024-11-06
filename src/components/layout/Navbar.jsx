@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { LoginDialog } from "../LoginDialog";
+import { ThemeToggle } from "../ThemeToggle";
 
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,9 +70,12 @@ export function NavBar() {
               >
                 {item.name}
               </a>
+              
             ))}
+           
           </div>
         )}
+         {/* <ThemeToggle></ThemeToggle> */}
       </nav>
 
       <LoginDialog isOpen={isLoginOpen} onClose={toggleLogin} />
