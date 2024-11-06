@@ -1,6 +1,5 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import LogLib from "@loglib/tracker/react";
 import { ThemeProvider } from "next-themes";
 
 const geistSans = localFont({
@@ -8,6 +7,7 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -33,11 +33,6 @@ export default function RootLayout({ children }) {
       >
         <ThemeProvider attribute="class">
           {children}
-          <LogLib
-            config={{
-              id: "hu-devs_vercel",
-            }}
-          />
         </ThemeProvider>
       </body>
     </html>
