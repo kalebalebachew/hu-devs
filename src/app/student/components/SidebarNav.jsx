@@ -19,7 +19,7 @@ export function SidebarNavigation({ user, navMain }) {
   const pathname = usePathname()
 
   return (
-    <Sidebar variant="inset">
+    <Sidebar className="font-nunito" variant="inset">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
