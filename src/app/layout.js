@@ -1,6 +1,12 @@
 import localFont from "next/font/local";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,19 +27,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={nunito.className}>
+      <head></head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class">
-          {children}
-        </ThemeProvider>
+        <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>
   );
