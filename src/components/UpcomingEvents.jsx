@@ -10,11 +10,11 @@ const events = [
     description:"This time, we're hosting Brook Belihu ,the former co-host of Gugut Podcast —a name many of you already know and love! Now making waves with PulseERP, We will start right from the AASTU days, dive into his freelancing journey, and cover everything in between!"
   },
   {
-    title:"CTO AT KURAZTECH",
+    title:"Campus Innovation the Kuraztech's Journey",
     time: "Saturday, November 9 2:30 LT",
     location: "HUDC Telegram Channel",
     img: "/tito.jpg",
-    description: "The inspiration and early days of KurazTech.\n Tito’s journey as a student developer and the skills that shaped his career."
+    description: "HUDC is excited to bring you special live session featuring Tito Frezer, one of the key figures behind KurazTech —a company that started as a university club and grew into a successful tech company."
   },
   {
     title: "A Journey started in Haramaya University",

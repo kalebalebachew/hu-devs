@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { LoginDialog } from "../LoginDialog";
+import { ThemeToggle } from "../ThemeToggle";
 
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ export function NavBar() {
 
   return (
     <div className="fixed top-4 left-0 right-0 z-50 flex justify-center">
-      <nav className="bg-black/10 backdrop-blur-lg shadow-md rounded-2xl max-w-3xl w-11/12 border border-purple-500 border-opacity-35">
+      <nav className="bg-black backdrop-blur-lg shadow-md rounded-2xl max-w-3xl w-11/12 border border-purple-500 border-opacity-35">
         <div className="px-4">
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center">
@@ -69,9 +70,12 @@ export function NavBar() {
               >
                 {item.name}
               </a>
+              
             ))}
+           
           </div>
         )}
+         {/* <ThemeToggle></ThemeToggle> */}
       </nav>
 
       <LoginDialog isOpen={isLoginOpen} onClose={toggleLogin} />
