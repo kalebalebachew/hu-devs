@@ -3,18 +3,20 @@ import Image from "next/image";
 
 const events = [
   {
-    title:"Stories from gugt podcast, Freelancing and AASTU",
+    title: "Stories from gugt podcast, Freelancing and AASTU",
     time: "Saturday, November 16 2:30 LT",
     location: "HUDC Telegram Channel",
     img: "/biruk.jpg",
-    description:"This time, we're hosting Brook Belihu ,the former co-host of Gugut Podcast —a name many of you already know and love! Now making waves with PulseERP, We will start right from the AASTU days, dive into his freelancing journey, and cover everything in between!"
+    description:
+      "This time, we're hosting Brook Belihu ,the former co-host of Gugut Podcast —a name many of you already know and love! Now making waves with PulseERP, We will start right from the AASTU days, dive into his freelancing journey, and cover everything in between!",
   },
   {
-    title:"Campus Innovation the Kuraztech's Journey",
+    title: "Campus Innovation the Kuraztech's Journey",
     time: "Saturday, November 9 2:30 LT",
     location: "HUDC Telegram Channel",
     img: "/tito.jpg",
-    description: "HUDC is excited to bring you special live session featuring Tito Frezer, one of the key figures behind KurazTech —a company that started as a university club and grew into a successful tech company."
+    description:
+      "HUDC is excited to bring you special live session featuring Tito Frezer, one of the key figures behind KurazTech —a company that started as a university club and grew into a successful tech company.",
   },
   {
     title: "A Journey started in Haramaya University",
@@ -22,19 +24,30 @@ const events = [
     location: "HUDC Telegram Channel",
     img: "/john.jpg",
     description:
-      "We’re excited to have Yohannes, a former Haramaya lecturer, student, and now a Senior Data Engineer at Excellerent Solutions.\n\nYohannes went from sitting in the same classrooms you're in as a student, to teaching in them as a lecturer, and now he’s working in the tech industry.\n\nIn this session, he’ll share:\n\n• How he moved from learning and teaching to tech.\n• The challenges he faced along the way.\n• Practical tips for anyone wanting to start in tech."
-  }
+      "We’re excited to have Yohannes, a former Haramaya lecturer, student, and now a Senior Data Engineer at Excellerent Solutions.\n\nYohannes went from sitting in the same classrooms you're in as a student, to teaching in them as a lecturer, and now he’s working in the tech industry.\n\nIn this session, he’ll share:\n\n• How he moved from learning and teaching to tech.\n• The challenges he faced along the way.\n• Practical tips for anyone wanting to start in tech.",
+  },
 ];
 
 export function UpcomingEventsTab() {
-  const [expandedEvent, setExpandedEvent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const openModal = (event) => {
+    setSelectedEvent(event);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedEvent(null);
+  };
 
   const toggleExpand = (index) => {
     setExpandedEvent(expandedEvent === index ? null : index);
   };
 
   return (
-    <section className="p-4 sm:p-8">
+    <section className="md:p-4 sm:p-8">
       <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">
         Upcoming Events
       </h2>
@@ -52,18 +65,35 @@ export function UpcomingEventsTab() {
               className="w-full h-48 object-cover"
             />
             <div className="p-4">
-              <h3 className="text-lg sm:text-xl font-semibold">{event.title}</h3>
+              <h3 className="text-lg sm:text-xl font-semibold">
+                {event.title}
+              </h3>
               <p className="text-purple-600 font-semibold">{event.time}</p>
               <p className="text-white">{event.location}</p>
               <button
                 className="mt-4 w-full px-4 py-2 bg-purple-500 text-black hover:bg-purple-700 rounded-md"
-                onClick={() => toggleExpand(index)}
+                onClick={() => openModal(event)}
               >
-                {expandedEvent === index ? "Hide details" : "View details"} &rarr;
+                View Detail
               </button>
-              {expandedEvent === index && (
-                <div className="mt-4 text-gray-300">
-                  <p>{event.description}</p>
+              {isModalOpen && selectedEvent && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" onClick={closeModal}>
+                  <div className="bg-black  rounded-lg p-6 w-full max-w-md relative border border-purple-500 m-5">
+                    
+                    <h2 className="text-xl font-semibold mb-2 text-purple-500">
+                      {selectedEvent.title}
+                    </h2>
+                    <Image
+                      src={selectedEvent.img}
+                      alt={selectedEvent.title}
+                      width={1000}
+                      height={1000}
+                      className="w-full h-48 object-cover rounded mb-4"
+                    />
+                    <p className="whitespace-pre-line text-white">
+                      {selectedEvent.description}
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
