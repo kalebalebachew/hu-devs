@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "Total Course",
+    "value": "10",
+    "bgColor": "bg-purple-300",
+    "border": "border border-purple-500",
+    "textColor": "text-white"
+  },
+  {
+    "id": 2,
+    "title": "Total Workshop",
+    "value": "4",
+    "bgColor": "bg-purple-500",
+    "border": "border border-purple-500",
+    "textColor": "text-white"
+  },
+  {
+    "id": 3,
+    "title": "Average Quiz Score",
+    "value": "8/10",
+    "bgColor": "bg-purple-500",
+    "border": "border border-purple-500",
+    "textColor": "text-white"
+  },
+  {
+    "id": 4,
+    "title": "Total Certificates",
+    "value": "3",
+    "bgColor": "bg-purple-300",
+    "border": "border border-purple-500",
+    "textColor": "text-white"
+  }
+]
