@@ -1,0 +1,38 @@
+  [
+    {
+      "id": 1,
+      "image": "/images/figma.jpg", 
+      "platformLogo": "/images/figma-logo.png",
+      "title": "Figma for Beginners: Fundamentals of Figma App",
+      "instructor": "Richardino Gueva",
+      "progress": 25,
+      "lessons": "4/20 lessons"
+    },
+    {
+      "id": 2,
+      "image": "/images/webflow.jpg",
+      "platformLogo": "/images/webflow-logo.png",
+      "title": "Complete Web Design: from Figma to Webflow",
+      "instructor": "Richardino Gueva",
+      "progress": 50,
+      "lessons": "10/20 lessons"
+    },
+    {
+      "id": 3,
+      "image": "/images/figma.jpg",
+      "platformLogo": "/images/figma-logo.png",
+      "title": "Figma 2023: The Absolute Beginner to Pro Class",
+      "instructor": "Richardino Gueva",
+      "progress": 89,
+      "lessons": "29/30 lessons"
+    },
+    {
+      "id": 4,
+      "image": "/images/notion.jpg",
+      "platformLogo": "/images/notion-logo.png",
+      "title": "Mastering Managing Project with Notion",
+      "instructor": "Richardino Gueva",
+      "progress": 80,
+      "lessons": "8/10 lessons"
+    }
+  ]
