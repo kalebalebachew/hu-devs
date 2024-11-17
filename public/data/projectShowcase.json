@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Project One",
+    "description": "An innovative project focused on modern design principles.",
+    "image": "/images/pro-1.jpg",
+    "link": "/projects/project-one"
+  },
+  {
+    "title": "Project Two",
+    "description": "A groundbreaking project using cutting-edge technology.",
+    "image": "/images/pro-2.jpg",
+    "link": "/projects/project-two"
+  },
+  {
+    "title": "Project Three",
+    "description": "A creative endeavor to solve real-world challenges.",
+    "image": "/images/pro-3.jpg",
+    "link": "/projects/project-three"
+  },
+  {
+    "title": "Project Three",
+    "description": "A creative endeavor to solve real-world challenges.",
+    "image": "/images/pro-4.jpg",
+    "link": "/projects/project-three"
+  }
+]
