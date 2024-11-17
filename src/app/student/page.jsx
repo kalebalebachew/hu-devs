@@ -9,7 +9,7 @@ export default function Student() {
     <div className="h-screen">
       <div className="flex flex-col lg:flex-row bg-black p-6 gap-6">
         {/* Left Section: Text and Illustration */}
-        <div className="bg-black border-purple-300 border rounded-lg shadow-md my-5 py-6 pl-6 flex flex-col sm:flex-row items-center space-x-0 sm:space-x-1 lg:w-3/4 w-full">
+        <div className="bg-black border-purple-300 border rounded-lg shadow-md my-5 py-6 md:pl-6 flex flex-col sm:flex-row items-center space-x-0 sm:space-x-1 lg:w-3/4 w-full">
           {/* Text Section */}
           <div className="flex-1 text-center sm:text-left">
             <h1 className="text-2xl font-bold text-white">
@@ -32,7 +32,7 @@ export default function Student() {
             <Image
               src="/images/student.jpg"
               alt="Learning Illustration"
-              className="w-72 rounded-l-3xl"
+              className="w-72 md:rounded-l-3xl"
               width={500}
               height={500}
             />
@@ -40,7 +40,7 @@ export default function Student() {
         </div>
 
         {/* Right Section: Course Overview */}
-        <div className="md:p-6 w-1/2">
+        <div className="md:p-6 md:w-1/2">
           <div className="flex flex-wrap w-full gap-6 justify-end">
             {/* Card Items */}
             {Cards.map((Cards) => (
