@@ -38,13 +38,11 @@ export default function Student({ children }) {
   return (
     <SidebarProvider>
       <div className="flex h-screen font-nunito w-full">
-        {/* Sidebar */}
           <SidebarNavigation
-            navItems={data.navMain} // Pass your navigation data
-            user={data.user} // Pass user info if needed
+            navItems={data.navMain} 
+            user={data.user} 
           />
         
-        {/* Main Content */}
         <main className="w-full overflow-y-scroll">
           <div className="">{children}</div>
         </main>
