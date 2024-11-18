@@ -20,7 +20,7 @@ const data = {
       url: "/student",
       icon: <LayoutDashboard />,
     },
-    { title: "Resource Hub", url: "/student/resource-hub", icon: <Library /> },
+    { title: "Resource Hub", url: "/student/resourceHub", icon: <Library /> },
     {
       title: "Project Showcase",
       url: "/student/projectSubmission",
