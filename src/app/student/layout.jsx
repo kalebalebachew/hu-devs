@@ -1,5 +1,5 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { SidebarNavigation } from "./components/SidebarNav";
+import  SidebarNavigation  from "./components/SidebarNav";
 import { BookOpen, Code, LayoutDashboard, Library, Upload } from "lucide-react";
 import { Nunito } from "next/font/google";
 

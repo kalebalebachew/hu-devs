@@ -1,32 +1,35 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react"; 
+import { Menu, X } from "lucide-react";
 
 export function SidebarNavigation({ navItems }) {
   const [active, setActive] = useState("Dashboard");
-  const [isOpen, setIsOpen] = useState(false); 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = () => setIsOpen(!isOpen);
 
   return (
     <div className="relative">
       <div className="lg:hidden fixed top-4 left-4 z-50">
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-white p-2 bg-gray-900 rounded-md"
+          onClick={toggleSidebar}
+          className="text-white p-2 bg-purple-600 rounded-md hover:bg-purple-700 transition duration-200"
+          aria-label="Toggle menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       <div
-        className={`fixed top-0 left-0 h-screen w-56 bg-gray-900 shadow-lg transform ${
+        className={`fixed top-0 left-0 h-screen w-56 bg-gray-900 shadow-lg transform transition-transform duration-500 ease-in-out lg:translate-x-0 lg:static ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static`}
+        }`}
       >
         <div className="flex items-center justify-center h-16 border-b border-gray-800">
-          <h1 className="text-xl font-bold text-purple-600">HUDC</h1>
+          <h1 className="text-xl font-semibold text-white">HUDC</h1>
         </div>
-        
+
         <ul className="mt-4">
           {navItems.map((item) => (
             <li key={item.title} className="my-1">
@@ -36,10 +39,10 @@ export function SidebarNavigation({ navItems }) {
                     setActive(item.title);
                     setIsOpen(false); 
                   }}
-                  className={`flex items-center gap-4 p-3 cursor-pointer ${
+                  className={`flex items-center gap-4 p-3 cursor-pointer transition-all duration-200 ${
                     active === item.title
-                      ? "bg-purple-500 text-white font-bold rounded-r-md"
-                      : "text-white hover:bg-purple-300 rounded-r-md"
+                      ? "bg-purple-600 text-white font-bold rounded-r-md"
+                      : "text-gray-300 hover:bg-purple-500 hover:text-white rounded-r-md"
                   }`}
                 >
                   <span className="text-lg">{item.icon}</span>
@@ -50,6 +53,14 @@ export function SidebarNavigation({ navItems }) {
           ))}
         </ul>
       </div>
+
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={toggleSidebar}
+          aria-hidden="true"
+        ></div>
+      )}
     </div>
   );
 }
