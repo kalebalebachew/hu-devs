@@ -1,9 +1,8 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { SidebarNavigation } from "./components/SidebarNav";
-import { BreadcrumbNavigation } from "./components/Breadcrumb";
-import { Separator } from "@/components/ui/separator";
 import { BookOpen, Code, LayoutDashboard, Library, Upload } from "lucide-react";
 import { Nunito } from "next/font/google";
+
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -18,18 +17,18 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "/student/dashboard",
+      url: "/student",
       icon: <LayoutDashboard />,
     },
-    { title: "Resource Hub", url: "/student/resource-hub", icon: <Library /> },
+    { title: "Resource Hub", url: "/student/resourceHub", icon: <Library /> },
     {
-      title: "Project Showcase Submission",
-      url: "/student/project-submission",
+      title: "Project Showcase",
+      url: "/student/projectSubmission",
       icon: <Upload />,
     },
     {
       title: "Course Catalog",
-      url: "/student/course-catalog",
+      url: "/student/courseCatalog",
       icon: <BookOpen />,
     },
   ],
@@ -38,18 +37,14 @@ const data = {
 export default function Student({ children }) {
   return (
     <SidebarProvider>
-      <div className="flex h-screen font-nunito">
-        {/* Sidebar */}
-        <aside className="w-64 bg-white border-r">
+      <div className="flex h-screen font-nunito w-full">
           <SidebarNavigation
-            navItems={data.navMain} // Pass your navigation data
-            user={data.user} // Pass user info if needed
+            navItems={data.navMain} 
+            user={data.user} 
           />
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 flex flex-col">
-          <div className="flex-1">{children}</div>
+        
+        <main className="w-full overflow-y-scroll">
+          <div className="">{children}</div>
         </main>
       </div>
     </SidebarProvider>

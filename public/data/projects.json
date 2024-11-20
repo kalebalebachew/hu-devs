@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "name": "Project Alpha",
+    "tech": "React",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": 2,
+    "name": "Project Beta",
+    "tech": "Next.js",
+    "difficulty": "Intermediate"
+  },
+  { "id": 3, "name": "Project Gamma", "tech": "Vue", "difficulty": "Advanced" },
+  { "id": 4, "name": "Project ", "tech": "Angular", "difficulty": "Advanced" },
+  {
+    "id": 5,
+    "name": "Project Alpha",
+    "tech": "React",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": 6,
+    "name": "Project Beta",
+    "tech": "Next.js",
+    "difficulty": "Intermediate"
+  },
+  { "id": 7, "name": "Project Gamma", "tech": "Vue", "difficulty": "Advanced" },
+  { "id": 8, "name": "Project ", "tech": "Angular", "difficulty": "Advanced" },
+  {
+    "id": 9,
+    "name": "Project Alpha",
+    "tech": "React",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": 10,
+    "name": "Project Beta",
+    "tech": "Next.js",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": 11,
+    "name": "Project Gamma",
+    "tech": "Vue",
+    "difficulty": "Advanced"
+  },
+  { "id": 12, "name": "Project ", "tech": "Angular", "difficulty": "Advanced" }
+]

@@ -1,0 +1,75 @@
+[
+    {
+      "id": 1,
+      "title": "React Basics PDF",
+      "description": "A complete guide to learning React.js basics.",
+      "category": "Web Development",
+      "fileType": "PDF",
+      "link": "/resources/react-basics.pdf",
+      "thumbnail": "/thumbnails/react-basics.png"
+    },
+    {
+      "id": 2,
+      "title": "Introduction to Python",
+      "description": "Video tutorial for Python beginners.",
+      "category": "Programming",
+      "fileType": "Video",
+      "link": "/resources/python-intro.mp4",
+      "thumbnail": "/thumbnails/python-intro.png"
+    },
+    {
+      "id": 3,
+      "title": "UI/UX Design Principles",
+      "description": "Slide deck covering essential UI/UX principles.",
+      "category": "Design",
+      "fileType": "Slides",
+      "link": "/resources/ui-ux-principles.ppt",
+      "thumbnail": "/thumbnails/ui-ux-principles.png"
+    },
+    {
+      "id": 4,
+      "title": "Advanced JavaScript Techniques",
+      "description": "An eBook on modern JavaScript practices.",
+      "category": "Web Development",
+      "fileType": "PDF",
+      "link": "/resources/advanced-js.pdf",
+      "thumbnail": "/thumbnails/advanced-js.png"
+    },
+    {
+      "id": 5,
+      "title": "Data Structures and Algorithms in Python",
+      "description": "Video series on data structures and algorithms.",
+      "category": "Programming",
+      "fileType": "Video",
+      "link": "/resources/dsa-python.mp4",
+      "thumbnail": "/thumbnails/dsa-python.png"
+    },
+    {
+      "id": 6,
+      "title": "Typography in Design",
+      "description": "A presentation exploring typography principles.",
+      "category": "Design",
+      "fileType": "Slides",
+      "link": "/resources/typography-design.ppt",
+      "thumbnail": "/thumbnails/typography-design.png"
+    },
+    {
+      "id": 7,
+      "title": "Mastering CSS Grid and Flexbox",
+      "description": "Comprehensive guide to layout design using CSS Grid and Flexbox.",
+      "category": "Web Development",
+      "fileType": "PDF",
+      "link": "/resources/css-grid-flexbox.pdf",
+      "thumbnail": "/thumbnails/css-grid-flexbox.png"
+    },
+    {
+      "id": 8,
+      "title": "Intro to Machine Learning",
+      "description": "Video series on the basics of machine learning and its applications.",
+      "category": "Programming",
+      "fileType": "Video",
+      "link": "/resources/machine-learning-intro.mp4",
+      "thumbnail": "/thumbnails/machine-learning-intro.png"
+    }
+  ]
+  
