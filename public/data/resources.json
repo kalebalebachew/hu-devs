@@ -1,75 +1,162 @@
 [
-    {
-      "id": 1,
-      "title": "React Basics PDF",
-      "description": "A complete guide to learning React.js basics.",
-      "category": "Web Development",
-      "fileType": "PDF",
-      "link": "/resources/react-basics.pdf",
-      "thumbnail": "/thumbnails/react-basics.png"
-    },
-    {
-      "id": 2,
-      "title": "Introduction to Python",
-      "description": "Video tutorial for Python beginners.",
-      "category": "Programming",
-      "fileType": "Video",
-      "link": "/resources/python-intro.mp4",
-      "thumbnail": "/thumbnails/python-intro.png"
-    },
-    {
-      "id": 3,
-      "title": "UI/UX Design Principles",
-      "description": "Slide deck covering essential UI/UX principles.",
-      "category": "Design",
-      "fileType": "Slides",
-      "link": "/resources/ui-ux-principles.ppt",
-      "thumbnail": "/thumbnails/ui-ux-principles.png"
-    },
-    {
-      "id": 4,
-      "title": "Advanced JavaScript Techniques",
-      "description": "An eBook on modern JavaScript practices.",
-      "category": "Web Development",
-      "fileType": "PDF",
-      "link": "/resources/advanced-js.pdf",
-      "thumbnail": "/thumbnails/advanced-js.png"
-    },
-    {
-      "id": 5,
-      "title": "Data Structures and Algorithms in Python",
-      "description": "Video series on data structures and algorithms.",
-      "category": "Programming",
-      "fileType": "Video",
-      "link": "/resources/dsa-python.mp4",
-      "thumbnail": "/thumbnails/dsa-python.png"
-    },
-    {
-      "id": 6,
-      "title": "Typography in Design",
-      "description": "A presentation exploring typography principles.",
-      "category": "Design",
-      "fileType": "Slides",
-      "link": "/resources/typography-design.ppt",
-      "thumbnail": "/thumbnails/typography-design.png"
-    },
-    {
-      "id": 7,
-      "title": "Mastering CSS Grid and Flexbox",
-      "description": "Comprehensive guide to layout design using CSS Grid and Flexbox.",
-      "category": "Web Development",
-      "fileType": "PDF",
-      "link": "/resources/css-grid-flexbox.pdf",
-      "thumbnail": "/thumbnails/css-grid-flexbox.png"
-    },
-    {
-      "id": 8,
-      "title": "Intro to Machine Learning",
-      "description": "Video series on the basics of machine learning and its applications.",
-      "category": "Programming",
-      "fileType": "Video",
-      "link": "/resources/machine-learning-intro.mp4",
-      "thumbnail": "/thumbnails/machine-learning-intro.png"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "React Basics PDF",
+    "description": "A complete guide to learning React.js basics.",
+    "category": "Web Development",
+    "type": "Frontend",
+    "fileType": "PDF",
+    "link": "/resources/react-basics.pdf",
+    "linkType": "file"
+  },
+  {
+    "id": 2,
+    "title": "Introduction to Python",
+    "description": "Video tutorial for Python beginners.",
+    "category": "Programming",
+    "type": "Backend",
+    "fileType": "Video",
+    "link": "/resources/python-intro.mp4",
+    "linkType": "file"
+  },
+  {
+    "id": 3,
+    "title": "UI/UX Design Principles",
+    "description": "Slide deck covering essential UI/UX principles.",
+    "category": "Design",
+    "type": "Frontend",
+    "fileType": "Slides",
+    "link": "/resources/ui-ux-principles.ppt",
+    "linkType": "file"
+  },
+  {
+    "id": 4,
+    "title": "Advanced JavaScript Techniques",
+    "description": "An eBook on modern JavaScript practices.",
+    "category": "Web Development",
+    "type": "Frontend",
+    "fileType": "PDF",
+    "link": "/resources/advanced-js.pdf",
+    "linkType": "file"
+  },
+  {
+    "id": 5,
+    "title": "Data Structures and Algorithms in Python",
+    "description": "Video series on data structures and algorithms.",
+    "category": "Programming",
+    "type": "Backend",
+    "fileType": "Video",
+    "link": "/resources/dsa-python.mp4",
+    "linkType": "file"
+  },
+  {
+    "id": 6,
+    "title": "Typography in Design",
+    "description": "A presentation exploring typography principles.",
+    "category": "Design",
+    "type": "Frontend",
+    "fileType": "Slides",
+    "link": "/resources/typography-design.ppt",
+    "linkType": "file"
+  },
+  {
+    "id": 7,
+    "title": "Mastering CSS Grid and Flexbox",
+    "description": "Comprehensive guide to layout design using CSS Grid and Flexbox.",
+    "category": "Web Development",
+    "type": "Frontend",
+    "fileType": "PDF",
+    "link": "/resources/css-grid-flexbox.pdf",
+    "linkType": "file"
+  },
+  {
+    "id": 8,
+    "title": "Intro to Machine Learning",
+    "description": "Video series on the basics of machine learning and its applications.",
+    "category": "Programming",
+    "type": "Backend",
+    "fileType": "Video",
+    "link": "/resources/machine-learning-intro.mp4",
+    "linkType": "file"
+  },
+  {
+    "id": 9,
+    "title": "Git and GitHub for Beginners",
+    "description": "Comprehensive guide to version control with Git and GitHub.",
+    "category": "Development Tools",
+    "type": "Others",
+    "fileType": "PDF",
+    "link": "/resources/git-github-beginners.pdf",
+    "linkType": "file"
+  },
+  {
+    "id": 10,
+    "title": "Getting Started with Cloud Computing",
+    "description": "An introductory guide to cloud computing concepts and services.",
+    "category": "Cloud Computing",
+    "type": "Others",
+    "fileType": "PDF",
+    "link": "/resources/cloud-computing-intro.pdf",
+    "linkType": "file"
+  },
+  {
+    "id": 11,
+    "title": "Best Practices for Remote Work",
+    "description": "Tips and strategies for staying productive while working remotely.",
+    "category": "Workplace Productivity",
+    "type": "Others",
+    "fileType": "PDF",
+    "link": "/resources/remote-work-best-practices.pdf",
+    "linkType": "file"
+  },
+  {
+    "id": 12,
+    "title": "React Documentation",
+    "description": "Official React documentation for getting started and advanced usage.",
+    "category": "Web Development",
+    "type": "Frontend",
+    "fileType": "Link",
+    "linkType": "external",
+    "link": "https://reactjs.org/docs/getting-started.html"
+  },
+  {
+    "id": 13,
+    "title": "Node.js Documentation",
+    "description": "Official Node.js documentation for understanding the core concepts and API.",
+    "category": "Backend",
+    "type": "Backend",
+    "fileType": "Link",
+    "linkType": "external",
+    "link": "https://nodejs.org/en/docs/"
+  },
+  {
+    "id": 14,
+    "title": "CSS-Tricks",
+    "description": "A comprehensive resource for learning CSS and web design techniques.",
+    "category": "Web Development",
+    "type": "Frontend",
+    "fileType": "Link",
+    "linkType": "external",
+    "link": "https://css-tricks.com/"
+  },
+  {
+    "id": 15,
+    "title": "GitHub Docs",
+    "description": "Comprehensive documentation for using GitHub effectively.",
+    "category": "Version Control",
+    "type": "Others",
+    "fileType": "Link",
+    "linkType": "external",
+    "link": "https://docs.github.com/"
+  },
+  {
+    "id": 16,
+    "title": "Stack Overflow",
+    "description": "A community of developers sharing knowledge and solving coding problems.",
+    "category": "Community",
+    "type": "Others",
+    "fileType": "Link",
+    "linkType": "external",
+    "link": "https://stackoverflow.com/"
+  }
+]
