@@ -1,92 +1,68 @@
-"use client"
+"use client";
 
-import React from "react"
-import Course from "@/data/course.json"
-import Image from "next/image"
-import Cards from "@/data/cards.json"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
+import React from "react";
+import Course from "@/data/course.json";
+import Image from "next/image";
+import Cards from "@/data/cards.json";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { ChevronRight } from "lucide-react";
 
-export default function Student() {
+export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto p-6 space-y-8">
-        <div className="grid lg:grid-cols-3 gap-6">
-          <Card className="lg:col-span-2 bg-gray-800 border-purple-500">
-            <CardContent className="p-6">
-              <div className="flex flex-col sm:flex-row items-center gap-6">
-                <div className="flex-1 space-y-4">
-                  <h1 className="text-3xl font-bold">
-                    Hi, John <span className="wave inline-block animate-wave">👋</span>
-                  </h1>
-                  <h2 className="text-xl">
-                    What do you want to learn today with your partner?
-                  </h2>
-                  <p className="text-gray-300">
-                    Discover courses, track progress, and achieve your learning goals seamlessly.
-                  </p>
-                  <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-                    Explore Courses
-                  </Button>
-                </div>
-                <div className="flex-shrink-0">
-                  <Image
-                    src="/images/student.jpg"
-                    alt="Learning Illustration"
-                    width={300}
-                    height={300}
-                    className="rounded-lg object-cover"
-                  />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Welcome back, John{" "}
+            <span className="wave inline-block animate-wave">👋</span>
+          </h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">
+            Let's continue your learning journey
+          </p>
+        </header>
 
-          <div className="grid sm:grid-cols-2 gap-4">
-            {Cards.map((card) => (
-              <Card key={card.id} className={`${card.bgColor} ${card.border}`}>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className={`text-2xl font-bold ${card.textColor}`}>
-                    {card.value}
-                  </CardTitle>
-                  {card.icon}
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm font-medium text-gray-300">{card.title}</p>
-                  <button className="mt-4 text-sm text-gray-300 flex items-center gap-1 hover:text-white transition-colors">
-                    See Details
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <div className="grid lg:grid-cols-4 gap-6">
+          {Cards.map((card) => (
+            <Card key={card.id} className="bg-white dark:bg-gray-800 shadow-sm">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                  {card.title}
+                </CardTitle>
+                {card.icon && React.cloneElement(card.icon, { className: "h-4 w-4 text-gray-600 dark:text-gray-300" })}
+
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {card.value}
+                </div>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  +2.5% from last month
+                </p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
-        <div>
+        <div className="mt-12">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Recent Enrolled Course (12)</h2>
-            <Button variant="link" className="text-purple-400 hover:text-purple-300">
-              View All
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+              Recent Courses
+            </h2>
+            <Button
+              variant="ghost"
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+            >
+              View All <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {Course.map((course) => (
-              <Card key={course.id} className="bg-gray-800 border-gray-700 overflow-hidden">
+            {Course.slice(0, 4).map((course) => (
+              <Card
+                key={course.id}
+                className="bg-white dark:bg-gray-800 shadow-sm overflow-hidden"
+              >
                 <div className="relative aspect-video">
                   <Image
                     src={course.image}
@@ -98,18 +74,22 @@ export default function Student() {
                     <Image
                       src={course.platformLogo}
                       alt="Platform Logo"
-                      width={32}
-                      height={32}
+                      width={24}
+                      height={24}
                       className="rounded-full"
                     />
                   </div>
                 </div>
                 <CardContent className="p-4">
-                  <p className="text-sm text-gray-400">A Course by {course.instructor}</p>
-                  <h3 className="font-semibold mt-1 line-clamp-2">{course.title}</h3>
-                  <div className="flex justify-between items-center mt-4 text-sm text-gray-400">
-                    <span>{course.progress}%</span>
-                    <span>{course.lessons}</span>
+                  <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-1">
+                    {course.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    by {course.instructor}
+                  </p>
+                  <div className="flex justify-between items-center mt-4 text-sm text-gray-600 dark:text-gray-300">
+                    <span>{course.progress}% Complete</span>
+                    <span>{course.lessons} lessons</span>
                   </div>
                   <Progress value={course.progress} className="mt-2" />
                 </CardContent>
@@ -119,5 +99,5 @@ export default function Student() {
         </div>
       </div>
     </div>
-  )
+  );
 }

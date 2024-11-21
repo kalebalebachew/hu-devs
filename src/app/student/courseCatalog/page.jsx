@@ -59,8 +59,7 @@ export default function CourseCatalogPage() {
               type="submit"
               className="bg-black border border-purple-500 border-opacity-45"
             >
-              <Search className="mr-2 h-4 w-4  " />
-              Search
+              <Search className=" h-4 w-4  " />
             </Button>
           </form>
         </div>
