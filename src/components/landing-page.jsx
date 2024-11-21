@@ -118,11 +118,11 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <div className="flex items-center justify-center bg-black">
+{/*       <div className="flex items-center justify-center bg-black">
         <div className="p-8 bg-transparent shadow-lg">
           <Contributors className="flex items-center justify-center"></Contributors>
         </div>
-      </div>
+      </div> */}
 
       <Footer></Footer>
     </div>
