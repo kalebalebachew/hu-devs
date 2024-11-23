@@ -15,52 +15,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "./ui/icons";
 import { Eye, EyeOff } from "lucide-react";
-import { useRouter } from "next/navigation";
-
+import { useAuth } from "@/hooks/useAuth";
 
 export function LoginDialog({ isOpen, onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-  const router = useRouter();
+  const { login, isLoading, error, setError } = useAuth();
 
-  async function onSubmit(event) {
+  const onSubmit = (event) => {
     event.preventDefault();
-    setError("");
-    setIsLoading(true);
-
-    if (!email || !password) {
-      setError("Email and password are required.");
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        "https://hu-devs-backend.onrender.com/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Invalid credentials");
-      }
-
-      const { token } = await response.json();
-      localStorage.setItem("auth_token", token);
-      router.push("/student");
-      onClose();
-    } catch (err) {
-      setError(err.message || "Something went wrong. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  }
+    login(email, password, onClose);
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

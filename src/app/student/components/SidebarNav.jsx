@@ -1,9 +1,10 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 
-export function SidebarNavigation({ navItems }) {
+export function SidebarNavigation({ navItems, user, onLogout, isLoading }) {
   const [active, setActive] = useState("Dashboard");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,6 +31,11 @@ export function SidebarNavigation({ navItems }) {
           <h1 className="text-xl font-semibold text-white">HUDC</h1>
         </div>
 
+        <div className="p-4 border-b border-gray-800">
+          <h2 className="text-lg font-semibold text-white">{user.name}</h2>
+          <p className="text-sm text-gray-400">{user.email}</p>
+        </div>
+
         <ul className="mt-4">
           {navItems.map((item) => (
             <li key={item.title} className="my-1">
@@ -52,6 +58,21 @@ export function SidebarNavigation({ navItems }) {
             </li>
           ))}
         </ul>
+
+        <div className="absolute bottom-4 left-0 w-full px-4">
+          <button
+            onClick={onLogout}
+            disabled={isLoading}
+            className={`flex items-center gap-4 w-full p-3 text-left transition-all duration-200 rounded-r-md ${
+              isLoading
+                ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+                : "text-gray-300 hover:bg-red-600 hover:text-white"
+            }`}
+          >
+            <LogOut className="text-lg" />
+            {isLoading ? "Logging out..." : "Logout"}
+          </button>
+        </div>
       </div>
 
       {isOpen && (

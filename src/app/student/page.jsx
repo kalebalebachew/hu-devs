@@ -15,11 +15,11 @@ export default function Dashboard() {
       <div className="container mx-auto p-6 space-y-8">
         <header className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Welcome back, John{" "}
+            Welcome Student{" "}
             <span className="wave inline-block animate-wave">👋</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-300 mt-2">
-            Let's continue your learning journey
+            This is HUDC's Student Dashboard
           </p>
         </header>
 
@@ -30,8 +30,10 @@ export default function Dashboard() {
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">
                   {card.title}
                 </CardTitle>
-                {card.icon && React.cloneElement(card.icon, { className: "h-4 w-4 text-gray-600 dark:text-gray-300" })}
-
+                {card.icon &&
+                  React.cloneElement(card.icon, {
+                    className: "h-4 w-4 text-gray-600 dark:text-gray-300",
+                  })}
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-gray-900 dark:text-white">
