@@ -1,17 +1,16 @@
-"use client"
+"use client";
+
 import { SidebarProvider } from "@/components/ui/sidebar";
 import SidebarNavigation from "./components/SidebarNav";
-import {
-  BookOpen,
-  Code,
-  LayoutDashboard,
-  Library,
-  Upload,
-  LogOut,
-} from "lucide-react";
+import { BookOpen, LayoutDashboard, Library, Upload } from "lucide-react";
 import { Nunito } from "next/font/google";
 import { useLogout } from "@/hooks/useLogout";
-import { ToastNotification } from "@/components/ui/toast";
+import {
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  ToastClose,
+} from "@/components/ui/toast";
 import { useState } from "react";
 
 const nunito = Nunito({
@@ -20,10 +19,6 @@ const nunito = Nunito({
 });
 
 const data = {
-  user: {
-    name: "Kaleb",
-    email: "kaleb@haramaya.edu.et",
-  },
   navMain: [
     {
       title: "Dashboard",
@@ -45,7 +40,7 @@ const data = {
 };
 
 export default function Student({ children }) {
-  const { logout, isLoading, message, setMessage } = useLogout();
+  const { logout, isLoading, message } = useLogout();
   const [toast, setToast] = useState({
     isVisible: false,
     type: "success",
@@ -57,28 +52,34 @@ export default function Student({ children }) {
     setToast({
       isVisible: true,
       type: success ? "success" : "error",
-      message: message,
+      message: success ? "Logout successful!" : message || "Failed to log out.",
     });
 
     if (success) {
-      window.location.href = "/"; 
+      window.location.href = "/";
     }
   };
 
   return (
     <SidebarProvider>
-      <ToastNotification
-        isVisible={toast.isVisible}
-        type={toast.type}
-        message={toast.message}
-        onDismiss={() => setToast({ ...toast, isVisible: false })}
-      />
-      <div className="flex h-screen font-nunito w-full">
+      {toast.isVisible && (
+        <Toast variant={toast.type}>
+          <ToastTitle>
+            {toast.type === "success" ? "Success" : "Error"}
+          </ToastTitle>
+          <ToastDescription>{toast.message}</ToastDescription>
+          <ToastClose
+            onClick={() => setToast({ ...toast, isVisible: false })}
+          />
+        </Toast>
+      )}
+
+      <div className={`flex h-screen ${nunito.className} w-full`}>
         <SidebarNavigation
           navItems={data.navMain}
           user={data.user}
-          onLogout={handleLogout} // Pass the logout function to SidebarNavigation
-          isLoading={isLoading} // Pass loading state for better feedback
+          onLogout={handleLogout}
+          isLoading={isLoading}
         />
         <main className="w-full overflow-y-scroll">
           <div>{children}</div>

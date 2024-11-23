@@ -19,7 +19,7 @@ export default function Dashboard() {
             <span className="wave inline-block animate-wave">👋</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-300 mt-2">
-            This is HUDC's Student Dashboard
+            This is HUDC&apos;s Student Dashboard
           </p>
         </header>
 
