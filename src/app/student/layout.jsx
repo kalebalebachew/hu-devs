@@ -77,7 +77,6 @@ export default function Student({ children }) {
       <div className={`flex h-screen ${nunito.className} w-full`}>
         <SidebarNavigation
           navItems={data.navMain}
-          user={data.user}
           onLogout={handleLogout}
           isLoading={isLoading}
         />

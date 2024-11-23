@@ -31,10 +31,7 @@ export function SidebarNavigation({ navItems, user, onLogout, isLoading }) {
           <h1 className="text-xl font-semibold text-white">HUDC</h1>
         </div>
 
-        <div className="p-4 border-b border-gray-800">
-          <h2 className="text-lg font-semibold text-white">{user.name}</h2>
-          <p className="text-sm text-gray-400">{user.email}</p>
-        </div>
+    
 
         <ul className="mt-4">
           {navItems.map((item) => (
