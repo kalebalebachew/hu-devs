@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LinkedinIcon, SendIcon } from "lucide-react";
 import { useRegistration } from "@/hooks/useRegistration";
-import { ToastNotification } from "@/components/ui/toast";
+import { Toast } from "@/components/ui/toast"; // Adjust the import based on your structure
 
 export function CommunityTabsComponent() {
   const [membershipForm, setMembershipForm] = useState({
@@ -24,12 +24,11 @@ export function CommunityTabsComponent() {
     password: "",
   });
 
-  const { isLoading, message, setMessage, registerMembership } =
-    useRegistration();
+  const { isLoading, registerMembership } = useRegistration();
 
   const [toast, setToast] = useState({
     isVisible: false,
-    type: "success",
+    type: "success", // 'success' or 'error'
     message: "",
   });
 
@@ -47,16 +46,23 @@ export function CommunityTabsComponent() {
     if (success) {
       setMembershipForm({ email: "", studentId: "", password: "" });
     }
+
+    // Auto-dismiss the toast after 5 seconds
+    setTimeout(() => {
+      setToast({ ...toast, isVisible: false });
+    }, 5000);
   };
 
   return (
     <>
-      <ToastNotification
-        isVisible={toast.isVisible}
-        type={toast.type}
-        message={toast.message}
-        onDismiss={() => setToast({ ...toast, isVisible: false })}
-      />
+      {/* Toast Notification */}
+      {toast.isVisible && (
+        <Toast
+          type={toast.type}
+          message={toast.message}
+          onDismiss={() => setToast({ ...toast, isVisible: false })}
+        />
+      )}
 
       <Tabs defaultValue="social" className="w-[700]">
         <TabsList className="grid w-full grid-cols-3 gap-4 bg-gray-900 font-semibold border border-purple-500 border-opacity-40 text-purple-500">
@@ -139,7 +145,10 @@ export function CommunityTabsComponent() {
                     placeholder="Your email address"
                     value={membershipForm.email}
                     onChange={(e) =>
-                      setMembershipForm({ ...membershipForm, email: e.target.value })
+                      setMembershipForm({
+                        ...membershipForm,
+                        email: e.target.value,
+                      })
                     }
                   />
                 </div>
