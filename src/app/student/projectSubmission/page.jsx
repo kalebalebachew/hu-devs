@@ -92,8 +92,8 @@ export default function SubmitProject() {
             Submit Your Project
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Share your amazing project with our developer community. We'd love
-            to see what you've built!
+            Share your amazing project with our developer community. We would love
+            to see what you have built!
           </p>
         </div>
         <div className="mb-6 text-center">
