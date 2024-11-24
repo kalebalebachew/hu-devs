@@ -1,162 +1,112 @@
-[
-  {
-    "id": 1,
-    "title": "React Basics PDF",
-    "description": "A complete guide to learning React.js basics.",
-    "category": "Web Development",
-    "type": "Frontend",
-    "fileType": "PDF",
-    "link": "/resources/react-basics.pdf",
-    "linkType": "file"
-  },
-  {
-    "id": 2,
-    "title": "Introduction to Python",
-    "description": "Video tutorial for Python beginners.",
-    "category": "Programming",
-    "type": "Backend",
-    "fileType": "Video",
-    "link": "/resources/python-intro.mp4",
-    "linkType": "file"
-  },
-  {
-    "id": 3,
-    "title": "UI/UX Design Principles",
-    "description": "Slide deck covering essential UI/UX principles.",
-    "category": "Design",
-    "type": "Frontend",
-    "fileType": "Slides",
-    "link": "/resources/ui-ux-principles.ppt",
-    "linkType": "file"
-  },
-  {
-    "id": 4,
-    "title": "Advanced JavaScript Techniques",
-    "description": "An eBook on modern JavaScript practices.",
-    "category": "Web Development",
-    "type": "Frontend",
-    "fileType": "PDF",
-    "link": "/resources/advanced-js.pdf",
-    "linkType": "file"
-  },
-  {
-    "id": 5,
-    "title": "Data Structures and Algorithms in Python",
-    "description": "Video series on data structures and algorithms.",
-    "category": "Programming",
-    "type": "Backend",
-    "fileType": "Video",
-    "link": "/resources/dsa-python.mp4",
-    "linkType": "file"
-  },
-  {
-    "id": 6,
-    "title": "Typography in Design",
-    "description": "A presentation exploring typography principles.",
-    "category": "Design",
-    "type": "Frontend",
-    "fileType": "Slides",
-    "link": "/resources/typography-design.ppt",
-    "linkType": "file"
-  },
-  {
-    "id": 7,
-    "title": "Mastering CSS Grid and Flexbox",
-    "description": "Comprehensive guide to layout design using CSS Grid and Flexbox.",
-    "category": "Web Development",
-    "type": "Frontend",
-    "fileType": "PDF",
-    "link": "/resources/css-grid-flexbox.pdf",
-    "linkType": "file"
-  },
-  {
-    "id": 8,
-    "title": "Intro to Machine Learning",
-    "description": "Video series on the basics of machine learning and its applications.",
-    "category": "Programming",
-    "type": "Backend",
-    "fileType": "Video",
-    "link": "/resources/machine-learning-intro.mp4",
-    "linkType": "file"
-  },
-  {
-    "id": 9,
-    "title": "Git and GitHub for Beginners",
-    "description": "Comprehensive guide to version control with Git and GitHub.",
-    "category": "Development Tools",
-    "type": "Others",
-    "fileType": "PDF",
-    "link": "/resources/git-github-beginners.pdf",
-    "linkType": "file"
-  },
-  {
-    "id": 10,
-    "title": "Getting Started with Cloud Computing",
-    "description": "An introductory guide to cloud computing concepts and services.",
-    "category": "Cloud Computing",
-    "type": "Others",
-    "fileType": "PDF",
-    "link": "/resources/cloud-computing-intro.pdf",
-    "linkType": "file"
-  },
-  {
-    "id": 11,
-    "title": "Best Practices for Remote Work",
-    "description": "Tips and strategies for staying productive while working remotely.",
-    "category": "Workplace Productivity",
-    "type": "Others",
-    "fileType": "PDF",
-    "link": "/resources/remote-work-best-practices.pdf",
-    "linkType": "file"
-  },
-  {
-    "id": 12,
-    "title": "React Documentation",
-    "description": "Official React documentation for getting started and advanced usage.",
-    "category": "Web Development",
-    "type": "Frontend",
-    "fileType": "Link",
-    "linkType": "external",
-    "link": "https://reactjs.org/docs/getting-started.html"
-  },
-  {
-    "id": 13,
-    "title": "Node.js Documentation",
-    "description": "Official Node.js documentation for understanding the core concepts and API.",
-    "category": "Backend",
-    "type": "Backend",
-    "fileType": "Link",
-    "linkType": "external",
-    "link": "https://nodejs.org/en/docs/"
-  },
-  {
-    "id": 14,
-    "title": "CSS-Tricks",
-    "description": "A comprehensive resource for learning CSS and web design techniques.",
-    "category": "Web Development",
-    "type": "Frontend",
-    "fileType": "Link",
-    "linkType": "external",
-    "link": "https://css-tricks.com/"
-  },
-  {
-    "id": 15,
-    "title": "GitHub Docs",
-    "description": "Comprehensive documentation for using GitHub effectively.",
-    "category": "Version Control",
-    "type": "Others",
-    "fileType": "Link",
-    "linkType": "external",
-    "link": "https://docs.github.com/"
-  },
-  {
-    "id": 16,
-    "title": "Stack Overflow",
-    "description": "A community of developers sharing knowledge and solving coding problems.",
-    "category": "Community",
-    "type": "Others",
-    "fileType": "Link",
-    "linkType": "external",
-    "link": "https://stackoverflow.com/"
-  }
-]
+
+   [
+    {
+      "id": 1,
+      "title": "CS50 Introduction to Computer Science",
+      "description": "Foundational concepts in computer science taught by Harvard lecturers.",
+      "category": "Computer Science Fundamentals",
+      "type": "Video",
+      "fileType": "Video",
+      "link": "https://pll.harvard.edu/course/cs50-introduction-computer-science"
+    },
+    {
+      "id": 2,
+      "title": "The Odin Project",
+      "description": "Comprehensive web development course covering both front-end and back-end technologies.",
+      "category": "Web Development",
+      "type": "Link",
+      "fileType": "Link",
+      "link": "https://www.theodinproject.com/"
+    },
+    {
+      "id": 3,
+      "title": "Pro Git Book",
+      "description": "Master Git and GitHub workflows.",
+      "category": "Version Control",
+      "type": "Book",
+      "fileType": "PDF",
+      "link": "https://git-scm.com/book/en/v2"
+    },
+    {
+      "id": 4,
+      "title": "Figma Resources",
+      "description": "UI/UX design principles and collaborative prototyping.",
+      "category": "Design and Graphics",
+      "type": "Link",
+      "fileType": "Link",
+      "link": "https://www.figma.com/resources/learn-design"
+    },
+    {
+      "id": 5,
+      "title": "Flutter Crash Course",
+      "description": "Learn Flutter basics, widgets, and state management.",
+      "category": "Mobile App Development",
+      "type": "Video",
+      "fileType": "Video",
+      "link": "https://www.youtube.com/watch?v=x0uinJvhNxI"
+    },
+    {
+      "id": 6,
+      "title": "Cracking the Coding Interview",
+      "description": "A must-read for technical interviews preparation.",
+      "category": "Competitive Programming",
+      "type": "Book",
+      "fileType": "PDF",
+      "link": "https://www.pdfdrive.com/cracking-the-coding-interview-e54100250.html"
+    },
+    {
+      "id": 7,
+      "title": "JavaScript.info",
+      "description": "Comprehensive JavaScript tutorials for all levels.",
+      "category": "Web Development",
+      "type": "Link",
+      "fileType": "Link",
+      "link": "https://javascript.info/"
+    },
+    {
+      "id": 8,
+      "title": "A Complete Guide to Flexbox",
+      "description": "Learn CSS flexbox properties for layout designs.",
+      "category": "Web Development",
+      "type": "Link",
+      "fileType": "Link",
+      "link": "https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
+    },
+    {
+      "id": 9,
+      "title": "Flutter Development Bootcamp",
+      "description": "Build iOS and Android apps with Flutter and Dart.",
+      "category": "Mobile App Development",
+      "type": "Video",
+      "fileType": "Video",
+      "link": "https://www.udemy.com/course/flutter-bootcamp-with-dart/"
+    },
+    {
+      "id": 10,
+      "title": "Python Crash Course",
+      "description": "A fast-paced introduction to programming with Python.",
+      "category": "Backend",
+      "type": "Book",
+      "fileType": "PDF",
+      "link": "https://ehmatthes.github.io/pcc/"
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Algorithms",
+      "description": "A comprehensive book on algorithms.",
+      "category": "Competitive Programming",
+      "type": "Book",
+      "fileType": "PDF",
+      "link": "https://mitpress.mit.edu/books/introduction-algorithms-third-edition"
+    },
+    {
+      "id": 14,
+      "title": "Learn Git Branching",
+      "description": "Interactive learning tool for Git branching.",
+      "category": "Version Control",
+      "type": "Link",
+      "fileType": "Link",
+      "link": "https://learngitbranching.js.org/"
+    }
+  ]
+
