@@ -1,93 +1,92 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { Menu, X, LogOut, Bell, Settings } from "lucide-react";
+import { LogOut, Search, Menu } from "lucide-react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
-export function SidebarNavigation({ navItems, user, onLogout, isLoading }) {
-  const [active, setActive] = useState("Dashboard");
+export default function SidebarNavigation({ navItems, onLogout, isLoading }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleSidebar = () => setIsOpen(!isOpen);
-
   return (
-    <div className="relative">
-      <div className="lg:hidden fixed top-4 left-4 z-50">
-        <button
-          onClick={toggleSidebar}
-          className="text-white p-2 bg-purple-600 rounded-md hover:bg-purple-700 transition duration-200"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      <div
-        className={`fixed top-0 left-0 h-screen w-64 bg-gray-900 shadow-lg transform transition-transform duration-500 ease-in-out lg:translate-x-0 lg:static ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        {/* Header */}
-        <div className=" ">
-          <div className="flex items-center gap-4">
-            {/* <div className="w-12 h-12  flex items-center justify-center text-purple-600 text-medium font-semi">
-             HUDC 
-            </div> */}
-          </div>
-       
+    <Sidebar
+      className="border-r bg-gray-900 text-white shadow-lg"
+      defaultCollapsed={{ mobile: true, desktop: false }}
+    >
+      {/* Header Section */}
+      <SidebarHeader className="border-b border-gray-700 p-4">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="h-10 w-10 rounded-full bg-purple-600 flex items-center justify-center">
+              <span className="text-white font-bold text-lg">S</span>
+            </div>
+            <span className="font-semibold text-lg text-white">
+              Student Dashboard
+            </span>
+          </Link>
+          <SidebarTrigger className="lg:hidden">
+            <Button variant="ghost" size="icon" className="text-white">
+              <Menu className="size-4" />
+            </Button>
+          </SidebarTrigger>
         </div>
+        <div className="mt-4 relative">
+          <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
+          <Input
+            placeholder="Search..."
+            className="pl-9 bg-gray-800 text-white placeholder-gray-400 border-gray-700 rounded-md focus:ring-2 focus:ring-purple-500"
+          />
+        </div>
+      </SidebarHeader>
 
-        <nav className="mt-6">
-          <ul>
+      {/* Content Section */}
+      <SidebarContent>
+        <ScrollArea className="h-[calc(100vh-13rem)] px-2">
+          <SidebarMenu>
             {navItems.map((item) => (
-              <li key={item.title} className="my-1">
-                <Link href={item.url}>
-                  <div
-                    onClick={() => {
-                      setActive(item.title);
-                      setIsOpen(false);
-                    }}
-                    className={`flex items-center gap-3 p-4 cursor-pointer transition-all duration-200 ${
-                      active === item.title
-                        ? "bg-purple-600 text-white font-medium rounded-lg"
-                        : "text-gray-300 hover:bg-purple-500 hover:text-white rounded-lg"
-                    }`}
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild>
+                  <Link
+                    href={item.url}
+                    className="flex items-center gap-4 py-2 px-4 rounded-md transition-all duration-200 hover:bg-gray-800 hover:text-purple-400"
                   >
-                    <span className="text-lg">{item.icon}</span>
-                    <span className="text-sm">{item.title}</span>
-                  </div>
-                </Link>
-              </li>
+                    {item.icon &&
+                      React.createElement(item.icon, {
+                        className: "size-4 text-purple-400",
+                      })}
+                    <span className="text-white">{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             ))}
-          </ul>
-        </nav>
+          </SidebarMenu>
+        </ScrollArea>
+      </SidebarContent>
 
-        <div className="absolute bottom-6 left-0 w-full px-4">
-          <button
-            onClick={onLogout}
-            disabled={isLoading}
-            className={`flex items-center gap-3 w-full p-4 text-left transition-all duration-200 rounded-lg ${
-              isLoading
-                ? "bg-gray-700 text-gray-500 cursor-not-allowed"
-                : "text-gray-300 hover:bg-red-600 hover:text-white"
-            }`}
-          >
-            <LogOut className="text-lg" />
-            {isLoading ? "Logging out..." : "Logout"}
-          </button>
-        </div>
-      </div>
-
-      {/* Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={toggleSidebar}
-          aria-hidden="true"
-        ></div>
-      )}
-    </div>
+      {/* Footer Section */}
+      <SidebarFooter className="border-t border-gray-700 p-4">
+        <Button
+          variant="ghost"
+          className="w-full justify-start text-gray-400 hover:bg-gray-800 hover:text-red-500 transition-all duration-200"
+          onClick={onLogout}
+          disabled={isLoading}
+        >
+          <LogOut className="mr-2 size-4" />
+          {isLoading ? "Logging out..." : "Logout"}
+        </Button>
+      </SidebarFooter>
+    </Sidebar>
   );
 }
-
-export default SidebarNavigation;

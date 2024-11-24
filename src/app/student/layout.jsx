@@ -11,33 +11,35 @@ import {
   ToastDescription,
   ToastClose,
 } from "@/components/ui/toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",
 });
 
-const data = {
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "/student",
-      icon: <LayoutDashboard />,
-    },
-    { title: "Resource Hub", url: "/student/resourceHub", icon: <Library /> },
-    {
-      title: "Project Showcase",
-      url: "/student/projectSubmission",
-      icon: <Upload />,
-    },
-    {
-      title: "Course Catalog",
-      url: "/student/courseCatalog",
-      icon: <BookOpen />,
-    },
-  ],
-};
+const navItems = [
+  {
+    title: "Dashboard",
+    url: "/student",
+    icon: LayoutDashboard, 
+  },
+  {
+    title: "Resource Hub",
+    url: "/student/resourceHub",
+    icon: Library,
+  },
+  {
+    title: "Project Showcase",
+    url: "/student/projectSubmission",
+    icon: Upload,
+  },
+  {
+    title: "Course Catalog",
+    url: "/student/courseCatalog",
+    icon: BookOpen,
+  },
+];
 
 export default function Student({ children }) {
   const { logout, isLoading, message } = useLogout();
@@ -60,6 +62,15 @@ export default function Student({ children }) {
     }
   };
 
+  useEffect(() => {
+    if (toast.isVisible) {
+      const timer = setTimeout(() => {
+        setToast({ ...toast, isVisible: false });
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast.isVisible]);
+
   return (
     <SidebarProvider>
       {toast.isVisible && (
@@ -76,7 +87,7 @@ export default function Student({ children }) {
 
       <div className={`flex h-screen ${nunito.className} w-full`}>
         <SidebarNavigation
-          navItems={data.navMain}
+          navItems={navItems}
           onLogout={handleLogout}
           isLoading={isLoading}
         />
