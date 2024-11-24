@@ -65,9 +65,6 @@ export default function Dashboard() {
               Your learning journey continues. Keep up the great work!
             </p>
           </div>
-          <Button className="bg-primary hover:bg-primary/90">
-            Resume Learning
-          </Button>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
