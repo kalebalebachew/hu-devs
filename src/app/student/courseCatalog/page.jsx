@@ -14,81 +14,96 @@ import { Search } from "lucide-react";
 const courses = [
   {
     id: 1,
-    title: "Introduction to Git",
-    description: "Learn the basics of Git",
+    title: "Introduction to Python",
+    description: "Learn the basics of Python",
     provider: "KurazTech",
     instructor: "Tito Frezer",
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: "/intro-python.png",
   },
   {
     id: 2,
-    title: "Advanced JavaScript",
-    description: "Deep dive into JavaScript concepts",
+    title: "MYSQL For Beginners",
+    description: "Deep dive into MYSQL concepts",
     provider: "KurazTech",
-    instructor: "Tito Frezer",
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    instructor: "Fitsum Kassaye",
+    thumbnail: "/mysql.png",
   },
   {
     id: 3,
-    title: "Graphics Design Fundamentals",
-    description: "Master the principles of graphics design",
+    title: "Introduction to Git",
+    description: "Learn how to use git in your projects",
     provider: "KurazTech",
-    instructor: "Mahlet ",
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    instructor: "Tito Frezer",
+    thumbnail: "/git.png",
   },
 ];
 
 export default function CourseCatalogPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <header className=" text-white py-6">
+    <div className="min-h-screen bg-gray-900 text-white">
+      <header className="py-6">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold">Course Catalog</h1>
+          <h1 className="text-4xl font-extrabold text-center text-white">
+            Course Catalog
+          </h1>
+          <p className="text-center text-gray-400 mt-2">
+            Explore Amazing Courses Provided by HUDC and Its Partners
+          </p>
         </div>
       </header>
-      <main className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <form className="flex gap-4">
+      <main className="container mx-auto px-4 ">
+        <div className="mb-8 flex justify-center">
+          <form className="flex gap-4 w-full max-w-lg">
             <Input
               type="search"
               placeholder="Search courses..."
-              className="max-w-sm bg-gray-800 text-white border-gray-700"
+              className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none"
               aria-label="Search courses"
             />
             <Button
               type="submit"
-              className="bg-black border border-purple-500 border-opacity-45"
+              className="bg-purple-500 hover:bg-purple-600 rounded-lg flex items-center justify-center"
             >
-              <Search className=" h-4 w-4  " />
+              <Search className="h-5 w-5" />
             </Button>
           </form>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => (
-            <Card key={course.id} className="bg-gray-800 border-gray-700">
-              <CardHeader>
+            <Card
+              key={course.id}
+              className="bg-gray-800 border-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+            >
+              <CardHeader className="p-0">
                 <Image
                   src={course.thumbnail}
                   alt={`Thumbnail for ${course.title}`}
-                  width={300}
+                  width={400}
                   height={200}
-                  className="rounded-t-lg"
+                  className="w-full h-52 object-cover"
                 />
               </CardHeader>
-              <CardContent>
-                <CardTitle className="text-xl mb-2">{course.title}</CardTitle>
-                <p className="text-gray-300 mb-2">{course.description}</p>
-                <p className="text-sm text-purple-400">
-                  Provider: {course.provider}
+              <CardContent className="p-6">
+                <CardTitle className="text-2xl font-bold mb-3 text-white relative">
+                  {course.title}
+                  <span className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded"></span>
+                </CardTitle>
+                <p className="text-gray-200 text-base leading-relaxed mb-4">
+                  {course.description}
                 </p>
-                <p className="text-sm text-purple-400">
-                  Instructor: {course.instructor}
+                <p className="text-sm text-gray-400">
+                  <span className="font-medium text-white">Provider:</span>{" "}
+                  {course.provider}
+                </p>
+                <p className="text-sm text-gray-400">
+                  <span className="font-medium text-white">Instructor:</span>{" "}
+                  {course.instructor}
                 </p>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="">
                 <Button
                   asChild
-                  className="w-full bg-purple-500 hover:bg-purple-600"
+                  className="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-4 rounded-lg"
                 >
                   <Link href={`/courses/${course.id}`}>Enroll</Link>
                 </Button>

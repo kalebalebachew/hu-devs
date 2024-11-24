@@ -31,28 +31,5 @@ export function useRegistration() {
     }
   };
 
-  const applyOrganizer = async (formData) => {
-    setIsLoading(true);
-    setMessage("");
-
-    try {
-      const response = await fetch("https://your-backend-url/organizer/apply", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok)
-        throw new Error("Failed to submit application. Please try again.");
-
-      setMessage("Application submitted successfully!");
-      return true;
-    } catch (error) {
-      setMessage(error.message || "Something went wrong.");
-      return false;
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return { isLoading, message, setMessage, registerMembership, applyOrganizer };
+  return { isLoading, message, setMessage, registerMembership };
 }

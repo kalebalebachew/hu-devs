@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { ToastProvider } from "@/components/ui/toast";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -32,7 +33,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
+        <ThemeProvider attribute="class">
+          <ToastProvider>
+            {children}
+          </ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

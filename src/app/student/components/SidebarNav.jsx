@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X, LogOut, Bell, Settings } from "lucide-react";
 
 export function SidebarNavigation({ navItems, user, onLogout, isLoading }) {
   const [active, setActive] = useState("Dashboard");
@@ -23,44 +23,50 @@ export function SidebarNavigation({ navItems, user, onLogout, isLoading }) {
       </div>
 
       <div
-        className={`fixed top-0 left-0 h-screen w-56 bg-gray-900 shadow-lg transform transition-transform duration-500 ease-in-out lg:translate-x-0 lg:static ${
+        className={`fixed top-0 left-0 h-screen w-64 bg-gray-900 shadow-lg transform transition-transform duration-500 ease-in-out lg:translate-x-0 lg:static ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-center h-16 border-b border-gray-800">
-          <h1 className="text-xl font-semibold text-white">HUDC</h1>
+        {/* Header */}
+        <div className=" ">
+          <div className="flex items-center gap-4">
+            {/* <div className="w-12 h-12  flex items-center justify-center text-purple-600 text-medium font-semi">
+             HUDC 
+            </div> */}
+          </div>
+       
         </div>
 
-    
+        <nav className="mt-6">
+          <ul>
+            {navItems.map((item) => (
+              <li key={item.title} className="my-1">
+                <Link href={item.url}>
+                  <div
+                    onClick={() => {
+                      setActive(item.title);
+                      setIsOpen(false);
+                    }}
+                    className={`flex items-center gap-3 p-4 cursor-pointer transition-all duration-200 ${
+                      active === item.title
+                        ? "bg-purple-600 text-white font-medium rounded-lg"
+                        : "text-gray-300 hover:bg-purple-500 hover:text-white rounded-lg"
+                    }`}
+                  >
+                    <span className="text-lg">{item.icon}</span>
+                    <span className="text-sm">{item.title}</span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        <ul className="mt-4">
-          {navItems.map((item) => (
-            <li key={item.title} className="my-1">
-              <Link href={item.url}>
-                <div
-                  onClick={() => {
-                    setActive(item.title);
-                    setIsOpen(false); 
-                  }}
-                  className={`flex items-center gap-4 p-3 cursor-pointer transition-all duration-200 ${
-                    active === item.title
-                      ? "bg-purple-600 text-white font-bold rounded-r-md"
-                      : "text-gray-300 hover:bg-purple-500 hover:text-white rounded-r-md"
-                  }`}
-                >
-                  <span className="text-lg">{item.icon}</span>
-                  <span className="text-sm">{item.title}</span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="absolute bottom-4 left-0 w-full px-4">
+        <div className="absolute bottom-6 left-0 w-full px-4">
           <button
             onClick={onLogout}
             disabled={isLoading}
-            className={`flex items-center gap-4 w-full p-3 text-left transition-all duration-200 rounded-r-md ${
+            className={`flex items-center gap-3 w-full p-4 text-left transition-all duration-200 rounded-lg ${
               isLoading
                 ? "bg-gray-700 text-gray-500 cursor-not-allowed"
                 : "text-gray-300 hover:bg-red-600 hover:text-white"
@@ -72,6 +78,7 @@ export function SidebarNavigation({ navItems, user, onLogout, isLoading }) {
         </div>
       </div>
 
+      {/* Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
