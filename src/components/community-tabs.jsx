@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,9 +14,44 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LinkedinIcon, SendIcon } from "lucide-react";
+import {
+  LinkedinIcon,
+  SendIcon,
+  Users2Icon,
+  GithubIcon,
+  ArrowRight,
+  BookOpenIcon,
+  RocketIcon,
+} from "lucide-react";
 import { useRegistration } from "@/hooks/useRegistration";
-import { useToast } from "@/hooks/use-toast"; 
+import { useToast } from "@/hooks/use-toast";
+
+const tabVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.3, ease: "easeIn" } },
+};
+
+const socialLinks = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/haramaya-university-developers-community",
+    icon: LinkedinIcon,
+    description: "Professional networking and updates",
+  },
+  {
+    name: "Telegram",
+    href: "https://t.me/hudevhub",
+    icon: SendIcon,
+    description: "Community chat and discussions",
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/hudevhub",
+    icon: GithubIcon,
+    description: "Open source collaborations",
+  },
+];
 
 export function CommunityTabsComponent() {
   const [membershipForm, setMembershipForm] = useState({
@@ -25,7 +61,7 @@ export function CommunityTabsComponent() {
   });
 
   const { isLoading, registerMembership } = useRegistration();
-  const { toast } = useToast(); 
+  const { toast } = useToast();
 
   const handleMembershipSubmit = async (e) => {
     e.preventDefault();
@@ -36,8 +72,8 @@ export function CommunityTabsComponent() {
       description: success
         ? "Membership registration successful!"
         : "Failed to register. Please try again.",
-      variant: success ? "success" : "destructive", 
-    })
+      variant: success ? "success" : "destructive",
+    });
 
     if (success) {
       setMembershipForm({ email: "", studentId: "", password: "" });
@@ -45,147 +81,184 @@ export function CommunityTabsComponent() {
   };
 
   return (
-    <Tabs defaultValue="social" className="w-[700]">
-      <TabsList className="grid w-full grid-cols-3 gap-4 bg-gray-900 font-semibold border border-purple-500 border-opacity-40 text-purple-500">
-        <TabsTrigger
-          value="social"
-          className="hover:bg-purple-500 hover:text-black focus:bg-purple-500 focus:text-black"
-        >
-          Connect
-        </TabsTrigger>
-        <TabsTrigger
-          value="exclusive"
-          className="hover:bg-purple-500 hover:text-black focus:bg-purple-500 focus:text-black"
-        >
-          Membership
-        </TabsTrigger>
-        <TabsTrigger
-          value="organizers"
-          className="hover:bg-purple-500 hover:text-black focus:bg-purple-500 focus:text-black"
-        >
-          Organizers
-        </TabsTrigger>
-      </TabsList>
+    <div className="max-w-2xl mx-auto">
+      <Tabs defaultValue="social" className="w-full">
+        <TabsList className="grid w-full grid-cols-3 p-1 bg-black/20 backdrop-blur-sm rounded-xl mb-6">
+          {[
+            { value: "social", label: "Connect", icon: Users2Icon },
+            { value: "exclusive", label: "Membership", icon: BookOpenIcon },
+            { value: "organizers", label: "Organizers", icon: RocketIcon },
+          ].map(({ value, label, icon: Icon }) => (
+            <TabsTrigger
+              key={value}
+              value={value}
+              className="relative px-6 py-2 rounded-lg data-[state=active]:bg-white data-[state=active]:text-black transition-all duration-300"
+            >
+              <span className="flex items-center gap-2">
+                <Icon className="w-4 h-4" />
+                <span className="hidden sm:inline">{label}</span>
+              </span>
+            </TabsTrigger>
+          ))}
+        </TabsList>
 
-      <TabsContent value="social">
-        <Card className="bg-black text-white p-4 border border-purple-500 border-opacity-35">
-          <CardHeader>
-            <CardTitle className="text-purple-500">
-              Connect with Our Community
-            </CardTitle>
-            <CardDescription className="text-gray-300">
-              Follow us on social media and join our groups.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <a
-                href="https://www.linkedin.com/company/haramaya-university-developers-community"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-purple-500 text-black hover:bg-purple-700 inline-flex items-center justify-center px-4 py-2 rounded-md font-semibold"
-              >
-                <LinkedinIcon className="mr-2 h-4 w-4" />
-                Follow us on LinkedIn
-              </a>
-            </div>
-            <div className="space-y-2">
-              <a
-                href="https://t.me/hudevhub"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-purple-500 text-black hover:bg-purple-700 inline-flex items-center justify-center px-4 py-2 rounded-md font-semibold"
-              >
-                <SendIcon className="mr-2 h-4 w-4" />
-                Join our Telegram
-              </a>
-            </div>
-          </CardContent>
-        </Card>
-      </TabsContent>
+        <AnimatePresence mode="wait">
+          <TabsContent value="social">
+            <motion.div
+              variants={tabVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <Card className="border-0 bg-black/20 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold text-gradient">
+                    Connect with Our Community
+                  </CardTitle>
+                  <CardDescription className="text-zinc-400">
+                    Join our growing network of developers
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {socialLinks.map((link) => (
+                    <motion.a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                      whileHover={{ y: -1 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <link.icon className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
+                        <div className="flex flex-col">
+                          <span className="text-sm font-medium text-white">
+                            {link.name}
+                          </span>
+                          <span className="text-xs text-zinc-400">
+                            {link.description}
+                          </span>
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-white transition-all transform group-hover:translate-x-1" />
+                    </motion.a>
+                  ))}
+                </CardContent>
+              </Card>
+            </motion.div>
+          </TabsContent>
 
-      <TabsContent value="exclusive">
-        <Card className="bg-black text-white border-purple-500 border-opacity-40">
-          <form onSubmit={handleMembershipSubmit}>
-            <CardHeader>
-              <CardTitle className="text-purple-500">
-                Membership Registration
-              </CardTitle>
-              <CardDescription className="text-gray-300">
-                Register for exclusive access to resources, events, and more.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Your email address"
-                  value={membershipForm.email}
-                  onChange={(e) =>
-                    setMembershipForm({
-                      ...membershipForm,
-                      email: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="student-id">Student ID</Label>
-                <Input
-                  id="student-id"
-                  placeholder="Your student ID number"
-                  value={membershipForm.studentId}
-                  onChange={(e) =>
-                    setMembershipForm({
-                      ...membershipForm,
-                      studentId: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={membershipForm.password}
-                  onChange={(e) =>
-                    setMembershipForm({
-                      ...membershipForm,
-                      password: e.target.value,
-                    })
-                  }
-                />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-purple-500 text-black hover:bg-purple-700"
-              >
-                {isLoading ? "Submitting..." : "Register Now"}
-              </Button>
-            </CardFooter>
-          </form>
-        </Card>
-      </TabsContent>
+          <TabsContent value="exclusive">
+            <motion.div
+              variants={tabVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <Card className="border-0 bg-black/20 backdrop-blur-sm">
+                <form onSubmit={handleMembershipSubmit}>
+                  <CardHeader>
+                    <CardTitle className="text-xl font-semibold text-gradient">
+                      Membership Registration
+                    </CardTitle>
+                    <CardDescription className="text-zinc-400">
+                      Get exclusive access to resources and events
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {[
+                      {
+                        id: "email",
+                        type: "email",
+                        label: "Email",
+                        placeholder: "your.email@example.com",
+                      },
+                      {
+                        id: "student-id",
+                        type: "text",
+                        label: "Student ID",
+                        placeholder: "Enter your student ID",
+                      },
+                      {
+                        id: "password",
+                        type: "password",
+                        label: "Password",
+                        placeholder: "Create a secure password",
+                      },
+                    ].map(({ id, type, label, placeholder }) => (
+                      <div key={id} className="space-y-2">
+                        <Label htmlFor={id} className="text-zinc-200">
+                          {label}
+                        </Label>
+                        <Input
+                          id={id}
+                          type={type}
+                          placeholder={placeholder}
+                          value={membershipForm[id.replace("-", "")]}
+                          onChange={(e) =>
+                            setMembershipForm({
+                              ...membershipForm,
+                              [id.replace("-", "")]: e.target.value,
+                            })
+                          }
+                          className="bg-white/5 border-white/10 text-white placeholder:text-zinc-500 focus:border-white/20 focus:ring-white/20"
+                        />
+                      </div>
+                    ))}
+                  </CardContent>
+                  <CardFooter>
+                    <Button
+                      type="submit"
+                      disabled={isLoading}
+                      className="w-full bg-white hover:bg-zinc-100 text-black transition-all duration-300"
+                    >
+                      {isLoading ? "Processing..." : "Register for Membership"}
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </CardFooter>
+                </form>
+              </Card>
+            </motion.div>
+          </TabsContent>
 
-      <TabsContent value="organizers">
-        <Card className="bg-black text-white border-purple-500 border-opacity-40">
-          <CardHeader>
-            <CardTitle className="text-purple-500">
-              Join the Organizers Team
-            </CardTitle>
-            <CardDescription className="text-gray-300">
-              Applications coming soon. Stay tuned!
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </TabsContent>
-    </Tabs>
+          <TabsContent value="organizers">
+            <motion.div
+              variants={tabVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <Card className="border-0 bg-black/20 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold text-gradient">
+                    Join the Organizers Team
+                  </CardTitle>
+                  <CardDescription className="text-zinc-400">
+                    Help shape the future of our developer community
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-center py-8">
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <Users2Icon className="w-16 h-16 mx-auto mb-4 text-white/20" />
+                    <h3 className="text-lg font-semibold mb-2 text-gradient">
+                      Applications Opening Soon
+                    </h3>
+                    <p className="text-zinc-400 text-sm max-w-md mx-auto">
+                      We're looking for passionate developers to join our
+                      organizing team. Stay tuned for upcoming opportunities!
+                    </p>
+                  </motion.div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </TabsContent>
+        </AnimatePresence>
+      </Tabs>
+    </div>
   );
 }

@@ -29,7 +29,7 @@ export function EventsTab({ events = [], pastEvents = [] }) {
         </h3>
         {sortedUpcomingEvents.length === 0 ? (
           <p className="text-gray-500 dark:text-gray-400">
-            No upcoming events to display.
+            No upcoming events stay tuned.
           </p>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -72,7 +72,6 @@ export function EventsTab({ events = [], pastEvents = [] }) {
         )}
       </div>
 
-      {/* Past Events Section */}
       <div>
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
           Past Events

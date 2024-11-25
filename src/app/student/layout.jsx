@@ -1,8 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import SidebarNavigation from "./components/SidebarNav";
-import { BookOpen, LayoutDashboard, Library, Upload } from "lucide-react";
+import { BookOpen, LayoutDashboard, Library, Settings, Settings2, Upload } from 'lucide-react';
 import { Nunito } from "next/font/google";
 import { useLogout } from "@/hooks/useLogout";
 import {
@@ -10,19 +11,18 @@ import {
   ToastTitle,
   ToastDescription,
   ToastClose,
+  ToastProvider,
+  ToastViewport,
 } from "@/components/ui/toast";
-import { useState, useEffect } from "react";
+import { GeistSans } from 'geist/font/sans';
 
-const nunito = Nunito({
-  subsets: ["latin"],
-  display: "swap",
-});
+
 
 const navItems = [
   {
     title: "Dashboard",
     url: "/student",
-    icon: LayoutDashboard, 
+    icon: LayoutDashboard,
   },
   {
     title: "Resource Hub",
@@ -39,9 +39,14 @@ const navItems = [
     url: "/student/courseCatalog",
     icon: BookOpen,
   },
+  {
+    title: "Profile",
+    url: "/student/profile",
+    icon: Settings,
+  },
 ];
 
-export default function Student({ children }) {
+export default function StudentLayout({ children }) {
   const { logout, isLoading, message } = useLogout();
   const [toast, setToast] = useState({
     isVisible: false,
@@ -65,7 +70,7 @@ export default function Student({ children }) {
   useEffect(() => {
     if (toast.isVisible) {
       const timer = setTimeout(() => {
-        setToast({ ...toast, isVisible: false });
+        setToast((prevToast) => ({ ...prevToast, isVisible: false }));
       }, 3000);
       return () => clearTimeout(timer);
     }
@@ -73,28 +78,30 @@ export default function Student({ children }) {
 
   return (
     <SidebarProvider>
-      {toast.isVisible && (
-        <Toast variant={toast.type}>
-          <ToastTitle>
-            {toast.type === "success" ? "Success" : "Error"}
-          </ToastTitle>
-          <ToastDescription>{toast.message}</ToastDescription>
-          <ToastClose
-            onClick={() => setToast({ ...toast, isVisible: false })}
+      <ToastProvider>
+        <div className={`flex h-screen ${GeistSans.className} w-full bg-background text-foreground`}>
+          <SidebarNavigation
+            navItems={navItems}
+            onLogout={handleLogout}
+            isLoading={isLoading}
           />
-        </Toast>
-      )}
-
-      <div className={`flex h-screen ${nunito.className} w-full`}>
-        <SidebarNavigation
-          navItems={navItems}
-          onLogout={handleLogout}
-          isLoading={isLoading}
-        />
-        <main className="w-full overflow-y-scroll">
-          <div>{children}</div>
-        </main>
-      </div>
+          <main className="flex-1 overflow-y-auto">
+            <div className="container mx-auto px-4 py-8">{children}</div>
+          </main>
+        </div>
+        {toast.isVisible && (
+          <Toast variant={toast.type}>
+            <ToastTitle>
+              {toast.type === "success" ? "Success" : "Error"}
+            </ToastTitle>
+            <ToastDescription>{toast.message}</ToastDescription>
+            <ToastClose
+              onClick={() => setToast((prevToast) => ({ ...prevToast, isVisible: false }))}
+            />
+          </Toast>
+        )}
+        <ToastViewport />
+      </ToastProvider>
     </SidebarProvider>
   );
 }

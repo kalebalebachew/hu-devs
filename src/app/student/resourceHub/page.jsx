@@ -36,29 +36,25 @@ export default function ResourcesHub() {
   const renderThumbnail = (fileType) => {
     switch (fileType) {
       case "Video":
-        return <FaPlay className="text-red-500 w-14 h-14" />;
+        return <FaPlay className="text-red-500 w-12 h-12" />;
       case "Slides":
-        return <FaFilePowerpoint className="text-blue-500 w-14 h-14" />;
+        return <FaFilePowerpoint className="text-blue-500 w-12 h-12" />;
       case "PDF":
-        return <FaFilePdf className="text-yellow-500 w-14 h-14" />;
+        return <FaFilePdf className="text-yellow-500 w-12 h-12" />;
       case "Link":
-        return <FaExternalLinkAlt className="text-green-500 w-14 h-14" />;
+        return <FaExternalLinkAlt className="text-green-500 w-12 h-12" />;
       default:
-        return (
-          <div className="w-full h-full bg-gray-600 text-white flex items-center justify-center">
-            No Thumbnail
-          </div>
-        );
+        return <div className="bg-gray-700 text-white w-full h-full flex items-center justify-center">No Thumbnail</div>;
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white">
-      <header className="py-4">
+      <header className="py-6">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-extrabold">Resource Hub</h1>
           <p className="text-gray-400 mt-2">
-            Explore free resources to enhance your skills and knowledge.
+            Explore a curated library of resources to enhance your learning experience.
           </p>
         </div>
       </header>
@@ -94,7 +90,10 @@ export default function ResourcesHub() {
               <option value="Slides">Slides</option>
               <option value="Link">Link</option>
             </select>
-            <Button onClick={clearFilters} className="bg-purple-600 hover:bg-purple-700">
+            <Button
+              onClick={clearFilters}
+              className="text-gray-300 border border-gray-700 bg-transparent hover:bg-gray-700 hover:text-white"
+            >
               Clear Filters
             </Button>
           </div>
@@ -107,7 +106,7 @@ export default function ResourcesHub() {
                 key={resource.id}
                 className="bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col justify-between transform hover:scale-105 transition-transform duration-200"
               >
-                <div className="relative h-40 bg-gray-800 flex items-center justify-center aspect-w-16 aspect-h-9">
+                <div className="relative h-40 bg-gray-800 flex items-center justify-center">
                   {renderThumbnail(resource.fileType)}
                 </div>
                 <div className="p-4 flex-grow">
@@ -124,7 +123,7 @@ export default function ResourcesHub() {
                     href={resource.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg"
+                    className="block w-full text-center border border-purple-600 bg-transparent text-gray-300 hover:bg-gray-700 hover:text-white font-medium py-2 rounded-lg"
                   >
                     {resource.fileType === "Link" ? "Visit" : "Download"}
                   </a>
@@ -137,7 +136,6 @@ export default function ResourcesHub() {
             </p>
           )}
         </div>
-
       </main>
     </div>
   );

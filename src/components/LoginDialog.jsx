@@ -1,4 +1,5 @@
 "use client";
+import { GeistSans } from "geist/font/sans";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -30,19 +31,21 @@ export function LoginDialog({ isOpen, onClose }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="font-nunito sm:max-w-[350px] bg-black border-purple-500 border-opacity-40 text-white">
+      <DialogContent
+        className={`sm:max-w-[350px] bg-gray-900 border border-gray-700 text-gray-100 shadow-lg ${GeistSans.className}`}
+      >
         <DialogHeader>
-          <DialogTitle className="text-purple-500">
+          <DialogTitle className="text-gray-100">
             Log in to your account
           </DialogTitle>
-          <DialogDescription className="text-gray-300">
+          <DialogDescription className="text-gray-400">
             Enter your email and password to access your account.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={onSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="email" className="text-purple-500">
+              <Label htmlFor="email" className="text-gray-300">
                 Email
               </Label>
               <Input
@@ -55,11 +58,11 @@ export function LoginDialog({ isOpen, onClose }) {
                 autoComplete="email"
                 autoCorrect="off"
                 disabled={isLoading}
-                className="bg-gray-800 text-white border-gray-700"
+                className="bg-gray-800 text-gray-200 border-gray-700 focus:ring-2 focus:ring-gray-500"
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="password" className="text-purple-500">
+              <Label htmlFor="password" className="text-gray-300">
                 Password
               </Label>
               <div className="relative">
@@ -72,23 +75,23 @@ export function LoginDialog({ isOpen, onClose }) {
                   autoComplete="current-password"
                   autoCorrect="off"
                   disabled={isLoading}
-                  className="bg-gray-800 text-white border-gray-700"
+                  className="bg-gray-800 text-gray-200 border-gray-700 focus:ring-2 focus:ring-gray-500"
                 />
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
-                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-gray-700"
                   onClick={() => setShowPassword((prev) => !prev)}
                   disabled={isLoading}
                 >
                   {showPassword ? (
                     <EyeOff
-                      className="h-4 w-4 focus:bg-purple-500"
+                      className="h-4 w-4 text-gray-400"
                       aria-hidden="true"
                     />
                   ) : (
-                    <Eye className="h-4 w-4" aria-hidden="true" />
+                    <Eye className="h-4 w-4 text-gray-400" aria-hidden="true" />
                   )}
                   <span className="sr-only">
                     {showPassword ? "Hide password" : "Show password"}
@@ -102,7 +105,7 @@ export function LoginDialog({ isOpen, onClose }) {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-purple-500 text-black hover:bg-purple-700"
+              className="w-full bg-white text-black hover:bg-gray-800 hover:text-white focus:ring-2 focus:ring-gray-600"
             >
               {isLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -114,7 +117,7 @@ export function LoginDialog({ isOpen, onClose }) {
         <div className="mt-4 text-center text-sm">
           <a
             href="#"
-            className="text-purple-500 hover:underline"
+            className="text-gray-400 hover:text-gray-300 hover:underline"
             onClick={(e) => e.preventDefault()}
           >
             Forgot password?

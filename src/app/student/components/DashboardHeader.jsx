@@ -1,21 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import Welcome from "./Welcome";
 
 export function DashboardHeader() {
+ 
+
   return (
-    <header className="flex justify-between items-start">
-      <div className="space-y-2">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-          Welcome, Student!{" "}
-          <span className="wave inline-block animate-wave">👋</span>
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300">
-          Your learning journey continues. Keep up the great work!
-        </p>
+    <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0 mb-8">
+      <div>
+        <Welcome></Welcome>
       </div>
-      <Button variant="outline " className="bg-purple-700">
-        View Profile
-      </Button>
     </header>
   );
 }

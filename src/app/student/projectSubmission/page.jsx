@@ -84,23 +84,22 @@ export default function SubmitProject() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20 px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20 px-2 py-6">
       <div className="container mx-auto max-w-4xl">
-        <div className="space-y-6 text-center mb-12">
+        <div className="space-y-6 text-center mb-6">
           <Rocket className="h-12 w-12 mx-auto text-primary animate-bounce" />
           <h1 className="text-4xl font-bold tracking-tight">
             Submit Your Project
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Share your amazing project with our developer community. We would love
-            to see what you have built!
+            Share your amazing project with our developer community.
           </p>
         </div>
         <div className="mb-6 text-center">
           <SubmissionGuidelinesModal />
         </div>
 
-        <Card className="p-6 md:p-8 backdrop-blur-sm bg-card/50">
+        <Card className="p-2 md:p-4 backdrop-blur-sm bg-card/50">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -136,7 +135,7 @@ export default function SubmitProject() {
                     <FormControl>
                       <Textarea
                         placeholder="Tell us about your project..."
-                        className="min-h-[120px] resize-none transition-all duration-300 focus:scale-[1.002]"
+                        className="min-h-[60px] resize-none transition-all duration-300 focus:scale-[1.002]"
                         {...field}
                       />
                     </FormControl>
@@ -193,7 +192,7 @@ export default function SubmitProject() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full md:w-auto group"
+                  className="w-full md:w-auto group border border-purple-600 bg-transparent"
                 >
                   Submit Project
                   <Rocket className="ml-2 h-4 w-4 group-hover:animate-bounce" />
