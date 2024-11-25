@@ -101,42 +101,43 @@ export default function ResourcesHub() {
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {filteredResources.length > 0 ? (
-            filteredResources.map((resource) => (
-              <div
-                key={resource.id}
-                className="bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-200"
-              >
-                <div className="relative h-40 bg-gray-800 flex items-center justify-center aspect-w-16 aspect-h-9">
-                  {renderThumbnail(resource.fileType)}
-                </div>
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold text-white line-clamp-2">
-                    {resource.title}
-                  </h2>
-                  <p className="text-sm text-gray-400 mt-2 line-clamp-3">
-                    {resource.description}
-                  </p>
-                  <p className="text-sm text-purple-500 mt-1">Type: {resource.fileType}</p>
-                </div>
-                <div className="">
-                  <a
-                    href={resource.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg"
-                  >
-                    {resource.fileType === "Link" ? "Visit" : "Download"}
-                  </a>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500 col-span-full">
-              No resources match your search criteria.
-            </p>
-          )}
+  {filteredResources.length > 0 ? (
+    filteredResources.map((resource) => (
+      <div
+        key={resource.id}
+        className="bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col justify-between transform hover:scale-105 transition-transform duration-200"
+      >
+        <div className="relative h-40 bg-gray-800 flex items-center justify-center aspect-w-16 aspect-h-9">
+          {renderThumbnail(resource.fileType)}
         </div>
+        <div className="p-4 flex-grow">
+          <h2 className="text-lg font-semibold text-white line-clamp-2">
+            {resource.title}
+          </h2>
+          <p className="text-sm text-gray-400 mt-2 line-clamp-3">
+            {resource.description}
+          </p>
+          <p className="text-sm text-purple-500 mt-1">Type: {resource.fileType}</p>
+        </div>
+        <div className="p-4">
+          <a
+            href={resource.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg"
+          >
+            {resource.fileType === "Link" ? "Visit" : "Download"}
+          </a>
+        </div>
+      </div>
+    ))
+  ) : (
+    <p className="text-center text-gray-500 col-span-full">
+      No resources match your search criteria.
+    </p>
+  )}
+</div>
+
       </main>
     </div>
   );
