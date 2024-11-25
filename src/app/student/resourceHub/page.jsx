@@ -105,12 +105,12 @@ export default function ResourcesHub() {
             filteredResources.map((resource) => (
               <div
                 key={resource.id}
-                className="bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-200"
+                className="bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col justify-between transform hover:scale-105 transition-transform duration-200"
               >
                 <div className="relative h-40 bg-gray-800 flex items-center justify-center aspect-w-16 aspect-h-9">
                   {renderThumbnail(resource.fileType)}
                 </div>
-                <div className="p-4">
+                <div className="p-4 flex-grow">
                   <h2 className="text-lg font-semibold text-white line-clamp-2">
                     {resource.title}
                   </h2>
@@ -119,7 +119,7 @@ export default function ResourcesHub() {
                   </p>
                   <p className="text-sm text-purple-500 mt-1">Type: {resource.fileType}</p>
                 </div>
-                <div className="">
+                <div className="p-4">
                   <a
                     href={resource.link}
                     target="_blank"
@@ -137,6 +137,7 @@ export default function ResourcesHub() {
             </p>
           )}
         </div>
+
       </main>
     </div>
   );
