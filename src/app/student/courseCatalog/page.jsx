@@ -103,15 +103,16 @@ export default function CourseCatalogPage() {
                   <span className="ml-1">{course.instructor}</span>
                 </div>
               </CardContent>
-              <CardFooter className="bg-gray-800 p-4">
+              <CardFooter className=" p-4">
                 <Button
-                  variant="ghost"
-                  className="relative overflow-hidden group px-6 py-2 h-9 bg-gradient-to-r from-neutral-950 to-neutral-800 hover:from-neutral-900 hover:to-neutral-700 text-white border border-neutral-800 hover:border-neutral-700 transition-all duration-300"
-                >
-                  <span className="relative z-10 flex items-center text-sm font-medium">
+                  variant="custom"
+                  className="group relative overflow-hidden bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-gray-100 border border-gray-600">
+                  <span className="relative z-10 flex items-center text-sm font-medium tracking-wide">
                     Enroll
-                    <ChevronRight className="h-4 w-20 ml-1 group-hover:translate-x-0.5 transition-transform duration-300" />
+                    <ChevronRight className="h-4 w-4 ml-1.5 transform transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity" />
+                  <div className="absolute inset-0 -z-20 bg-gradient-to-r from-primary/50 via-primary to-primary/50 blur-sm group-hover:blur-md transition-all duration-500" />
                 </Button>
               </CardFooter>
             </Card>

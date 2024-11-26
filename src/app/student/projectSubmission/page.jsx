@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "sonner";
-import { Github, Globe, Rocket, Stars } from "lucide-react";
+import { ChevronRight, Github, Globe, Rocket, Stars } from "lucide-react";
 import SubmissionGuidelinesModal from "./Guidelines";
 
 const formSchema = z.object({
@@ -189,13 +189,15 @@ export default function SubmitProject() {
               </div>
 
               <div className="flex justify-end">
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full md:w-auto group border border-gray-500 bg-transparent"
-                >
-                  Submit Project
-                  <Rocket className="ml-2 h-4 w-4 group-hover:animate-bounce" />
+              <Button
+                  variant="custom"
+                  className="group relative overflow-hidden bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-gray-100 border border-gray-600">
+                  <span className="relative z-10 flex items-center text-sm font-medium tracking-wide">
+                    Submit
+                    <ChevronRight className="h-4 w-4 ml-1.5 transform transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity" />
+                  <div className="absolute inset-0 -z-20 bg-gradient-to-r from-primary/50 via-primary to-primary/50 blur-sm group-hover:blur-md transition-all duration-500" />
                 </Button>
               </div>
             </form>
