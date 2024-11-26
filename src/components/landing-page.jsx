@@ -23,14 +23,18 @@ export default function LandingPage() {
       </header>
 
       <main className="relative">
-        <Hero />
-        <Features />
+        <section id="hero" className="py-16 relative">
+          <Hero />
+        </section>
+        <section id="features" className="py-8 relative">
+          <Features />
+        </section>
 
         <section id="community" className="py-16 relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center space-y-4 mb-4">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-gradient">
-                Community & Events
+                How to join?
               </h2>
               <p className="max-w-2xl mx-auto text-lg text-zinc-400">
                 Stay connected and engaged with our vibrant developer community

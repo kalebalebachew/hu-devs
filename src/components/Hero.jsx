@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, SendIcon, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
@@ -19,11 +20,18 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-gray-100 bg-clip-text bg-gradient-to-r from-gray-300 via-white to-gray-300 ">
+            <h1
+              className={cn(
+                "text-4xl sm:text-5xl lg:text-6xl font-extrabold",
+                "tracking-tight text-transparent bg-clip-text",
+                "bg-gradient-to-b from-white to-[#AAAAAA]",
+                "pb-2"
+              )}
+            >
               Haramaya University Developers Community
             </h1>
 
-            <p className="mt-6 text-lg text-zinc-400">
+            <p className=" text-xl text-zinc-400">
               Learning and building together at Haramaya University and beyond.
               Join our growing community of student developers.
             </p>
@@ -58,7 +66,7 @@ export function Hero() {
               className="border-zinc-800 hover:bg-zinc-900"
             >
               <a
-                href="https://github.com/hudevhub"
+                href="https://github.com/HUDC-Haramaya"
                 target="_blank"
                 rel="noopener noreferrer"
               >

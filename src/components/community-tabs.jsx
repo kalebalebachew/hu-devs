@@ -65,18 +65,29 @@ export function CommunityTabsComponent() {
 
   const handleMembershipSubmit = async (e) => {
     e.preventDefault();
-    const success = await registerMembership(membershipForm);
 
-    toast({
-      title: success ? "Success" : "Error",
-      description: success
-        ? "Membership registration successful!"
-        : "Failed to register. Please try again.",
-      variant: success ? "success" : "destructive",
-    });
+    try {
+      const success = await registerMembership(membershipForm);
+      console.log("API Call Success:", success);
 
-    if (success) {
-      setMembershipForm({ email: "", studentId: "", password: "" });
+      toast({
+        title: success ? "Success" : "Error",
+        description: success
+          ? "Membership registration successful!"
+          : "Failed to register. Please try again.",
+        variant: success ? "success" : "destructive",
+      });
+
+      if (success) {
+        setMembershipForm({ email: "", studentId: "", password: "" });
+      }
+    } catch (error) {
+      console.error("Error during membership submission:", error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again later.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -175,7 +186,7 @@ export function CommunityTabsComponent() {
                         placeholder: "your.email@example.com",
                       },
                       {
-                        id: "student-id",
+                        id: "studentId",
                         type: "text",
                         label: "Student ID",
                         placeholder: "Enter your student ID",
@@ -195,11 +206,11 @@ export function CommunityTabsComponent() {
                           id={id}
                           type={type}
                           placeholder={placeholder}
-                          value={membershipForm[id.replace("-", "")]}
+                          value={membershipForm[id]}
                           onChange={(e) =>
                             setMembershipForm({
                               ...membershipForm,
-                              [id.replace("-", "")]: e.target.value,
+                              [id]: e.target.value,
                             })
                           }
                           className="bg-white/5 border-white/10 text-white placeholder:text-zinc-500 focus:border-white/20 focus:ring-white/20"
@@ -207,6 +218,7 @@ export function CommunityTabsComponent() {
                       </div>
                     ))}
                   </CardContent>
+
                   <CardFooter>
                     <Button
                       type="submit"
@@ -249,7 +261,7 @@ export function CommunityTabsComponent() {
                       Applications Opening Soon
                     </h3>
                     <p className="text-zinc-400 text-sm max-w-md mx-auto">
-                      We're looking for passionate developers to join our
+                      We are looking for passionate developers to join our
                       organizing team. Stay tuned for upcoming opportunities!
                     </p>
                   </motion.div>
