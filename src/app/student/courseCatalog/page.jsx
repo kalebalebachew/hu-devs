@@ -9,13 +9,13 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { Search, BookOpen, User, ChevronRight } from "lucide-react";
 
 const courses = [
   {
     id: 1,
     title: "Introduction to Python",
-    description: "Learn the basics of Python",
+    description: "Learn the basics of Python programming language",
     provider: "KurazTech",
     instructor: "Tito Frezer",
     thumbnail: "/intro-python.png",
@@ -23,7 +23,7 @@ const courses = [
   {
     id: 2,
     title: "MYSQL For Beginners",
-    description: "Deep dive into MYSQL concepts",
+    description: "Dive deep into MYSQL concepts and master database.",
     provider: "KurazTech",
     instructor: "Fitsum Kassaye",
     thumbnail: "/mysql.png",
@@ -31,7 +31,7 @@ const courses = [
   {
     id: 3,
     title: "Introduction to Git",
-    description: "Learn how to use git in your projects",
+    description: "Learn how to use Git for version control and collaboration.",
     provider: "KurazTech",
     instructor: "Tito Frezer",
     thumbnail: "/git.png",
@@ -40,29 +40,29 @@ const courses = [
 
 export default function CourseCatalogPage() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <header className="py-6">
+    <div className="min-h-screen bg-black text-white">
+      <header className=" bg-gradient-to-b from-gray-900 to-black">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-extrabold text-center text-white">
-            Course Catalog
+          <h1 className="text-4xl sm:text-5xl md:text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-100 to-gray-300">
+            Course catalog
           </h1>
-          <p className="text-center text-gray-400 mt-2">
-            Explore Amazing Courses Provided by HUDC and Its Partners
+          <p className="text-center text-gray-400  text-lg max-w-2xl mx-auto">
+            Explore courses provided by HUDC
           </p>
         </div>
       </header>
-      <main className="container mx-auto px-4 ">
-        <div className="mb-8 flex justify-center">
-          <form className="flex gap-4 w-full max-w-lg">
+      <main className="container mx-auto ">
+        <div className="mb-12 flex justify-center">
+          <form className="flex gap-4 w-full max-w-2xl">
             <Input
               type="search"
               placeholder="Search courses..."
-              className="bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none"
+              className="bg-gray-900 text-white border border-gray-800 rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-transparent"
               aria-label="Search courses"
             />
             <Button
               type="submit"
-              className="bg-purple-500 hover:bg-purple-600 rounded-lg flex items-center justify-center"
+              className="bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center justify-center transition-colors duration-300"
             >
               <Search className="h-5 w-5" />
             </Button>
@@ -72,40 +72,46 @@ export default function CourseCatalogPage() {
           {courses.map((course) => (
             <Card
               key={course.id}
-              className="bg-gray-800 border-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+              className="bg-gray-900 border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
             >
               <CardHeader className="p-0">
-                <Image
-                  src={course.thumbnail}
-                  alt={`Thumbnail for ${course.title}`}
-                  width={400}
-                  height={200}
-                  className="w-full h-52 object-cover"
-                />
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={course.thumbnail}
+                    alt={`Thumbnail for ${course.title}`}
+                    layout="fill"
+                    objectFit="cover"
+                    className="transition-opacity duration-300 hover:opacity-80"
+                  />
+                </div>
               </CardHeader>
               <CardContent className="p-6">
-                <CardTitle className="text-2xl font-bold mb-3 text-white relative">
+                <CardTitle className="text-2xl font-bold mb-3 text-gray-100">
                   {course.title}
-                  <span className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded"></span>
                 </CardTitle>
-                <p className="text-gray-200 text-base leading-relaxed mb-4">
+                <p className="text-gray-300 text-base leading-relaxed mb-4">
                   {course.description}
                 </p>
-                <p className="text-sm text-gray-400">
-                  <span className="font-medium text-white">Provider:</span>{" "}
-                  {course.provider}
-                </p>
-                <p className="text-sm text-gray-400">
-                  <span className="font-medium text-white">Instructor:</span>{" "}
-                  {course.instructor}
-                </p>
+                <div className="flex items-center text-sm text-gray-400 mb-2">
+                  <BookOpen className="h-4 w-4 mr-2 text-gray-500" />
+                  <span className="font-medium text-gray-300">Provider:</span>
+                  <span className="ml-1">{course.provider}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-400">
+                  <User className="h-4 w-4 mr-2 text-gray-500" />
+                  <span className="font-medium text-gray-300">Instructor:</span>
+                  <span className="ml-1">{course.instructor}</span>
+                </div>
               </CardContent>
-              <CardFooter className="">
+              <CardFooter className="bg-gray-800 p-4">
                 <Button
-                  asChild
-                  className="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-4 rounded-lg"
+                  variant="ghost"
+                  className="relative overflow-hidden group px-6 py-2 h-9 bg-gradient-to-r from-neutral-950 to-neutral-800 hover:from-neutral-900 hover:to-neutral-700 text-white border border-neutral-800 hover:border-neutral-700 transition-all duration-300"
                 >
-                  <Link href={`/courses/${course.id}`}>Enroll</Link>
+                  <span className="relative z-10 flex items-center text-sm font-medium">
+                    Enroll
+                    <ChevronRight className="h-4 w-20 ml-1 group-hover:translate-x-0.5 transition-transform duration-300" />
+                  </span>
                 </Button>
               </CardFooter>
             </Card>

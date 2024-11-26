@@ -88,8 +88,8 @@ export default function SubmitProject() {
       <div className="container mx-auto max-w-4xl">
         <div className="space-y-6 text-center mb-6">
           <Rocket className="h-12 w-12 mx-auto text-primary animate-bounce" />
-          <h1 className="text-4xl font-bold tracking-tight">
-            Submit Your Project
+          <h1 className="text-4xl sm:text-5xl md:text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-100 to-gray-300">
+            Submit your project
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Share your amazing project with our developer community.
@@ -192,7 +192,7 @@ export default function SubmitProject() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full md:w-auto group border border-purple-600 bg-transparent"
+                  className="w-full md:w-auto group border border-gray-500 bg-transparent"
                 >
                   Submit Project
                   <Rocket className="ml-2 h-4 w-4 group-hover:animate-bounce" />

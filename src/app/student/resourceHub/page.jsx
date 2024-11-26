@@ -1,8 +1,11 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FaPlay, FaFilePdf, FaFilePowerpoint, FaExternalLinkAlt } from "react-icons/fa";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { FileText, Video, PresentationFile, Link2, Search } from "lucide-react";
 
 const resourcesData = require("../../../../public/data/resources.json");
 
@@ -34,109 +37,138 @@ export default function ResourcesHub() {
   });
 
   const renderThumbnail = (fileType) => {
+    const iconClass = "w-8 h-8";
     switch (fileType) {
       case "Video":
-        return <FaPlay className="text-red-500 w-12 h-12" />;
+        return <Video className={`${iconClass} text-blue-500`} />;
       case "Slides":
-        return <FaFilePowerpoint className="text-blue-500 w-12 h-12" />;
+        return <PresentationFile className={`${iconClass} text-blue-500`} />;
       case "PDF":
-        return <FaFilePdf className="text-yellow-500 w-12 h-12" />;
+        return <FileText className={`${iconClass} text-blue-500`} />;
       case "Link":
-        return <FaExternalLinkAlt className="text-green-500 w-12 h-12" />;
+        return <Link2 className={`${iconClass} text-blue-500`} />;
       default:
-        return <div className="bg-gray-700 text-white w-full h-full flex items-center justify-center">No Thumbnail</div>;
+        return <FileText className={`${iconClass} text-blue-500`} />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white">
-      <header className="py-6">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-extrabold">Resource Hub</h1>
-          <p className="text-gray-400 mt-2">
-            Explore a curated library of resources to enhance your learning experience.
+    <div className="min-h-screen bg-background">
+      <div className="container px-4 py-4 mx-auto max-w-7xl">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold tracking-tight">
+            Resources Hub
+          </h1>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Discover and access our curated collection of learning materials
           </p>
         </div>
-      </header>
-      <main className="container mx-auto px-6 space-y-10">
-        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-          <div className="flex flex-wrap items-center gap-4">
-            <Input
-              type="search"
-              placeholder="Search resources..."
-              className="flex-1 bg-gray-900 text-white border-gray-700"
-              value={filters.searchTerm}
-              onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
-            />
-            <select
-              className="bg-gray-900 text-white border border-gray-700 p-2 rounded-lg"
-              value={filters.selectedCategory}
-              onChange={(e) => setFilters({ ...filters, selectedCategory: e.target.value })}
-            >
-              {uniqueCategories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-            <select
-              className="bg-gray-900 text-white border border-gray-700 p-2 rounded-lg"
-              value={filters.selectedType}
-              onChange={(e) => setFilters({ ...filters, selectedType: e.target.value })}
-            >
-              <option value="All">All</option>
-              <option value="PDF">PDF</option>
-              <option value="Video">Video</option>
-              <option value="Slides">Slides</option>
-              <option value="Link">Link</option>
-            </select>
-            <Button
-              onClick={clearFilters}
-              className="text-gray-300 border border-gray-700 bg-transparent hover:bg-gray-700 hover:text-white"
-            >
-              Clear Filters
-            </Button>
-          </div>
-        </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {filteredResources.length > 0 ? (
-            filteredResources.map((resource) => (
-              <div
-                key={resource.id}
-                className="bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col justify-between transform hover:scale-105 transition-transform duration-200"
+        <Card className="mb-8">
+          <CardContent className="p-6">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search resources..."
+                  className="pl-9"
+                  value={filters.searchTerm}
+                  onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
+                />
+              </div>
+              <Select
+                value={filters.selectedCategory}
+                onValueChange={(value) => setFilters({ ...filters, selectedCategory: value })}
               >
-                <div className="relative h-40 bg-gray-800 flex items-center justify-center">
+                <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectValue placeholder="Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  {uniqueCategories.map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select
+                value={filters.selectedType}
+                onValueChange={(value) => setFilters({ ...filters, selectedType: value })}
+              >
+                <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectValue placeholder="Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="All">All Types</SelectItem>
+                  <SelectItem value="PDF">PDF</SelectItem>
+                  <SelectItem value="Video">Video</SelectItem>
+                  <SelectItem value="Slides">Slides</SelectItem>
+                  <SelectItem value="Link">Link</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button
+                variant="outline"
+                onClick={clearFilters}
+                className="md:w-[120px]"
+              >
+                Clear
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {filteredResources.length > 0 ? (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredResources.map((resource) => (
+              <Card 
+                key={resource.id} 
+                className="overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-[400px]"
+              >
+                <CardHeader className="p-6 bg-muted/50 flex items-center justify-center h-[100px] shrink-0">
                   {renderThumbnail(resource.fileType)}
-                </div>
-                <div className="p-4 flex-grow">
-                  <h2 className="text-lg font-semibold text-white line-clamp-2">
+                </CardHeader>
+                <CardContent className="p-6 flex-1 flex flex-col">
+                  <h3 className="font-semibold tracking-tight mb-2 text-lg line-clamp-2 h-[56px]">
                     {resource.title}
-                  </h2>
-                  <p className="text-sm text-gray-400 mt-2 line-clamp-3">
+                  </h3>
+                  <p className="text-sm text-muted-foreground line-clamp-3 mb-3 flex-1">
                     {resource.description}
                   </p>
-                  <p className="text-sm text-purple-500 mt-1">Type: {resource.fileType}</p>
-                </div>
-                <div className="p-4">
-                  <a
-                    href={resource.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center border border-purple-600 bg-transparent text-gray-300 hover:bg-gray-700 hover:text-white font-medium py-2 rounded-lg"
+                  <div className="flex items-center gap-2 text-sm mt-auto">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                      {resource.fileType}
+                    </span>
+                    <span className="text-muted-foreground">•</span>
+                    <span className="text-muted-foreground">{resource.category}</span>
+                  </div>
+                </CardContent>
+                <CardFooter className="p-6 pt-0 mt-auto border-t">
+                  <Button
+                    asChild
+                    className="w-full"
+                    variant="secondary"
                   >
-                    {resource.fileType === "Link" ? "Visit" : "Download"}
-                  </a>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500 col-span-full">
+                    <a
+                      href={resource.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {resource.fileType === "Link" ? "Visit Resource" : "Download"}
+                    </a>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <Card className="p-12 text-center">
+            <p className="text-muted-foreground">
               No resources match your search criteria.
             </p>
-          )}
-        </div>
-      </main>
+          </Card>
+        )}
+      </div>
     </div>
   );
 }
