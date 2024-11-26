@@ -72,7 +72,7 @@ export function NavBar() {
             </div>
 
             <div className="flex items-center space-x-4">
-              <motion.button
+              {/* <motion.button
                 whileHover={{ scale: 1.05 }}
                 onClick={toggleTheme}
                 className="text-foreground/80 hover:text-foreground p-2 rounded-lg transition-colors"
@@ -82,7 +82,7 @@ export function NavBar() {
                 ) : (
                   <Moon className="h-5 w-5" />
                 )}
-              </motion.button>
+              </motion.button> */}
 
               <motion.div
                 whileHover={{ scale: 1.02 }}
