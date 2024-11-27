@@ -35,20 +35,20 @@ const placeholderData = {
     },
   ],
   featuredProjects: [
-    {
-      _id: "1",
-      projectName: "Personal Portfolio",
-      description: "Showcase your skills",
-      image: "/placeholder.svg",
-      projectUrl: "https://portfolio.com",
-    },
-    {
-      _id: "2",
-      projectName: "E-commerce Site",
-      description: "Build an online store",
-      image: "/placeholder.svg",
-      projectUrl: "https://ecommerce.com",
-    },
+    // {
+    //   _id: "1",
+    //   projectName: "Personal Portfolio",
+    //   description: "Showcase your skills",
+    //   image: "/placeholder.svg",
+    //   projectUrl: "https://portfolio.com",
+    // },
+    // {
+    //   _id: "2",
+    //   projectName: "E-commerce Site",
+    //   description: "Build an online store",
+    //   image: "/placeholder.svg",
+    //   projectUrl: "https://ecommerce.com",
+    // },
   ],
 };
 
@@ -109,7 +109,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 sm:space-y-8">
         {error && (
           <Alert variant="destructive" className="mb-6">

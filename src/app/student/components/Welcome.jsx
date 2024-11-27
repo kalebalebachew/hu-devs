@@ -1,22 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ExternalLink, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, X } from "lucide-react";
 
 export default function WelcomeHUDC() {
   const [isOpen, setIsOpen] = useState(true);
-
-  // useEffect(() => {
-  
-  //   if (!isOpen) {
-  //     timeoutId = setTimeout(() => {
-  //       setIsOpen(true);
-  //     }, 1000);
-  //   }
-  //   return () => clearTimeout(timeoutId);
-  // }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -25,18 +14,30 @@ export default function WelcomeHUDC() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          className="relative overflow-hidden rounded-lg border border-gray-800 bg-black/80 backdrop-blur-lg shadow-lg"
+          transition={{
+            duration: 0.3,
+            type: "spring",
+            stiffness: 100,
+          }}
+          className="relative overflow-hidden w-full max-w-6xl mx-auto rounded-xl bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-900 dark:to-neutral-800 shadow-lg border border-neutral-200/50 dark:border-neutral-700/50"
         >
-          <div
-            className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10"
-            aria-hidden="true"
-          />
-          <div className="relative p-6">
-            <div className="sm:flex sm:items-start sm:space-x-6">
-              <div className="mb-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 sm:mb-0">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 p-1.5 rounded-lg hover:bg-neutral-200/50 dark:hover:bg-neutral-700/50 transition-colors"
+          >
+            <X className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
+          </motion.button>
+
+          <div className="relative p-6 sm:p-8">
+            <div className="flex flex-col sm:flex-row items-start gap-6">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="relative shrink-0 p-4 rounded-xl bg-gradient-to-br from-violet-500/10 to-indigo-500/10 dark:from-violet-500/20 dark:to-indigo-500/20"
+              >
                 <svg
-                  className="h-6 w-6 text-white"
+                  className="h-8 w-8 text-violet-500 dark:text-violet-400"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -46,27 +47,38 @@ export default function WelcomeHUDC() {
                 >
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-300">
-                  Welcome to HUDC
-                </h3>
-                <p className="mt-2 text-gray-400 leading-6">
-                  Explore free access to premium courses, mentorship programs,
-                  internship opportunities, and a thriving community of
-                  developers at Haramaya University. Begin your journey today
-                  and make the most of the resources we&apos;ve curated for your
-                  growth.
-                </p>
-                <div className="mt-6">
+              </motion.div>
+
+              <div className="space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="space-y-2"
+                >
+                  <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
+                    Welcome to HUDC
+                  </h3>
+                  <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl">
+                    Explore free access to premium courses and mentorship
+                    programs. Begin your journey today and make the most of the
+                    resources we&apos;ve curated for your growth.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex flex-wrap gap-4"
+                >
                   <a
                     href="/student/courseCatalog"
-                    className="inline-flex items-center gap-1.5 text-blue-400 font-medium hover:text-blue-300 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 underline  text-blue-700 rounded-lg font-medium shadow  transition"
                   >
-                    Access Free Courses
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                     Free Courses
+                    <ExternalLink className="h-4 w-4" />
                   </a>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>

@@ -1,15 +1,19 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, BookOpen, User, ChevronRight } from "lucide-react";
+import {
+  Search,
+  BookOpen,
+  User,
+  ChevronRight,
+  Clock,
+  Star,
+} from "lucide-react";
 
 const courses = [
   {
@@ -19,6 +23,9 @@ const courses = [
     provider: "KurazTech",
     instructor: "Tito Frezer",
     thumbnail: "/intro-python.png",
+    duration: "8 weeks",
+    rating: 4.8,
+    students: 1200,
   },
   {
     id: 2,
@@ -27,95 +34,128 @@ const courses = [
     provider: "KurazTech",
     instructor: "Fitsum Kassaye",
     thumbnail: "/mysql.png",
+    duration: "6 weeks",
+    rating: 4.9,
+    students: 850,
   },
   {
     id: 3,
     title: "Introduction to Git",
-    description: "Learn how to use Git for version control and collaboration.",
+    description: "Learn how to use Git for version control.",
     provider: "KurazTech",
     instructor: "Tito Frezer",
     thumbnail: "/git.png",
+    duration: "4 weeks",
+    rating: 4.7,
+    students: 950,
   },
 ];
 
 export default function CourseCatalogPage() {
+  const [searchRef, searchInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <div className="min-h-screen bg-black text-white">
-      <header className=" bg-gradient-to-b from-gray-900 to-black">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl sm:text-5xl md:text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-100 to-gray-300">
-            Course catalog
-          </h1>
-          <p className="text-center text-gray-400  text-lg max-w-2xl mx-auto">
-            Explore courses provided by HUDC
-          </p>
+    <div className="min-h-screen">
+      <header className="relative ">
+        <div className="absolute inset-0" />
+        <div className="relative container">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-3xl md:text-4xl font-bold text-center"
+          >
+            Course Catalog
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mt-3 text-center text-muted-foreground text-lg max-w-2xl mx-auto"
+          >
+            Explore curated courses to enhance your skills
+          </motion.p>
         </div>
       </header>
-      <main className="container mx-auto ">
-        <div className="mb-12 flex justify-center">
-          <form className="flex gap-4 w-full max-w-2xl">
+
+      <main className="container pb-6">
+        <motion.div
+          ref={searchRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={searchInView ? { opacity: 1, y: 0 } : {}}
+          className="relative mb-8"
+        >
+          <form className="flex gap-2 w-full max-w-lg mx-auto">
             <Input
               type="search"
               placeholder="Search courses..."
-              className="bg-gray-900 text-white border border-gray-800 rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-transparent"
+              className="h-10"
               aria-label="Search courses"
             />
             <Button
-              type="submit"
-              className="bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center justify-center transition-colors duration-300"
+              type="ghost"
+              size="icon"
+              className="h-10 w-10 bg-transparent hover:bg-transparent "
             >
-              <Search className="h-5 w-5" />
+              <Search className="h-4 w-4" />
             </Button>
           </form>
-        </div>
-        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {courses.map((course) => (
-            <Card
+        </motion.div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {courses.map((course, index) => (
+            <motion.div
               key={course.id}
-              className="bg-gray-900 border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
             >
-              <CardHeader className="p-0">
-                <div className="relative h-48 w-full">
+              <Card className="group h-full overflow-hidden">
+                <div className="relative aspect-video">
                   <Image
                     src={course.thumbnail}
-                    alt={`Thumbnail for ${course.title}`}
+                    alt={course.title}
                     layout="fill"
                     objectFit="cover"
-                    className="transition-opacity duration-300 hover:opacity-80"
+                    className="transition-transform duration-300 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-              </CardHeader>
-              <CardContent className="p-6">
-                <CardTitle className="text-2xl font-bold mb-3 text-gray-100">
-                  {course.title}
-                </CardTitle>
-                <p className="text-gray-300 text-base leading-relaxed mb-4">
-                  {course.description}
-                </p>
-                <div className="flex items-center text-sm text-gray-400 mb-2">
-                  <BookOpen className="h-4 w-4 mr-2 text-gray-500" />
-                  <span className="font-medium text-gray-300">Provider:</span>
-                  <span className="ml-1">{course.provider}</span>
+
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold mb-2 line-clamp-1">
+                    {course.title}
+                  </h3>
+
+                  <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                    {course.description}
+                  </p>
+
+                  <div className="space-y-1 mb-4">
+                    <div className="flex items-center text-xs text-muted-foreground">
+                      <User className="h-3 w-3 mr-1" />
+                      <span>{course.instructor}</span>
+                    </div>
+                    <div className="flex items-center text-xs text-muted-foreground">
+                      <BookOpen className="h-3 w-3 mr-1" />
+                      <span>{course.provider}</span>
+                    </div>
+                  </div>
+
+                  <Button
+                    className="w-full group bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-gray-100 border border-gray-600"
+                    variant="default"
+                  >
+                    <span className="flex items-center">
+                      Enroll Now
+                      <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </Button>
                 </div>
-                <div className="flex items-center text-sm text-gray-400">
-                  <User className="h-4 w-4 mr-2 text-gray-500" />
-                  <span className="font-medium text-gray-300">Instructor:</span>
-                  <span className="ml-1">{course.instructor}</span>
-                </div>
-              </CardContent>
-              <CardFooter className=" p-4">
-                <Button
-                  variant="custom"
-                  className="group relative overflow-hidden bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-gray-100 border border-gray-600">
-                  <span className="relative z-10 flex items-center text-sm font-medium tracking-wide">
-                    Enroll
-                    <ChevronRight className="h-4 w-4 ml-1.5 transform transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity" />
-                  <div className="absolute inset-0 -z-20 bg-gradient-to-r from-primary/50 via-primary to-primary/50 blur-sm group-hover:blur-md transition-all duration-500" />
-                </Button>
-              </CardFooter>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </main>
