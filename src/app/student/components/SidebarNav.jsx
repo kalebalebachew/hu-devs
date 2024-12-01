@@ -22,12 +22,12 @@ export default function SidebarNavigation({ navItems, onLogout, isLoading }) {
   ) || [];
 
   const sidebarContent = (
-    <div className="flex flex-col h-full">
-      <div className="relative border-b border-gray-800/50 bg-gradient-to-b from-gray-900 to-gray-900/50">
+    <div className="flex flex-col h-full bg-black">
+      <div className="relative border-b border-gray-800/50">
         <div className="p-6 space-y-6">
           <Link href="/student" className="flex items-center space-x-3 group">
             <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl group-hover:from-blue-500/30 group-hover:to-purple-500/30 transition-all duration-300" />
+              <div className="absolute inset-0 rounded-xl bg-black-to-r from-blue-500/20 to-purple-500/20 blur-xl group-hover:from-blue-500/30 group-hover:to-purple-500/30 transition-all duration-300" />
               <div className="relative h-12 w-12 rounded-xl bg-gray-900 flex items-center justify-center">
                 <Layers className="h-6 w-6 text-gray-400 group-hover:scale-110 transition-all duration-300" />
               </div>
@@ -71,7 +71,7 @@ export default function SidebarNavigation({ navItems, onLogout, isLoading }) {
               href={item.url}
               className={`group flex items-center gap-3 py-3 px-4 rounded-lg transition-all duration-300 ${
                 pathname === item.url 
-                  ? "bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-white" 
+                  ? "bg-black text-white" 
                   : "text-gray-400 hover:bg-gray-800/50 hover:text-white"
               }`}
               aria-current={pathname === item.url ? "page" : undefined}
@@ -125,7 +125,7 @@ export default function SidebarNavigation({ navItems, onLogout, isLoading }) {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed top-4 left-4 z-50 lg:hidden bg-gray-900/90 backdrop-blur-lg border border-gray-800/50 shadow-lg rounded-full w-10 h-10 hover:bg-gray-800/90 transition-all duration-300"
+        className="fixed top-4 left-4 z-50 lg:hidden bg-black shadow-lg rounded-full w-10 h-10 hover:bg-gray-800/90 transition-all duration-300"
         onClick={toggleMobileSidebar}
         aria-label="Toggle sidebar"
       >
