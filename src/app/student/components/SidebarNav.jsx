@@ -33,7 +33,7 @@ export default function SidebarNavigation({ navItems, onLogout, isLoading }) {
               </div>
             </div>
             <div className="space-y-1">
-              <h1 className="font-bold text-xl bg-clip-text text-center text-transparent bg-gradient-to-r text-white transition-all duration-300">
+              <h1 className="font-bold text-lg bg-clip-text text-center text-transparent bg-gradient-to-r text-white transition-all duration-300">
                         HUDC
               </h1>
               <p className="text-xs flex items-center text-gray-400">

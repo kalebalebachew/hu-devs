@@ -24,6 +24,7 @@ const placeholderData = {
       title: "Stories from gugt podcast, Freelancing and AASTU",
       time: "2024-11-16T14:30:00",
       location: "HUDC Telegram Channel",
+      audio: "/biruk-record.ogg",
       img: "/biruk.jpg",
       description:
         "This time, we're hosting Brook Belihu, the former co-host of Gugut Podcast —a name many of you already know and love! Now making waves with PulseERP, we will start right from the AASTU days, dive into his freelancing journey, and cover everything in between!",
@@ -32,6 +33,7 @@ const placeholderData = {
       title: "Campus Innovation the Kuraztech's Journey",
       time: "2024-11-09T14:30:00",
       location: "HUDC Telegram Channel",
+      audio: "/tito-record.ogg",
       img: "/tito.jpg",
       description:
         "HUDC is excited to bring you a special live session featuring Tito Frezer, one of the key figures behind KurazTech —a company that started as a university club and grew into a successful tech company.",
@@ -40,6 +42,7 @@ const placeholderData = {
       title: "A Journey started in Haramaya University",
       time: "2024-10-20T14:30:00",
       location: "HUDC Telegram Channel",
+      audio: "/yohannes-record.ogg",
       img: "/john.jpg",
       description:
         "We're excited to have Yohannes, a former Haramaya lecturer, student, and now a Senior Data Engineer at Excellerent Solutions.\n\nYohannes went from sitting in the same classrooms you're in as a student, to teaching in them as a lecturer, and now he's working in the tech industry.\n\nIn this session, he'll share:\n\n• How he moved from learning and teaching to tech.\n• The challenges he faced along the way.\n• Practical tips for anyone wanting to start in tech.",
