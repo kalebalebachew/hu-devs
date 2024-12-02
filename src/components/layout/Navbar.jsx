@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Sun, Moon, ChevronRight } from "lucide-react";
 import { LoginDialog } from "../LoginDialog";
 import { HUDCNavigationMenu } from "./About";
+import { useSearchParams } from "next/navigation";
 
 const menuVariants = {
   hidden: { opacity: 0, y: -5 },
@@ -16,6 +17,7 @@ export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [theme, setTheme] = useState("dark");
+  const searchParams = useSearchParams(); 
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleLogin = () => setIsLoginOpen(!isLoginOpen);
@@ -29,11 +31,14 @@ export function NavBar() {
     setIsOpen(false); // Close menu on mobile after scrolling
   };
 
+
+  
   return (
     <motion.div
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="fixed top-4 left-0 right-0 z-50 flex justify-center"
+      
     >
       <nav className="bg-background/80 backdrop-blur-lg shadow-lg rounded-2xl max-w-4xl w-11/12 border border-border">
         <div className="px-4">

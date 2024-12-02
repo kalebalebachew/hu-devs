@@ -6,6 +6,7 @@ import SidebarNavigation from "./components/SidebarNav";
 import { BookOpen, LayoutDashboard, Library, Settings, Settings2, Upload } from 'lucide-react';
 import { Nunito } from "next/font/google";
 import { useLogout } from "@/hooks/useLogout";
+import withProtectedRoute from "@/protectedRoute";
 import {
   Toast,
   ToastTitle,
@@ -46,7 +47,7 @@ const navItems = [
   },
 ];
 
-export default function StudentLayout({ children }) {
+function StudentLayout({ children }) {
   const { logout, isLoading, message } = useLogout();
   const [toast, setToast] = useState({
     isVisible: false,
@@ -77,6 +78,7 @@ export default function StudentLayout({ children }) {
   }, [toast.isVisible]);
 
   return (
+  
     <SidebarProvider>
       <ToastProvider>
         <div className={`flex h-screen ${GeistSans.className} w-full bg-background text-foreground`}>
@@ -105,3 +107,7 @@ export default function StudentLayout({ children }) {
     </SidebarProvider>
   );
 }
+
+
+export default withProtectedRoute(StudentLayout);
+

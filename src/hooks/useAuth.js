@@ -1,59 +1,73 @@
-import {jwtDecode} from "jwt-decode"; 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import {jwtDecode} from 'jwt-decode'; 
 
 export function useAuth() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userRole, setUserRole] = useState(null);
   const router = useRouter();
 
-  const login = async (email, password, onClose) => {
-    setError("");
-    setIsLoading(true);
-
-    if (!email || !password) {
-      setError("Email and password are required.");
-      setIsLoading(false);
-      return;
+  
+  useEffect(() => {
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const role = decodedToken?.role;
+      if (role) {
+        setIsAuthenticated(true);
+        setUserRole(role);
+      }
     }
+    setIsLoading(false); 
+  }, []);
 
+  const login = async (email, password, onClose) => {
+    setIsLoading(true);
     try {
-      const response = await fetch(
-        "https://hu-devs-backend.onrender.com/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch('https://hu-devs-backend.onrender.com/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
       if (!response.ok) {
-        throw new Error("Invalid credentials");
+        throw new Error('Invalid credentials');
       }
 
       const { token } = await response.json();
-      localStorage.setItem("auth_token", token);
+      localStorage.setItem('auth_token', token);
 
       const decodedToken = jwtDecode(token);
       const role = decodedToken?.role;
 
-      if (!role) {
-        throw new Error("Invalid token. Role is missing.");
-      }
+      setIsAuthenticated(true);
+      setUserRole(role);
 
-      if (role === "student") {
-        router.push("/student");
-      } else if (role === "admin") {
-        router.push("/admin");
-      }
+      onClose(); // Close login dialog
 
-      onClose();
-    } catch (err) {
-      setError(err.message || "Something went wrong. Please try again.");
+     
+      window.location.reload(); 
+
+    
+      if (role === 'admin') {
+        router.replace('/admin');
+      } else if (role === 'student') {
+        router.replace('/student');
+      }
+    } catch (error) {
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { login, isLoading, error, setError };
+  const logout = () => {
+    localStorage.removeItem('auth_token');
+    setIsAuthenticated(false);
+    setUserRole(null);
+    router.replace('/');
+  };
+
+  return { login, logout, isAuthenticated, userRole, isLoading };
 }

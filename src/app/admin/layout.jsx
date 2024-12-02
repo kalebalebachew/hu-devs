@@ -3,14 +3,17 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import SidebarNavigation from "./components/SidebarNav";
 import { Nunito } from "next/font/google";
+import ProtectedRoute from "@/components/protectedRoute";
+import withProtectedRoute from "@/protectedRoute";
 
 const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",
 });
 
-export default function AdminLayout({ children }) {
+ function AdminLayout({ children }) {
   return (
+   
     <SidebarProvider>
       <div className={`flex h-screen w-full ${nunito.className}`}>
         <SidebarNavigation />
@@ -19,5 +22,8 @@ export default function AdminLayout({ children }) {
         </main>
       </div>
     </SidebarProvider>
+  
   );
 }
+
+export default withProtectedRoute(AdminLayout);
