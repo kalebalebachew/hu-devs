@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { LoginDialog } from './components/LoginDialog';
-import { useAuth } from '@/hooks/useAuth';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { LoginDialog } from "./components/LoginDialog";
+import { useAuth } from "@/hooks/useAuth";
 
 const withProtectedRoute = (WrappedComponent) => {
   return (props) => {
@@ -11,11 +11,10 @@ const withProtectedRoute = (WrappedComponent) => {
 
     useEffect(() => {
       if (isAuthenticated) {
-     
-        if (userRole === 'admin') {
-          router.replace('/admin');
-        } else if (userRole === 'student') {
-          router.replace('/student');
+        if (userRole === "admin") {
+          router.replace("/admin");
+        } else if (userRole === "student") {
+          router.replace("/student");
         }
       } else {
         setIsOpen(true);
@@ -23,7 +22,7 @@ const withProtectedRoute = (WrappedComponent) => {
     }, [isAuthenticated, userRole, router]);
 
     if (isLoading) {
-      return <div>Loading...</div>; 
+      return <div></div>;
     }
 
     return (
