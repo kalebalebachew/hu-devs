@@ -4,25 +4,32 @@ import { LoginDialog } from "./components/LoginDialog";
 import { useAuth } from "@/hooks/useAuth";
 
 const withProtectedRoute = (WrappedComponent) => {
-  return (props) => {
-    const [isOpen, setIsOpen] = useState(false);
+  const ProtectedComponent = (props) => {
+    const [showDialog, setShowDialog] = useState(false);
     const { isAuthenticated, userRole, isLoading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
-      if (isAuthenticated) {
+      if (isLoading) return;
+
+      if (!isAuthenticated) {
+        if (router.pathname !== "/") {
+          router.replace("/"); 
+        } else {
+          setShowDialog(true);
+        }
+      } else {
+        setShowDialog(false); 
         if (userRole === "admin") {
           router.replace("/admin");
         } else if (userRole === "student") {
           router.replace("/student");
         }
-      } else {
-        setIsOpen(true);
       }
-    }, [isAuthenticated, userRole, router]);
+    }, [isAuthenticated, userRole, isLoading, router]);
 
     if (isLoading) {
-      return <div></div>;
+      return null; 
     }
 
     return (
@@ -30,11 +37,21 @@ const withProtectedRoute = (WrappedComponent) => {
         {isAuthenticated ? (
           <WrappedComponent {...props} />
         ) : (
-          <LoginDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          router.pathname === "/" && (
+            <LoginDialog isOpen={showDialog} onClose={() => setShowDialog(false)} />
+          )
         )}
       </>
     );
   };
+
+  ProtectedComponent.displayName = `withProtectedRoute(${getDisplayName(WrappedComponent)})`;
+
+  return ProtectedComponent;
+};
+
+const getDisplayName = (WrappedComponent) => {
+  return WrappedComponent.displayName || WrappedComponent.name || "Component";
 };
 
 export default withProtectedRoute;

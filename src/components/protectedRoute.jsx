@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import  {LoginDialog}  from "./LoginDialog";
+import { LoginDialog } from "./LoginDialog";
 import { useAuth } from "@/hooks/useAuth";
 
 const withProtectedRoute = (WrappedComponent) => {
-  return (props) => {
+  const ProtectedComponent = (props) => {
     const [showDialog, setShowDialog] = useState(false);
     const { isAuthenticated, userRole, isLoading } = useAuth();
     const router = useRouter();
@@ -16,7 +16,7 @@ const withProtectedRoute = (WrappedComponent) => {
         if (router.pathname !== "/") {
           router.replace("/"); 
         } else {
-          setShowDialog(true); 
+          setShowDialog(true);
         }
       } else {
         setShowDialog(false); 
@@ -29,7 +29,7 @@ const withProtectedRoute = (WrappedComponent) => {
     }, [isAuthenticated, userRole, isLoading, router]);
 
     if (isLoading) {
-      return null; 
+      return null;
     }
 
     return (
@@ -44,6 +44,14 @@ const withProtectedRoute = (WrappedComponent) => {
       </>
     );
   };
+
+  ProtectedComponent.displayName = `withProtectedRoute(${getDisplayName(WrappedComponent)})`;
+
+  return ProtectedComponent;
+};
+
+const getDisplayName = (WrappedComponent) => {
+  return WrappedComponent.displayName || WrappedComponent.name || "Component";
 };
 
 export default withProtectedRoute;
