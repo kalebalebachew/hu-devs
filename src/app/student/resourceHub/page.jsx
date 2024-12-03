@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, Video, PresentationFile, Link2, Search } from "lucide-react";
+import { FileText, Video, PresentationIcon, Link2, Search } from "lucide-react";
 
 const resourcesData = require("../../../../public/data/resources.json");
 
@@ -42,7 +42,7 @@ export default function ResourcesHub() {
       case "Video":
         return <Video className={`${iconClass} text-blue-500`} />;
       case "Slides":
-        return <PresentationFile className={`${iconClass} text-blue-500`} />;
+        return <PresentationIcon className={`${iconClass} text-blue-500`} />;
       case "PDF":
         return <FileText className={`${iconClass} text-blue-500`} />;
       case "Link":

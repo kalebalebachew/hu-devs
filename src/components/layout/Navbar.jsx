@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -28,7 +29,7 @@ export function NavBar() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsOpen(false); // Close menu on mobile after scrolling
+    setIsOpen(false); 
   };
 
 
