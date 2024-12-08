@@ -93,11 +93,11 @@ export function CommunityTabsComponent() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <Tabs defaultValue="social" className="w-full">
+      <Tabs defaultValue="exclusive" className="w-full">
         <TabsList className="grid w-full grid-cols-3 p-1 bg-black/20 backdrop-blur-sm rounded-xl mb-6">
           {[
-            { value: "social", label: "Connect", icon: Users2Icon },
             { value: "exclusive", label: "Membership", icon: BookOpenIcon },
+            { value: "social", label: "Connect", icon: Users2Icon },
             { value: "organizers", label: "Organizers", icon: RocketIcon },
           ].map(({ value, label, icon: Icon }) => (
             <TabsTrigger
@@ -114,52 +114,6 @@ export function CommunityTabsComponent() {
         </TabsList>
 
         <AnimatePresence mode="wait">
-          <TabsContent value="social">
-            <motion.div
-              variants={tabVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <Card className="border-0 bg-black/20 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-gradient">
-                    Connect with Our Community
-                  </CardTitle>
-                  <CardDescription className="text-zinc-400">
-                    Join our growing network of developers
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {socialLinks.map((link) => (
-                    <motion.a
-                      key={link.name}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-                      whileHover={{ y: -1 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <div className="flex items-center gap-3">
-                        <link.icon className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
-                        <div className="flex flex-col">
-                          <span className="text-sm font-medium text-white">
-                            {link.name}
-                          </span>
-                          <span className="text-xs text-zinc-400">
-                            {link.description}
-                          </span>
-                        </div>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-white transition-all transform group-hover:translate-x-1" />
-                    </motion.a>
-                  ))}
-                </CardContent>
-              </Card>
-            </motion.div>
-          </TabsContent>
-
           <TabsContent value="exclusive">
             <motion.div
               variants={tabVariants}
@@ -230,6 +184,51 @@ export function CommunityTabsComponent() {
                     </Button>
                   </CardFooter>
                 </form>
+              </Card>
+            </motion.div>
+          </TabsContent>
+          <TabsContent value="social">
+            <motion.div
+              variants={tabVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <Card className="border-0 bg-black/20 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold text-gradient">
+                    Connect with Our Community
+                  </CardTitle>
+                  <CardDescription className="text-zinc-400">
+                    Join our growing network of developers
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {socialLinks.map((link) => (
+                    <motion.a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                      whileHover={{ y: -1 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <link.icon className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
+                        <div className="flex flex-col">
+                          <span className="text-sm font-medium text-white">
+                            {link.name}
+                          </span>
+                          <span className="text-xs text-zinc-400">
+                            {link.description}
+                          </span>
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-white transition-all transform group-hover:translate-x-1" />
+                    </motion.a>
+                  ))}
+                </CardContent>
               </Card>
             </motion.div>
           </TabsContent>
