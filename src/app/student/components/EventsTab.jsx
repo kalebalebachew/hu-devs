@@ -18,8 +18,9 @@ export function EventsTab({ events = [], pastEvents = [] }) {
   const [audioStates, setAudioStates] = useState({});
 
   useEffect(() => {
+    const currentAudioRefs = audioRefs.current;
     return () => {
-      Object.values(audioRefs.current).forEach(audio => audio?.pause());
+      Object.values(currentAudioRefs).forEach(audio => audio?.pause()); 
     };
   }, []);
 

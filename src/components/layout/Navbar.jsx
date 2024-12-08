@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Sun, Moon, ChevronRight } from "lucide-react";
 import { LoginDialog } from "../LoginDialog";
 import { HUDCNavigationMenu } from "./About";
-import { useSearchParams } from "next/navigation";
 
 const menuVariants = {
   hidden: { opacity: 0, y: -5 },
@@ -18,7 +17,6 @@ export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [theme, setTheme] = useState("dark");
-  const searchParams = useSearchParams(); 
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleLogin = () => setIsLoginOpen(!isLoginOpen);
