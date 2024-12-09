@@ -58,7 +58,7 @@ export default function CourseCatalogPage() {
   });
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen px-4 py-4">
       <header className="relative ">
         <div className="absolute inset-0" />
         <div className="relative container">
@@ -80,7 +80,7 @@ export default function CourseCatalogPage() {
         </div>
       </header>
 
-      <main className="container pb-6">
+      <main className="container px-4 py-4 pb-6 ">
         <motion.div
           ref={searchRef}
           initial={{ opacity: 0, y: 20 }}

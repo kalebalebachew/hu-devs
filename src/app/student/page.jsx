@@ -169,7 +169,7 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 sm:space-y-8">
         {error && (
           <Alert
