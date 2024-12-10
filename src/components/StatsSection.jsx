@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Users, Calendar, Handshake, Code2, Rocket, Globe } from 'lucide-react';
+import { Users, Calendar, Handshake, Code2, Rocket, Globe } from "lucide-react";
 
 const stats = [
   {
@@ -10,21 +10,21 @@ const stats = [
     name: "Members",
     value: "600+",
     icon: Users,
-    description: "Active community members"
+    description: "Active community members",
   },
   {
     id: 2,
     name: "Events",
     value: "3+",
     icon: Calendar,
-    description: "Tech events organized"
+    description: "Tech events organized",
   },
   {
     id: 3,
     name: "Partners",
     value: "5+",
     icon: Handshake,
-    description: "Partnerships with companies"
+    description: "Partnerships with companies",
   },
 ];
 
@@ -35,9 +35,9 @@ const fadeInVariants = {
     y: 0,
     transition: {
       delay: 0.1 * index,
-      duration: 0.5
-    }
-  })
+      duration: 0.5,
+    },
+  }),
 };
 
 export function StatsSection() {
@@ -50,7 +50,12 @@ export function StatsSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl font-bold text-white text-center mb-12">Our Achievements</h2>
+          <h2 className="text-3xl text-center font-bold tracking-tight sm:text-4xl text-gradient mb-4">
+            Our Achievements
+          </h2>
+          <p className="text-center text-lg text-zinc-400 mb-6">
+           What we achieved so far as a community
+          </p>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {stats.map((stat, index) => (
               <motion.div
@@ -73,9 +78,15 @@ export function StatsSection() {
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                     className="text-center"
                   >
-                    <dt className="text-3xl font-bold text-white mb-2">{stat.value}</dt>
-                    <dd className="text-lg font-medium text-gray-300 mb-1">{stat.name}</dd>
-                    <dd className="text-sm text-gray-400">{stat.description}</dd>
+                    <dt className="text-3xl font-bold text-white mb-2">
+                      {stat.value}
+                    </dt>
+                    <dd className="text-lg font-medium text-gray-300 mb-1">
+                      {stat.name}
+                    </dd>
+                    <dd className="text-sm text-gray-400">
+                      {stat.description}
+                    </dd>
                   </motion.div>
                 </div>
               </motion.div>
@@ -94,4 +105,3 @@ const styles = `
     linear-gradient(to bottom, #1f2937 1px, transparent 1px);
 }
 `;
-
