@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { LoginDialog } from "./components/LoginDialog";
@@ -11,11 +11,10 @@ const withProtectedRoute = (WrappedComponent) => {
     const router = useRouter();
 
     useEffect(() => {
-      if (isLoading) return; // Do nothing while loading
+      if (isLoading) return;
 
       if (!isAuthenticated) {
         if (router.pathname !== "/") {
-          // Redirect unauthenticated users to the root route
           router.replace("/");
         } else {
           setShowDialog(true);
@@ -34,25 +33,28 @@ const withProtectedRoute = (WrappedComponent) => {
     }, [isAuthenticated, userRole, isLoading, router]);
 
     if (isLoading) {
-      return null; // Render nothing while authentication state is loading
+      return null;
     }
 
-    // Render the wrapped component for authenticated users
     return (
       <>
         {isAuthenticated ? (
           <WrappedComponent {...props} />
         ) : (
-          // Show login dialog only on the root route
           router.pathname === "/" && (
-            <LoginDialog isOpen={showDialog} onClose={() => setShowDialog(false)} />
+            <LoginDialog
+              isOpen={showDialog}
+              onClose={() => setShowDialog(false)}
+            />
           )
         )}
       </>
     );
   };
 
-  ProtectedComponent.displayName = `withProtectedRoute(${getDisplayName(WrappedComponent)})`;
+  ProtectedComponent.displayName = `withProtectedRoute(${getDisplayName(
+    WrappedComponent
+  )})`;
 
   return ProtectedComponent;
 };

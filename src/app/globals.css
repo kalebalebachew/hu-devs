@@ -86,6 +86,22 @@ body {
   }
 }
 
+@keyframes pan-grid {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.bg-grid-white {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  animation: pan-grid 20s linear infinite;
+}
+
 @layer base {
   * {
     @apply border-border;

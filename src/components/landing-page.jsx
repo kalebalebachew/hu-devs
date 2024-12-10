@@ -11,7 +11,7 @@ import FAQs from "./FAQ";
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-black selection:bg-teal-300/10 selection:text-teal-300">
+    <div className="relative min-h-screen bg-black ">
       <div className="fixed inset-0 -z-10 h-full w-full bg-grid-pattern">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/0"></div>
       </div>
