@@ -2,16 +2,17 @@
 
 import { NavBar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Hero } from "./Hero";
-import { Features } from "./Features";
+import { Hero } from "@/components/Hero";
+import { Features } from "@/components/Features";
+import { StatsSection } from "@/components/StatsSection";
 import { CommunityTabsComponent } from "@/components/community-tabs";
 import { UpcomingEventsTab } from "@/components/UpcomingEvents";
 import { ContactForm } from "@/components/ContactUs";
-import FAQs from "./FAQ";
+import FAQs from "@/components/FAQ";
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-black ">
+    <div className="relative min-h-screen bg-black">
       <div className="fixed inset-0 -z-10 h-full w-full bg-grid-pattern">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/0"></div>
       </div>
@@ -26,6 +27,8 @@ export default function LandingPage() {
         <section id="hero" className="py-16 relative">
           <Hero />
         </section>
+
+
         <section id="features" className="py-8 relative">
           <Features />
         </section>
@@ -45,8 +48,11 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+        <section id="stats" className="relative px-8 mb-8">
+          <StatsSection />
+        </section>
 
-        <section id="contact" className=" relative bg-black/50">
+        <section id="contact" className="relative bg-black/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <ContactForm />
