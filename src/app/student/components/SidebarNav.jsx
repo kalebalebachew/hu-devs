@@ -4,13 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  LogOut,
-  Search,
-  Menu,
-  X,
-  Sparkles,
-} from "lucide-react";
+import { LogOut, Search, Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -45,7 +39,6 @@ export default function Navigation({ onLogout, isLoading, navItems }) {
           <span className="font-semibold text-white">HUDC</span>
         </Link>
       </div>
-
       <div className="p-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
@@ -58,7 +51,6 @@ export default function Navigation({ onLogout, isLoading, navItems }) {
           />
         </div>
       </div>
-
       <ScrollArea className="flex-1 px-3">
         <nav className="space-y-1">
           {filteredNavItems.map((item) => (
@@ -77,7 +69,6 @@ export default function Navigation({ onLogout, isLoading, navItems }) {
           ))}
         </nav>
       </ScrollArea>
-
       <div className="p-4 border-t border-gray-800/50">
         <Button
           variant="ghost"
@@ -94,7 +85,7 @@ export default function Navigation({ onLogout, isLoading, navItems }) {
 
   return (
     <>
-      <div className="hidden lg:block fixed inset-y-0 left-0 w-64 bg-gray-900/95 border-r border-gray-800/50 shadow-xl z-50 transition-all duration-300 ease-in-out">
+      <div className="hidden lg:block  inset-y-0 left-0 w-98 bg-background shadow-xl z-50 transition-all duration-300 ease-in-out">
         <SidebarContent />
       </div>
 
@@ -120,7 +111,6 @@ export default function Navigation({ onLogout, isLoading, navItems }) {
           </Button>
         </div>
       </div>
-
       <AnimatePresence>
         {isMobileNavOpen && (
           <>

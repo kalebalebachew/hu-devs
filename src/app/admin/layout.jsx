@@ -3,7 +3,6 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import SidebarNavigation from "./components/SidebarNav";
 import { Nunito } from "next/font/google";
-import ProtectedRoute from "@/components/protectedRoute";
 import withProtectedRoute from "@/protectedRoute";
 
 const nunito = Nunito({
