@@ -1,184 +1,241 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ExternalLink,
-  X,
-  Sparkles,
   BookOpen,
-  Users,
-  Trophy,
-  Github,
+  Code,
+  Calendar,
+  ExternalLink,
+  Lightbulb,
   ChevronRight,
-  Menu,
+  ChevronLeft,
+  Terminal,
+  Play,
+  Check,
+  RefreshCw,
   ArrowRight,
+  LinkedinIcon,
+  SendIcon,
+  GithubIcon,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const features = [
+import { Card } from "@tremor/react";
+import { CardContent } from "@/components/ui/card";
+const socialLinks = [
   {
-    icon: BookOpen,
-    title: "Premium Courses",
-    description: "Access industry-standard premium courses",
-    color: "from-blue-500/20 to-purple-500/20",
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/haramaya-university-developers-community",
+    icon: LinkedinIcon,
   },
   {
-    icon: Users,
-    title: "Mentorship",
-    description: "Connect with experienced mentors who can help you.",
-    color: "from-green-500/20 to-emerald-500/20",
+    name: "Telegram",
+    href: "https://t.me/hudevhub",
+    icon: SendIcon,
   },
   {
-    icon: Trophy,
-    title: "Events",
-    description: "Participate in tech events to enhance your skills and network",
-    color: "from-yellow-500/20 to-orange-500/20",
-  },
-  {
-    icon: Github,
-    title: "Open source projects",
-    description: "Contribute to open source projects through HUDC",
-    color: "from-pink-500/20 to-rose-500/20",
+    name: "GitHub",
+    href: "https://github.com/hudevhub",
+    icon: GithubIcon,
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+const quickLinks = [
+  {
+    title: "Premium Courses",
+    description: "Access premium resources",
+    icon: BookOpen,
+    href: "/student/courseCatalog",
   },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
+  {
+    title: "Resources Hub",
+    description: "Access learning materials",
+    icon: Code,
+    href: "/student/resourceHub",
   },
-};
+  {
+    title: "Project Showcase",
+    description: "Project submission",
+    icon: Calendar,
+    href: "/student/projectSubmission",
+  },
+];
 
-export default function WelcomeHUDC() {
-  const [isOpen, setIsOpen] = useState(true);
-  const [showMobileFeatures, setShowMobileFeatures] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+const studyTips = [
+  {
+    tip: "Implement pagination for APIs returning large datasets using tools like Laravel's `paginate()` or Sequelize's `limit` and `offset`.",
+    category: "API Development",
+  },
+  {
+    tip: "Debug performance bottlenecks by using profiling tools like `console.time()` and `console.timeEnd()`.",
+    category: "Debugging",
+  },
+  {
+    tip: "Minimize bundle size in React applications by using dynamic imports to load components only when needed.",
+    category: "Frontend Optimization",
+  },
+];
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+export default function Dashboard() {
+  const [currentTipIndex, setCurrentTipIndex] = useState(0);
 
-  if (!isOpen) return null;
+  const nextTip = () => {
+    setCurrentTipIndex((prevIndex) => (prevIndex + 1) % studyTips.length);
+  };
+
+  const prevTip = () => {
+    setCurrentTipIndex(
+      (prevIndex) => (prevIndex - 1 + studyTips.length) % studyTips.length
+    );
+  };
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto p-4">
+    <div className=" w-full bg-white dark:bg-black">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative rounded-xl border border-neutral-800 bg-background overflow-hidden backdrop-blur-sm"
+        className="max-w-7xl mx-auto px-4 py-8"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/50 to-black/50 z-0" />
-
-        <div className="relative z-10 p-4 sm:p-6 md:p-8 w-full">
-          <div className="flex items-center justify-between mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-8">
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="inline-flex items-center justify-center p-3 rounded-lg bg-gradient-to-br from-neutral-800 to-neutral-900 border border-neutral-700/50 shadow-lg"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900"
             >
-              <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+              <div className="p-6 sm:p-8">
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                  Welcome to Your HUDC Student Dashboard
+                </h1>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  Explore, learn, and grow with our resources
+                </p>
+
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {quickLinks.map((link) => (
+                    <motion.a
+                      key={link.title}
+                      href={link.href}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="group relative p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                    >
+                      <div className="flex flex-col items-center text-center gap-2">
+                        <div className="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+                          <link.icon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                            {link.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {link.description}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
             </motion.div>
-            
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="rounded-lg border border-gray-200 dark:border-gray-800 p-6 bg-white dark:bg-gray-900"
+            >
+              <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                Introduction to Backend Development
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Enhance your skills with our comprehensive backend development
+                course prepared by HUDC. Join a community of learners and build
+                the foundation for your tech career.
+              </p>
+              <motion.a
+                href="https://forms.gle/jVTpbrsSbv2sRD4s6"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center px-4 py-2  border-transparent text-sm font-medium shadow-sm text-whitedark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6 transition-colors duration-200"
+              >
+                Register Now <ExternalLink className="ml-2 -mr-1 w-4 " />
+              </motion.a>
+            </motion.div>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+          <div className="space-y-8">
             <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="space-y-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6"
             >
-              <motion.div variants={itemVariants} className="space-y-3">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                  Welcome to HUDC
-                </h3>
-                <p className="text-sm sm:text-base text-neutral-400 leading-relaxed max-w-md">
-                  A place where tech students and professionals come together to share knowledge,
-                  access curated resources, and support each other&apos;s growth.
-                </p>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row gap-3"
-              >
-                <Button
-                  asChild
-                  variant="outline"
-                  className="group w-full sm:w-auto border-neutral-700/50 bg-neutral-900/80 hover:bg-neutral-800 text-white transition-all hover:scale-102 backdrop-blur-sm"
-                >
-                  <a
-                    href="/student/courseCatalog"
-                    className="inline-flex items-center justify-center gap-2"
+              <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100 flex items-center">
+                <Lightbulb className="w-5 h-5 mr-2 text-yellow-500" /> Daily Dev
+                Tip
+              </h2>
+              <div className="relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentTipIndex}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
+                    className="mb-4"
                   >
-                    Explore Courses
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="group w-full sm:w-auto border-neutral-700/50 bg-neutral-900/80 hover:bg-neutral-800 text-white transition-all hover:scale-102 backdrop-blur-sm"
-                >
-                  <a
-                    href="/student/resourceHub"
-                    className="inline-flex items-center justify-center gap-2"
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {studyTips[currentTipIndex].tip}
+                    </p>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 mt-2 inline-block">
+                      Category: {studyTips[currentTipIndex].category}
+                    </span>
+                  </motion.div>
+                </AnimatePresence>
+                <div className="flex justify-between mt-4">
+                  <button
+                    onClick={prevTip}
+                    className="p-1 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
                   >
-                    Resource Hub
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                  </a>
-                </Button>
-              </motion.div>
+                    <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                  </button>
+                  <button
+                    onClick={nextTip}
+                    className="p-1 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+                  >
+                    <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                  </button>
+                </div>
+              </div>
             </motion.div>
-
-            <AnimatePresence mode="wait">
-              {(showMobileFeatures || !isMobile) && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="grid grid-cols-1 sm:grid-cols-2 gap-3 overflow-hidden"
-                >
-                  {features.map((feature, index) => (
-                    <motion.div
-                      key={feature.title}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ scale: 1.02 }}
-                      className="group relative rounded-lg border border-neutral-800 bg-neutral-900/50 p-4 transition-all hover:border-neutral-700 backdrop-blur-sm overflow-hidden"
-                    >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-10 group-hover:opacity-20 transition-opacity`} />
-                      <div className="relative z-10">
-                        <feature.icon className="h-5 w-5 text-white mb-2 sm:mb-3" />
-                        <h4 className="text-sm font-medium text-white mb-1">
-                          {feature.title}
-                        </h4>
-                        <p className="text-xs text-neutral-400 line-clamp-2 sm:line-clamp-none">
-                          {feature.description}
-                        </p>
+            <Card className="shadow-lg rounded-lg overflow-hidden">
+              <CardContent className="grid grid-cols-1 gap-3 overflow-auto pb-4  ">
+                {socialLinks.map((link) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all transform hover:scale-105"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-full bg-gray-700">
+                        <link.icon className="w-5 h-5 text-gray-300  transition-colors" />
                       </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                      <div>
+                        <h3 className="text-sm font-medium text-white">
+                          {link.name}
+                        </h3>
+                      </div>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-gray-400  transition-all transform group-hover:translate-x-1" />
+                  </motion.a>
+                ))}
+              </CardContent>
+            </Card>
           </div>
         </div>
       </motion.div>

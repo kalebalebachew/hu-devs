@@ -181,9 +181,8 @@ export default function Dashboard() {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
-
         <DashboardHeader />
-
+          
         <motion.div
           variants={containerVariants}
           initial="hidden"
