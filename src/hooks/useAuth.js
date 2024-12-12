@@ -44,7 +44,7 @@ export function useAuth() {
       setIsAuthenticated(true);
       setUserRole(role);
 
-      onClose(); // Close login dialog
+      onClose(); 
 
      
       window.location.reload(); 

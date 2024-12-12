@@ -26,6 +26,11 @@ const navItems = [
     icon: LayoutDashboard,
   },
   {
+    title: "Course Catalog",
+    url: "/student/courseCatalog",
+    icon: BookOpen,
+  },
+  {
     title: "Resource Hub",
     url: "/student/resourceHub",
     icon: Library,
@@ -34,11 +39,6 @@ const navItems = [
     title: "Project Showcase",
     url: "/student/projectSubmission",
     icon: Upload,
-  },
-  {
-    title: "Course Catalog",
-    url: "/student/courseCatalog",
-    icon: BookOpen,
   },
   {
     title: "Profile",
