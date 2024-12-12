@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 const withAuth = (WrappedComponent, allowedRoles = []) => {
-  return (props) => {
+  const RequiresAuth = (props) => {
     const { isAuthenticated, userRole, isLoading } = useAuth();
     const pathname = usePathname();
     const router = useRouter();
@@ -18,14 +18,22 @@ const withAuth = (WrappedComponent, allowedRoles = []) => {
           router.push("/unauthorized"); 
         }
       }
-    }, [isAuthenticated, userRole, isLoading, router, pathname, allowedRoles]);
+    }, [isAuthenticated, userRole, isLoading, pathname, router]);
 
-    if (isLoading || !isAuthenticated) {
-      return <div></div>; 
+    if (isLoading) {
+      return <div className="h-screen flex items-center justify-center">Loading...</div>;
+    }
+
+    if (!isAuthenticated) {
+      return null; 
     }
 
     return <WrappedComponent {...props} />;
   };
+
+  RequiresAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || "Component"})`;
+
+  return RequiresAuth;
 };
 
 export default withAuth;
