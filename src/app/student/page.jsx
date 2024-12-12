@@ -12,7 +12,6 @@ import {
   Calendar,
   MapPin,
   ArrowRight,
-  RefreshCcw,
 } from "lucide-react";
 import { DashboardHeader } from "./components/DashboardHeader";
 import { DashboardTabs } from "./components/DashboardTabs";

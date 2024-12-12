@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { LogOut, Search, Menu, X, Sparkles } from "lucide-react";
+import { LogOut, Search, Menu, X, Sparkles, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -32,12 +32,7 @@ export default function Navigation({ onLogout, isLoading, navItems }) {
   const SidebarContent = () => (
     <div className="flex flex-col h-full">
       <div className="p-4 border-b border-gray-800/50">
-        <Link href="/student" className="flex items-center space-x-3">
-          <div className="relative h-10 w-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center">
-            <Sparkles className="h-5 w-5 text-white" />
-          </div>
-          <span className="font-semibold text-white">HUDC</span>
-        </Link>
+        <Link href="/student" className="flex items-center space-x-3"></Link>
       </div>
       <div className="p-4">
         <div className="relative">

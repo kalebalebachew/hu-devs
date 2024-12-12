@@ -1,43 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BookOpen,
   Code,
   Calendar,
-  ExternalLink,
   Lightbulb,
   ChevronRight,
   ChevronLeft,
-  Terminal,
-  Play,
-  Check,
-  RefreshCw,
+  Sparkles,
   ArrowRight,
-  LinkedinIcon,
-  SendIcon,
-  GithubIcon,
+  CheckCircle,
+  XCircle,
+  Check,
 } from "lucide-react";
-import { Card } from "@tremor/react";
-import { CardContent } from "@/components/ui/card";
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/company/haramaya-university-developers-community",
-    icon: LinkedinIcon,
-  },
-  {
-    name: "Telegram",
-    href: "https://t.me/hudevhub",
-    icon: SendIcon,
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/hudevhub",
-    icon: GithubIcon,
-  },
-];
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const quickLinks = [
   {
@@ -48,197 +27,134 @@ const quickLinks = [
   },
   {
     title: "Resources Hub",
-    description: "Access learning materials",
+    description: "Learning materials",
     icon: Code,
     href: "/student/resourceHub",
   },
   {
     title: "Project Showcase",
-    description: "Project submission",
+    description: "Showcase your work",
     icon: Calendar,
     href: "/student/projectSubmission",
   },
 ];
 
-const studyTips = [
-  {
-    tip: "Implement pagination for APIs returning large datasets using tools like Laravel's `paginate()` or Sequelize's `limit` and `offset`.",
-    category: "API Development",
-  },
-  {
-    tip: "Debug performance bottlenecks by using profiling tools like `console.time()` and `console.timeEnd()`.",
-    category: "Debugging",
-  },
-  {
-    tip: "Minimize bundle size in React applications by using dynamic imports to load components only when needed.",
-    category: "Frontend Optimization",
-  },
-];
-
 export default function Dashboard() {
-  const [currentTipIndex, setCurrentTipIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
 
-  const nextTip = () => {
-    setCurrentTipIndex((prevIndex) => (prevIndex + 1) % studyTips.length);
-  };
-
-  const prevTip = () => {
-    setCurrentTipIndex(
-      (prevIndex) => (prevIndex - 1 + studyTips.length) % studyTips.length
-    );
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => setProgress(65), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className=" w-full bg-white dark:bg-black">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-7xl mx-auto px-4 py-8"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
-              className="rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900"
-            >
-              <div className="p-6 sm:p-8">
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                  Welcome to Your HUDC Student Dashboard
-                </h1>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  Explore, learn, and grow with our resources
+    <div className="w-full">
+      <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="space-y-6"
+        >
+          <div className="text-center sm:text-left">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+              Welcome, Student | Developer
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-2 text-base sm:text-lg">
+              Your HUDC learning journey starts here.
+            </p>
+          </div>
+        
+          <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+            <CardContent className="p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold mb-2 flex items-center">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+                  Backend Development Course
+                </h2>
+                <p className="text-sm sm:text-base max-w-md">
+                  No experience needed—core knowledge to get started.
                 </p>
+              </div>
+              <Button
+                variant="outline"
+                className="w-full sm:w-auto flex items-center justify-center mt-4 sm:mt-0"
+              >
+                <a
+                  href="https://forms.gle/h1fAvVD5DRJNKqjJA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center"
+                >
+                  Enroll Now <ArrowRight className="ml-2 w-4 h-4" />
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
 
-                <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <Card>
+              <CardContent className="p-6 flex flex-col">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                  Quick Access
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {quickLinks.map((link) => (
                     <motion.a
                       key={link.title}
                       href={link.href}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="group relative p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex flex-col items-center justify-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
                     >
-                      <div className="flex flex-col items-center text-center gap-2">
-                        <div className="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
-                          <link.icon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-gray-900 dark:text-gray-100">
-                            {link.title}
-                          </h3>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {link.description}
-                          </p>
-                        </div>
-                      </div>
+                      <link.icon className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500 mb-2" />
+                      <span className="text-xs sm:text-sm text-center text-gray-700 dark:text-gray-300">
+                        {link.title}
+                      </span>
+                      
                     </motion.a>
                   ))}
                 </div>
-              </div>
-            </motion.div>
+              </CardContent>
+            </Card>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="rounded-lg border border-gray-200 dark:border-gray-800 p-6 bg-white dark:bg-gray-900"
-            >
-              <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
-                Introduction to Backend Development
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Enhance your skills with our comprehensive backend development
-                course prepared by HUDC. Join a community of learners and build
-                the foundation for your tech career.
-              </p>
-              <motion.a
-                href="https://forms.gle/jVTpbrsSbv2sRD4s6"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center px-4 py-2  border-transparent text-sm font-medium shadow-sm text-whitedark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6 transition-colors duration-200"
-              >
-                Register Now <ExternalLink className="ml-2 -mr-1 w-4 " />
-              </motion.a>
-            </motion.div>
-          </div>
-
-          <div className="space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6"
-            >
-              <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100 flex items-center">
-                <Lightbulb className="w-5 h-5 mr-2 text-yellow-500" /> Daily Dev
-                Tip
-              </h2>
-              <div className="relative">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentTipIndex}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.2 }}
-                    className="mb-4"
-                  >
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {studyTips[currentTipIndex].tip}
-                    </p>
-                    <span className="text-xs text-gray-500 dark:text-gray-400 mt-2 inline-block">
-                      Category: {studyTips[currentTipIndex].category}
-                    </span>
-                  </motion.div>
-                </AnimatePresence>
-                <div className="flex justify-between mt-4">
-                  <button
-                    onClick={prevTip}
-                    className="p-1 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-                  >
-                    <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                  </button>
-                  <button
-                    onClick={nextTip}
-                    className="p-1 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-                  >
-                    <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-            <Card className="shadow-lg rounded-lg overflow-hidden">
-              <CardContent className="grid grid-cols-1 gap-3 overflow-auto pb-4  ">
-                {socialLinks.map((link) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-between p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all transform hover:scale-105"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-full bg-gray-700">
-                        <link.icon className="w-5 h-5 text-gray-300  transition-colors" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-medium text-white">
-                          {link.name}
-                        </h3>
-                      </div>
+            <Card>
+              <CardContent className="p-6">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                  Announcements
+                </h2>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="p-2 bg-blue-100 dark:bg-blue-800 rounded-full">
+                      <Calendar className="w-5 h-5 text-blue-500" />
                     </div>
-                    <ArrowRight className="w-4 h-4 text-gray-400  transition-all transform group-hover:translate-x-1" />
-                  </motion.a>
-                ))}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                        New Course Available
+                      </h4>
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                        🎉 Introduction backend development course registration started.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="p-2 bg-green-100 dark:bg-green-800 rounded-full">
+                      <Check className="w-5 h-5 text-green-500" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                        Project Submission
+                      </h4>
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                        📅 Submit your project for review.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }
