@@ -3,7 +3,7 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import SidebarNavigation from "./components/SidebarNav";
 import { Nunito } from "next/font/google";
-import withProtectedRoute from "@/protectedRoute";
+import withAuth from "../utils/withAuth";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -25,4 +25,4 @@ const nunito = Nunito({
   );
 }
 
-export default withProtectedRoute(AdminLayout);
+export default withAuth(AdminLayout);
