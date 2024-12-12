@@ -24,7 +24,7 @@ const courses = [
   {
     id: 1,
     title: "Introduction to Python",
-    description: "Learn the basics of Python programming language",
+    description: "Learn the basics of Python programming.",
     provider: "KurazTech",
     instructor: "Tito Frezer",
     thumbnail: "/intro-python.png",
@@ -37,7 +37,7 @@ const courses = [
   {
     id: 2,
     title: "MYSQL For Beginners",
-    description: "Dive deep into MYSQL concepts and master database.",
+    description: "Dive deep into MYSQL concepts.",
     provider: "KurazTech",
     instructor: "Fitsum Kassaye",
     thumbnail: "/mysql.png",
@@ -151,10 +151,11 @@ export default function CourseCatalogPage() {
                       </div>
                       <div>
                         <p className="font-medium text-gray-900 dark:text-gray-100">
-                          {course.instructor}
+                          Instructor
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">
-                          Instructor
+                        {course.instructor} 
+
                         </p>
                       </div>
                     </div>
