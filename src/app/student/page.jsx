@@ -11,6 +11,7 @@ import { AlertCircle, Calendar, MapPin, ArrowRight } from "lucide-react";
 import { DashboardHeader } from "./components/DashboardHeader";
 import { DashboardTabs } from "./components/DashboardTabs";
 import Welcome from "./components/Welcome";
+import withAuth from "../utils/withAuth";
 
 const placeholderData = {
   pastEvents: [
@@ -62,7 +63,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function Dashboard() {
+function Dashboard() {
   const [stats, setStats] = useState(placeholderData.stats);
   const [courses, setCourses] = useState(placeholderData.courses);
   const [events, setEvents] = useState(placeholderData.events);
@@ -211,3 +212,4 @@ export default function Dashboard() {
     </div>
   );
 }
+export default Dashboard;

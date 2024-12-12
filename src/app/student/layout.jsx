@@ -3,10 +3,16 @@
 import { useState, useEffect } from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import SidebarNavigation from "./components/SidebarNav";
-import { BookOpen, LayoutDashboard, Library, Settings, Settings2, Upload } from 'lucide-react';
+import {
+  BookOpen,
+  LayoutDashboard,
+  Library,
+  Settings,
+  Upload,
+} from "lucide-react";
 import { Nunito } from "next/font/google";
 import { useLogout } from "@/hooks/useLogout";
-import withProtectedRoute from "@/protectedRoute";
+import withAuth from "../utils/withAuth";
 import {
   Toast,
   ToastTitle,
@@ -15,9 +21,8 @@ import {
   ToastProvider,
   ToastViewport,
 } from "@/components/ui/toast";
-import { GeistSans } from 'geist/font/sans';
 
-
+const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
 
 const navItems = [
   {
@@ -78,10 +83,11 @@ function StudentLayout({ children }) {
   }, [toast.isVisible]);
 
   return (
-  
     <SidebarProvider>
       <ToastProvider>
-        <div className={`flex h-screen ${GeistSans.className} w-full bg-background text-foreground`}>
+        <div
+          className={`flex h-screen ${nunito.variable} w-full bg-background text-foreground`}
+        >
           <SidebarNavigation
             navItems={navItems}
             onLogout={handleLogout}
@@ -98,7 +104,9 @@ function StudentLayout({ children }) {
             </ToastTitle>
             <ToastDescription>{toast.message}</ToastDescription>
             <ToastClose
-              onClick={() => setToast((prevToast) => ({ ...prevToast, isVisible: false }))}
+              onClick={() =>
+                setToast((prevToast) => ({ ...prevToast, isVisible: false }))
+              }
             />
           </Toast>
         )}
@@ -108,6 +116,4 @@ function StudentLayout({ children }) {
   );
 }
 
-
-export default withProtectedRoute(StudentLayout);
-
+export default withAuth(StudentLayout);

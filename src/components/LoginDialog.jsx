@@ -22,9 +22,14 @@ export function LoginDialog({ isOpen, onClose }) {
   const [showPassword, setShowPassword] = useState(false);
   const { login, isLoading, error, setError } = useAuth();
 
-  const onSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    login(email, password, onClose);
+    setError(null);
+    try {
+      await login(email, password, onClose); 
+    } catch (err) {
+      console.error("Login failed:", err);
+    }
   };
 
   return (
@@ -38,7 +43,7 @@ export function LoginDialog({ isOpen, onClose }) {
             Enter your email and password to access your account.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={onSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email" className="text-muted-foreground">
               Email
