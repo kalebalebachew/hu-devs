@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -20,24 +21,25 @@ export function NavBar() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleLogin = () => setIsLoginOpen(!isLoginOpen);
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
 
   const scrollToSection = (id) => {
     const element = document.querySelector(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsOpen(false); 
+    setIsOpen(false);
   };
 
-
-  
   return (
     <motion.div
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="fixed top-4 left-0 right-0 z-50 flex justify-center"
-      
     >
       <nav className="bg-background/80 backdrop-blur-lg shadow-lg rounded-2xl max-w-4xl w-11/12 border border-border">
         <div className="px-4">
@@ -48,7 +50,7 @@ export function NavBar() {
             >
               <Link
                 href="/"
-                className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+                className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground"
               >
                 HUDC
               </Link>
@@ -76,17 +78,18 @@ export function NavBar() {
             </div>
 
             <div className="flex items-center space-x-4">
-              {/* <motion.button
+              <motion.button
                 whileHover={{ scale: 1.05 }}
                 onClick={toggleTheme}
                 className="text-foreground/80 hover:text-foreground p-2 rounded-lg transition-colors"
+                aria-label="Toggle Theme"
               >
                 {theme === "dark" ? (
                   <Sun className="h-5 w-5" />
                 ) : (
                   <Moon className="h-5 w-5" />
                 )}
-              </motion.button> */}
+              </motion.button>
 
               <motion.div
                 whileHover={{ scale: 1.02 }}
@@ -148,7 +151,6 @@ export function NavBar() {
               >
                 Contact
               </button>
-              <HUDCNavigationMenu />
             </div>
           </motion.div>
         )}

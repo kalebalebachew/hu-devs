@@ -4,10 +4,21 @@ import { motion } from "framer-motion";
 import { ArrowRight, SendIcon, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { GridPattern } from "./GridPattern";
 
 export function Hero() {
   return (
     <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-20 overflow-hidden">
+     <div class="absolute -bottom-12 -top-20 left-0 right-1/2 z-10 w-screen  text-primary/15 md:bottom-8 lg:-inset-y-32">
+    <svg aria-hidden="true" class="absolute inset-0 h-screen w-screen">
+      <defs>
+        <pattern id=":S2:" width="128" height="128" patternUnits="userSpaceOnUse" x="100%" y="100%" patternTransform="translate(112 64)">
+          <path d="M0 128V.5H128" fill="none" stroke="currentColor"></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#:S2:)"></rect>
+    </svg>
+  </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,16 +33,15 @@ export function Hero() {
           >
             <h1
               className={cn(
-                "text-4xl sm:text-5xl lg:text-6xl font-extrabold",
-                "tracking-tight text-transparent bg-clip-text",
-                "bg-gradient-to-b from-white to-[#AAAAAA]",
+                "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight",
+                "bg-gradient-to-b from-foreground to-muted bg-clip-text text-transparent",
                 "pb-2"
               )}
             >
               Haramaya University Developers Community
             </h1>
 
-            <p className=" text-xl text-zinc-400">
+            <p className="text-xl text-muted-foreground">
               Learning and building together at Haramaya University and beyond.
               Join our growing community of student developers.
             </p>
@@ -46,7 +56,7 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="bg-white text-black hover:bg-zinc-100 group"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 group"
             >
               <a
                 href="https://t.me/hudevhub"
@@ -63,7 +73,7 @@ export function Hero() {
               asChild
               variant="outline"
               size="lg"
-              className="border-zinc-800 hover:bg-zinc-900"
+              className="border-muted hover:bg-muted/10 text-muted-foreground"
             >
               <a
                 href="https://github.com/HUDC-Haramaya"
@@ -80,7 +90,7 @@ export function Hero() {
 
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute -top-1/2 left-1/2 -translate-x-1/2 w-[800px] h-[800px] opacity-20">
-          <div className="absolute inset-0 rotate-45 bg-gradient-radial from-teal-500/30 via-transparent to-transparent blur-2xl"></div>
+          <div className="absolute inset-0 rotate-45 bg-gradient-radial from-accent/30 via-transparent to-transparent blur-2xl"></div>
         </div>
       </div>
     </section>

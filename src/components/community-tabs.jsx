@@ -68,7 +68,6 @@ export function CommunityTabsComponent() {
 
     try {
       const success = await registerMembership(membershipForm);
-      console.log("API Call Success:", success);
 
       toast({
         title: success ? "Success" : "Error",
@@ -82,7 +81,6 @@ export function CommunityTabsComponent() {
         setMembershipForm({ email: "", studentId: "", password: "" });
       }
     } catch (error) {
-      console.error("Error during membership submission:", error);
       toast({
         title: "Error",
         description: "An unexpected error occurred. Please try again later.",
@@ -94,16 +92,14 @@ export function CommunityTabsComponent() {
   return (
     <div className="max-w-2xl mx-auto">
       <Tabs defaultValue="exclusive" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 p-1 bg-black/20 backdrop-blur-sm rounded-xl mb-6">
-          {[
-            { value: "exclusive", label: "Membership", icon: BookOpenIcon },
+        <TabsList className="grid w-full grid-cols-3 p-1 bg-muted/10 rounded-xl mb-6">
+          {[{ value: "exclusive", label: "Membership", icon: BookOpenIcon },
             { value: "social", label: "Connect", icon: Users2Icon },
-            { value: "organizers", label: "Organizers", icon: RocketIcon },
-          ].map(({ value, label, icon: Icon }) => (
+            { value: "organizers", label: "Organizers", icon: RocketIcon }].map(({ value, label, icon: Icon }) => (
             <TabsTrigger
               key={value}
               value={value}
-              className="relative px-6 py-2 rounded-lg data-[state=active]:bg-white data-[state=active]:text-black transition-all duration-300"
+              className="relative  px-6 py-2 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-secondary"
             >
               <span className="flex items-center gap-2">
                 <Icon className="w-4 h-4" />
@@ -115,45 +111,23 @@ export function CommunityTabsComponent() {
 
         <AnimatePresence mode="wait">
           <TabsContent value="exclusive">
-            <motion.div
-              variants={tabVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <Card className="border-0 bg-black/20 backdrop-blur-sm">
+            <motion.div variants={tabVariants} initial="hidden" animate="visible" exit="exit">
+              <Card className="border-0 bg-card">
                 <form onSubmit={handleMembershipSubmit}>
                   <CardHeader>
-                    <CardTitle className="text-xl font-semibold text-gradient">
+                    <CardTitle className="text-xl font-semibold text-primary">
                       Membership Registration
                     </CardTitle>
-                    <CardDescription className="text-zinc-400">
+                    <CardDescription className="text-muted-foreground">
                       Get exclusive access to resources and events
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {[
-                      {
-                        id: "email",
-                        type: "email",
-                        label: "Email",
-                        placeholder: "your.email@example.com",
-                      },
-                      {
-                        id: "studentId",
-                        type: "text",
-                        label: "Student ID",
-                        placeholder: "Enter your student ID",
-                      },
-                      {
-                        id: "password",
-                        type: "password",
-                        label: "Password",
-                        placeholder: "Create a secure password",
-                      },
-                    ].map(({ id, type, label, placeholder }) => (
+                    {[{ id: "email", type: "email", label: "Email", placeholder: "your.email@example.com" },
+                      { id: "studentId", type: "text", label: "Student ID", placeholder: "Enter your student ID" },
+                      { id: "password", type: "password", label: "Password", placeholder: "Create a secure password" }].map(({ id, type, label, placeholder }) => (
                       <div key={id} className="space-y-2">
-                        <Label htmlFor={id} className="text-zinc-200">
+                        <Label htmlFor={id} className="text-muted-foreground">
                           {label}
                         </Label>
                         <Input
@@ -167,17 +141,16 @@ export function CommunityTabsComponent() {
                               [id]: e.target.value,
                             })
                           }
-                          className="bg-white/5 border-white/10 text-white placeholder:text-zinc-500 focus:border-white/20 focus:ring-white/20"
+                          className="bg-input border-input text-foreground placeholder:text-muted focus:border-ring focus:ring-ring"
                         />
                       </div>
                     ))}
                   </CardContent>
-
                   <CardFooter>
                     <Button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full bg-white hover:bg-zinc-100 text-black transition-all duration-300"
+                      className="w-full bg-primary text-primary-foreground"
                     >
                       {isLoading ? "Processing..." : "Register for Membership"}
                       <ArrowRight className="w-4 h-4 ml-2" />
@@ -188,18 +161,13 @@ export function CommunityTabsComponent() {
             </motion.div>
           </TabsContent>
           <TabsContent value="social">
-            <motion.div
-              variants={tabVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <Card className="border-0 bg-black/20 backdrop-blur-sm">
+            <motion.div variants={tabVariants} initial="hidden" animate="visible" exit="exit">
+              <Card className="border-0 bg-card">
                 <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-gradient">
+                  <CardTitle className="text-xl font-semibold text-primary">
                     Connect with Our Community
                   </CardTitle>
-                  <CardDescription className="text-zinc-400">
+                  <CardDescription className="text-muted-foreground">
                     Join our growing network of developers
                   </CardDescription>
                 </CardHeader>
@@ -210,60 +178,45 @@ export function CommunityTabsComponent() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-                      whileHover={{ y: -1 }}
-                      whileTap={{ scale: 0.98 }}
+                      className="group flex items-center justify-between p-3 rounded-lg bg-muted/10 hover:bg-muted/20 transition"
                     >
                       <div className="flex items-center gap-3">
-                        <link.icon className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
+                        <link.icon className="w-5 h-5 text-primary group-hover:text-primary" />
                         <div className="flex flex-col">
-                          <span className="text-sm font-medium text-white">
+                          <span className="text-sm font-medium text-foreground">
                             {link.name}
                           </span>
-                          <span className="text-xs text-zinc-400">
+                          <span className="text-xs text-muted-foreground">
                             {link.description}
                           </span>
                         </div>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-white transition-all transform group-hover:translate-x-1" />
+                      <ArrowRight className="w-4 h-4 text-muted group-hover:text-primary transition" />
                     </motion.a>
                   ))}
                 </CardContent>
               </Card>
             </motion.div>
           </TabsContent>
-
           <TabsContent value="organizers">
-            <motion.div
-              variants={tabVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <Card className="border-0 bg-black/20 backdrop-blur-sm">
+            <motion.div variants={tabVariants} initial="hidden" animate="visible" exit="exit">
+              <Card className="border-0 bg-card">
                 <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-gradient">
+                  <CardTitle className="text-xl font-semibold text-primary">
                     Join the Organizers Team
                   </CardTitle>
-                  <CardDescription className="text-zinc-400">
+                  <CardDescription className="text-muted-foreground">
                     Help shape the future of our developer community
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="text-center py-8">
-                  <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Users2Icon className="w-16 h-16 mx-auto mb-4 text-white/20" />
-                    <h3 className="text-lg font-semibold mb-2 text-gradient">
-                      Applications Opening Soon
-                    </h3>
-                    <p className="text-zinc-400 text-sm max-w-md mx-auto">
-                      We are looking for passionate developers to join our
-                      organizing team. Stay tuned for upcoming opportunities!
-                    </p>
-                  </motion.div>
+                  <Users2Icon className="w-16 h-16 mx-auto mb-4 text-muted" />
+                  <h3 className="text-lg font-semibold text-primary">
+                    Applications Opening Soon
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Stay tuned for upcoming opportunities to join our organizing team!
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>

@@ -31,73 +31,59 @@ export const ContactForm = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full max-w-md"
+      className="w-full max-w-md mx-auto"
     >
-      <Card className="bg-gray-900/30 backdrop-blur-sm border-0">
+      <Card className="bg-card backdrop-blur-sm border border-border">
         <form onSubmit={handleSubmit}>
           <CardHeader>
-            <CardTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+            <CardTitle className="text-2xl font-bold text-primary">
               Get in Touch
             </CardTitle>
-            <CardDescription className="text-sm text-gray-400">
-              Have questions? We would love to hear from you.
+            <CardDescription className="text-sm text-muted-foreground">
+              Have questions? We&apos;d love to hear from you.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-3">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 }}
-              className="space-y-1"
-            >
-              <Label htmlFor="name" className="text-gray-200 text-sm">
-                Name
-              </Label>
-              <Input
-                id="name"
-                value={formState.name}
-                onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                placeholder="Your full name"
-                className="bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-500"
-                required
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="space-y-1"
-            >
-              <Label htmlFor="email" className="text-gray-200 text-sm">
-                Email
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                value={formState.email}
-                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                placeholder="you@example.com"
-                className="bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-500"
-                required
-              />
-            </motion.div>
-
+          <CardContent className="space-y-4">
+            {[ 
+              { id: "name", label: "Name", type: "text", placeholder: "Your full name" },
+              { id: "email", label: "Email", type: "email", placeholder: "you@example.com" },
+            ].map(({ id, label, type, placeholder }, index) => (
+              <motion.div
+                key={id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 * (index + 1) }}
+                className="space-y-2"
+              >
+                <Label htmlFor={id} className="text-muted-foreground text-sm">
+                  {label}
+                </Label>
+                <Input
+                  id={id}
+                  type={type}
+                  placeholder={placeholder}
+                  value={formState[id]}
+                  onChange={(e) => setFormState({ ...formState, [id]: e.target.value })}
+                  className="bg-muted/10 border border-border text-primary placeholder:text-muted-foreground"
+                  required
+                />
+              </motion.div>
+            ))}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
-              className="space-y-1"
+              className="space-y-2"
             >
-              <Label htmlFor="message" className="text-gray-200 text-sm">
+              <Label htmlFor="message" className="text-muted-foreground text-sm">
                 Message
               </Label>
               <Textarea
                 id="message"
+                placeholder="Your message..."
                 value={formState.message}
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                placeholder="Your message..."
-                className="min-h-[100px] bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-500"
+                className="min-h-[100px] bg-muted/10 border border-border text-primary placeholder:text-muted-foreground"
                 required
               />
             </motion.div>
@@ -106,7 +92,8 @@ export const ContactForm = () => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-white hover:bg-gray-100 text-gray-900 transition-colors"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+              aria-live="polite"
             >
               {isSubmitting ? (
                 <motion.div

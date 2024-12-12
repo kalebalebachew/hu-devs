@@ -45,7 +45,7 @@ const features = [
 
 export function Features() {
   return (
-    <section className=" relative" id="features">
+    <section className="relative" id="features">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -54,10 +54,10 @@ export function Features() {
           transition={{ duration: 0.5 }}
           className="text-center space-y-4 mb-16"
         >
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-gradient">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
             Why join our community?
           </h2>
-          <p className="max-w-2xl mx-auto text-lg text-zinc-400">
+          <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
             Discover the benefits of being part of HUDC
           </p>
         </motion.div>
@@ -72,14 +72,14 @@ export function Features() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="h-full"
             >
-              <Card className="group relative p-2 bg-zinc-900/50 border-zinc-800/50 hover:border-zinc-700/50 transition-all duration-300 h-full flex flex-col">
-                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <Card className="group relative p-6 bg-card border border-border hover:border-muted transition-all duration-300 h-full flex flex-col">
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative flex-1 flex flex-col">
-                  <feature.icon className="w-8 h-8 mb-4 text-white/80 group-hover:text-white transition-colors duration-300 flex-shrink-0" />
-                  <h3 className="text-xl font-semibold mb-2 text-gradient flex-shrink-0">
+                  <feature.icon className="w-8 h-8 mb-4 text-muted-foreground group-hover:text-primary transition-colors duration-300 flex-shrink-0" />
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">
                     {feature.title}
                   </h3>
-                  <p className="text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300">
+                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                     {feature.description}
                   </p>
                 </div>

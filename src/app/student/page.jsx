@@ -7,12 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  AlertCircle,
-  Calendar,
-  MapPin,
-  ArrowRight,
-} from "lucide-react";
+import { AlertCircle, Calendar, MapPin, ArrowRight } from "lucide-react";
 import { DashboardHeader } from "./components/DashboardHeader";
 import { DashboardTabs } from "./components/DashboardTabs";
 import Welcome from "./components/Welcome";
@@ -26,7 +21,7 @@ const placeholderData = {
       audio: "/biruk-record.ogg",
       img: "/biruk.jpg",
       description:
-        "This time, we're hosting Brook Belihu, the former co-host of Gugut Podcast —a name many of you already know and love! Now making waves with PulseERP, we will start right from the AASTU days, dive into his freelancing journey, and cover everything in between!",
+        "This time, we're hosting Brook Belihu, the former co-host of Gugut Podcast —a name many of you already know and love.",
     },
     {
       title: "Campus Innovation the Kuraztech's Journey",
@@ -35,7 +30,7 @@ const placeholderData = {
       audio: "/tito-record.ogg",
       img: "/tito.jpg",
       description:
-        "HUDC is excited to bring you a special live session featuring Tito Frezer, one of the key figures behind KurazTech —a company that started as a university club and grew into a successful tech company.",
+        "HUDC is excited to bring you a special live session featuring Tito Frezer, one of the key figures behind KurazTech.",
     },
     {
       title: "A Journey started in Haramaya University",
@@ -44,7 +39,7 @@ const placeholderData = {
       audio: "/yohannes-record.ogg",
       img: "/john.jpg",
       description:
-        "We're excited to have Yohannes, a former Haramaya lecturer, student, and now a Senior Data Engineer at Excellerent Solutions.\n\nYohannes went from sitting in the same classrooms you're in as a student, to teaching in them as a lecturer, and now he's working in the tech industry.\n\nIn this session, he'll share:\n\n• How he moved from learning and teaching to tech.\n• The challenges he faced along the way.\n• Practical tips for anyone wanting to start in tech.",
+        "We're excited to have Yohannes, a former Haramaya lecturer and now a Senior Data Engineer at Excellerent Solutions.",
     },
   ],
   featuredProjects: [],
@@ -181,7 +176,7 @@ export default function Dashboard() {
           </Alert>
         )}
         <DashboardHeader />
-          
+
         <motion.div
           variants={containerVariants}
           initial="hidden"

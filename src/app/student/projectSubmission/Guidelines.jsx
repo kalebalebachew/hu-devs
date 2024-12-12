@@ -1,177 +1,171 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { ChevronRight, Rocket, Stars, Github, Globe } from "lucide-react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, FileCode, Globe2, BookOpen, FileText } from "lucide-react";
+import SubmissionGuidelinesModal from "./Guidelines";
 
-export default function SubmissionGuidelinesModal() {
-  const [agreed, setAgreed] = useState(false);
-  const [open, setOpen] = useState(false);
+const formSchema = z.object({
+  projectName: z
+    .string()
+    .min(3, "Project name must be at least 3 characters")
+    .max(50, "Project name must be less than 50 characters"),
+  description: z
+    .string()
+    .min(10, "Description must be at least 10 characters")
+    .max(500, "Description must be less than 500 characters"),
+  projectUrl: z.string().url("Please enter a valid URL"),
+  githubRepoUrl: z.string().url("Please enter a valid GitHub repository URL"),
+});
 
-  const guidelines = [
-    {
-      title: "Eligibility Requirements",
-      icon: <CheckCircle className="h-5 w-5" />,
-      content: [
-        "Open to all HUDC members.",
-        "Original work or team collaborations only.",
-        "Projects must align with HUDC's learning goals.",
-      ],
+export default function SubmitProject() {
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      projectName: "",
+      description: "",
+      projectUrl: "",
+      githubRepoUrl: "",
     },
-    {
-      title: "Submission Details",
-      icon: <FileCode className="h-5 w-5" />,
-      content: [
-        "Provide a working live demo URL.",
-        "Share a public GitHub repository.",
-        "Include a detailed project description.",
-      ],
-    },
-    {
-      title: "Documentation",
-      icon: <BookOpen className="h-5 w-5" />,
-      content: ["README file with setup instructions.", "API documentation (if applicable)."],
-    },
-    {
-      title: "Review Process",
-      icon: <Globe2 className="h-5 w-5" />,
-      content: [
-        "HUDC admins will review all submissions for quality and adherence.",
-        "Incomplete submissions may be returned for updates.",
-        "Approved projects will be showcased on HUDC platforms.",
-      ],
-    },
-  ];
+  });
 
-  const termsAndConditions = [
-    "Your project may be featured on HUDC platforms (website, social media, etc.).",
-    "You retain full ownership but grant HUDC the right to showcase it.",
-    "You confirm that your submission is your original work or a collaborative project with proper acknowledgment of team members.",
-    "Incomplete or non-compliant projects may be rejected or removed.",
-    "Your submission may be used in HUDC training materials, workshops, or presentations to further community learning.",
-    "HUDC will credit you or your team as the creators of the project wherever it is showcased, unless requested otherwise.",
-  ];
-
-  const handleAgreement = () => {
-    if (agreed) {
-      setOpen(false);
-    }
-  };
+  async function onSubmit(values) {
+    console.log("Submitted data:", values);
+  }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          size="lg"
-          className="bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-gray-100 border border-gray-600"
-        >
-          Terms and Conditions
-          <ArrowRight className="h-4 w-4" />
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="max-w-3xl">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-medium tracking-tight ">
-            Project Submission Guidelines
-          </DialogTitle>
-        </DialogHeader>
-
+    <div className="min-h-screen bg-background">
+      <div className="container px-4 py-8 mx-auto max-w-5xl">
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="relative max-h-[60vh] overflow-y-auto space-y-6 py-4"
+          className="space-y-6"
         >
-          <div className="rounded-lg border border-blue-500/10 bg-blue-500/5 p-4">
-            <p className="text-sm text-muted-foreground">
-              Please review our guidelines and agree to the terms before submitting your project.
-            </p>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-4">
-            {guidelines.map((section, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="border rounded-lg px-4 data-[state=open]:bg-gray-400/40 transition-colors"
-              >
-                <AccordionTrigger className="hover:no-underline py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="text-primary">{section.icon}</div>
-                    <span className="font-medium">{section.title}</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <ul className="space-y-3 pb-4">
-                    {section.content.map((item, idx) => (
-                      <motion.li
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 }}
-                        key={idx}
-                        className="flex items-center gap-3 text-sm text-muted-foreground"
-                      >
-                        <div className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                        {item}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-
-          <div className="rounded-lg border bg-card p-4">
-            <h3 className="text-lg font-medium mb-3 flex items-center gap-2">
-              <FileText className="h-4 w-4" />
-              Terms and Conditions
-            </h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              {termsAndConditions.map((term, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <div className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  {term}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 flex items-start gap-3">
-              <Checkbox
-                id="agree"
-                checked={agreed}
-                onCheckedChange={(checked) => setAgreed(checked )}
-                className="mt-1"
-              />
-              <label
-                htmlFor="agree"
-                className="text-sm text-muted-foreground cursor-pointer"
-              >
-                I have read and agree to the guidelines and terms.
-              </label>
+          <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="text-primary p-4 rounded-full sm:hidden">
+              <Rocket className="w-8 h-8" />
+            </div>
+            <div className="hidden sm:block p-4 rounded-full">
+              <Rocket className="w-10 h-10 text-primary" />
+            </div>
+            <div className="text-center sm:text-left">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-100">
+                Submit Your Project
+              </h1>
+              <p className="text-sm sm:text-lg text-gray-600 dark:text-gray-400 mt-2">
+                Share your innovative project with our developer community.
+              </p>
             </div>
           </div>
-        </motion.div>
 
-        <div className="flex justify-end items-center pt-4 border-t">
-          <Button
-            disabled={!agreed}
-            onClick={handleAgreement}
-            className="bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90"
-          >
-            Continue
-            <ArrowRight className="h-4 w-4 ml-2" />
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
+          <Card className="bg-gradient-to-r from-gray-800 to-gray-900 shadow-lg">
+            <CardContent className="flex items-center justify-between p-6">
+              <div className="text-gray-100">
+                <h2 className="text-lg font-semibold">Submission Guidelines</h2>
+                <p className="text-sm text-gray-400">
+                  Ensure your project meets our community's quality standards.
+                </p>
+              </div>
+              <SubmissionGuidelinesModal />
+            </CardContent>
+          </Card>
+
+          <Card className="p-4 sm:p-6 bg-card/50 backdrop-blur-md">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <FormField
+                  control={form.control}
+                  name="projectName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2">
+                        <Stars className="h-4 w-4 text-primary" />
+                        Project Name
+                      </FormLabel>
+                      <Input
+                        placeholder="Enter your project name"
+                        {...field}
+                        className="transition-transform duration-300 focus:scale-105"
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Project Description</FormLabel>
+                      <Textarea
+                        placeholder="Describe your project..."
+                        className="min-h-[100px] resize-none transition-transform duration-300 focus:scale-105"
+                        {...field}
+                      />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="projectUrl"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2">
+                          <Globe className="h-4 w-4 text-primary" />
+                          Live Demo URL
+                        </FormLabel>
+                        <Input
+                          placeholder="https://your-project.com"
+                          {...field}
+                          className="transition-transform duration-300 focus:scale-105"
+                        />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="githubRepoUrl"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="flex items-center gap-2">
+                          <Github className="h-4 w-4 text-primary" />
+                          GitHub Repository
+                        </FormLabel>
+                        <Input
+                          placeholder="https://github.com/username/repo"
+                          {...field}
+                          className="transition-transform duration-300 focus:scale-105"
+                        />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="flex justify-end">
+                  <Button className="bg-background text-white hover:bg-secondary/90 transition-all">
+                    Submit
+                    <ChevronRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </div>
+              </form>
+            </Form>
+          </Card>
+        </motion.div>
+      </div>
+    </div>
   );
 }

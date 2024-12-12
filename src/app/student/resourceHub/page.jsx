@@ -23,9 +23,8 @@ import {
   Link2,
   Search,
   Sparkles,
-  BookOpen,
-  ChevronRight,
   Library,
+  ChevronRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -39,7 +38,6 @@ export default function ResourcesHub() {
   });
 
   const [resources, setResources] = useState([]);
-  const [selectedResource, setSelectedResource] = useState(null);
 
   useEffect(() => {
     setResources(resourcesData);
@@ -73,52 +71,52 @@ export default function ResourcesHub() {
     const iconClass = "w-8 h-8";
     switch (fileType) {
       case "Video":
-        return <Video className={`${iconClass} text-blue-500`} />;
+        return <Video className={`${iconClass} text-primary`} />;
       case "Slides":
-        return <PresentationIcon className={`${iconClass} text-blue-500`} />;
+        return <PresentationIcon className={`${iconClass} text-primary`} />;
       case "PDF":
-        return <FileText className={`${iconClass} text-blue-500`} />;
+        return <FileText className={`${iconClass} text-primary`} />;
       case "Link":
-        return <Link2 className={`${iconClass} text-blue-500`} />;
+        return <Link2 className={`${iconClass} text-primary`} />;
       default:
-        return <FileText className={`${iconClass} text-blue-500`} />;
+        return <FileText className={`${iconClass} text-primary`} />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container px-4 py-4 mx-auto max-w-7xl">
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="container px-4 py-8 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="space-y-6"
         >
           <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
-            <div className="text-blue-500 p-4 rounded-full sm:hidden">
+            <div className="text-primary p-4 rounded-full sm:hidden">
               <Library className="w-8 h-8" />
             </div>
             <div className="hidden sm:block p-4 rounded-full">
-              <Library className="w-10 h-10 text-blue-500" />
+              <Library className="w-10 h-10 text-primary" />
             </div>
             <div className="text-center sm:text-left">
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-100 leading-snug">
+              <h1 className="text-2xl sm:text-3xl font-bold leading-snug">
                 Resources Hub
               </h1>
-              <p className="text-sm sm:text-lg text-gray-600 dark:text-gray-400 mt-2">
+              <p className="text-sm sm:text-lg text-muted-foreground mt-2">
                 Discover and access our curated collection of learning materials
               </p>
             </div>
           </div>
 
-          <Card className="0 text-white mb-8">
+          <Card className="bg-card text-card-foreground mb-8">
             <CardContent className="p-4 sm:p-6">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     type="search"
                     placeholder="Search resources..."
-                    className="pl-9 bg-white/10 border-white/20 text-white placeholder:text-gray-300"
+                    className="pl-9 bg-input border-input text-input-foreground placeholder:text-muted-foreground"
                     value={filters.searchTerm}
                     onChange={(e) =>
                       setFilters({ ...filters, searchTerm: e.target.value })
@@ -131,7 +129,7 @@ export default function ResourcesHub() {
                     setFilters({ ...filters, selectedCategory: value })
                   }
                 >
-                  <SelectTrigger className="w-full md:w-[180px] bg-white/10 border-white/20 text-white">
+                  <SelectTrigger className="w-full md:w-[180px] bg-select border-select text-select-foreground">
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -148,7 +146,7 @@ export default function ResourcesHub() {
                     setFilters({ ...filters, selectedType: value })
                   }
                 >
-                  <SelectTrigger className="w-full md:w-[180px] bg-white/10 border-white/20 text-white">
+                  <SelectTrigger className="w-full md:w-[180px] bg-select border-select text-select-foreground">
                     <SelectValue placeholder="Type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -162,7 +160,7 @@ export default function ResourcesHub() {
                 <Button
                   variant="secondary"
                   onClick={clearFilters}
-                  className="md:w-[120px] bg-white/10 hover:bg-white/20 text-white border-white/20"
+                  className="md:w-[120px]"
                 >
                   Clear
                 </Button>
@@ -192,27 +190,27 @@ export default function ResourcesHub() {
                       className="overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col h-[400px] cursor-pointer"
                       onClick={() => setSelectedResource(resource)}
                     >
-                      <CardHeader className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50 flex items-center justify-center h-[100px] shrink-0">
+                      <CardHeader className="p-6 bg-muted/50 flex items-center justify-center h-[100px]">
                         {renderThumbnail(resource.fileType)}
                       </CardHeader>
                       <CardContent className="p-6 flex-1 flex flex-col">
-                        <h3 className="font-semibold tracking-tight mb-2 text-lg line-clamp-2 h-[56px] text-gray-900 dark:text-gray-100">
+                        <h3 className="font-semibold tracking-tight mb-2 text-lg line-clamp-2 text-foreground">
                           {resource.title}
                         </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 mb-3 flex-1">
+                        <p className="text-sm text-muted-foreground line-clamp-3 mb-3">
                           {resource.description}
                         </p>
                         <div className="flex items-center gap-2 text-sm mt-auto">
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-500/10 text-blue-500">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-accent">
                             {resource.fileType}
                           </span>
-                          <span className="text-gray-400">•</span>
-                          <span className="text-gray-600 dark:text-gray-400">
+                          <span className="text-muted-foreground">•</span>
+                          <span className="text-muted-foreground">
                             {resource.category}
                           </span>
                         </div>
                       </CardContent>
-                      <CardFooter className="p-6 pt-0 mt-auto border-t">
+                      <CardFooter className="p-6 pt-0 mt-auto">
                         <Button asChild className="w-full" variant="ghost">
                           <a
                             href={resource.link}
@@ -226,6 +224,8 @@ export default function ResourcesHub() {
                           </a>
                         </Button>
                       </CardFooter>
+                   
+
                     </Card>
                   </motion.div>
                 ))}

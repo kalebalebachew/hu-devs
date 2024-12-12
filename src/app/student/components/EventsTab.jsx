@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
@@ -69,7 +71,7 @@ export function EventsTab({ events = [], pastEvents = [] }) {
     };
 
     return (
-      <div className="mt-4 relative group">
+      <div className="mt-4">
         <audio
           ref={(el) => (audioRefs.current[audioUrl] = el)}
           src={audioUrl}
@@ -88,21 +90,17 @@ export function EventsTab({ events = [], pastEvents = [] }) {
           onEnded={() => updateAudioState(audioUrl, { isPlaying: false })}
         />
 
-        <div className="flex flex-col sm:flex-row gap-4 sm:items-center bg-white/5 backdrop-blur-sm rounded-xl p-3 border border-white/10 transition-all duration-200 group-hover:border-white/20">
+        <div className="flex flex-col sm:flex-row gap-4 sm:items-center bg-card/50 p-4 rounded-lg border border-card/20">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => handlePlay(audioUrl)}
-            className="h-10 w-10 shrink-0 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+            className="h-10 w-10 flex-shrink-0 bg-card/30 hover:bg-card/40 rounded-lg"
           >
-            {state.isPlaying ? (
-              <Pause className="h-5 w-5 text-white" />
-            ) : (
-              <Play className="h-5 w-5 text-white translate-x-0.5" />
-            )}
+            {state.isPlaying ? <Pause /> : <Play />}
           </Button>
 
-          <div className="flex-1 min-w-0 space-y-1">
+          <div className="flex-1">
             <Slider
               value={[state.currentTime || 0]}
               max={state.duration || 100}
@@ -116,13 +114,13 @@ export function EventsTab({ events = [], pastEvents = [] }) {
               }}
               className="w-full"
             />
-            <div className="flex justify-between text-xs text-gray-400">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span>{formatTime(state.currentTime)}</span>
               <span>{formatTime(state.duration)}</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:w-32">
+          <div className="flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -133,13 +131,9 @@ export function EventsTab({ events = [], pastEvents = [] }) {
                   updateAudioState(audioUrl, { isMuted: !state.isMuted });
                 }
               }}
-              className="h-8 w-8 shrink-0 hover:bg-white/10 rounded-lg"
+              className="h-8 w-8 hover:bg-card/40 rounded-lg"
             >
-              {state.isMuted ? (
-                <VolumeX className="h-4 w-4 text-gray-400" />
-              ) : (
-                <Volume2 className="h-4 w-4 text-gray-400" />
-              )}
+              {state.isMuted ? <VolumeX /> : <Volume2 />}
             </Button>
             <Slider
               value={[state.isMuted ? 0 : state.volume || 1]}
@@ -155,7 +149,7 @@ export function EventsTab({ events = [], pastEvents = [] }) {
                   });
                 }
               }}
-              className="flex-1"
+              className="w-full"
             />
           </div>
         </div>
@@ -164,42 +158,37 @@ export function EventsTab({ events = [], pastEvents = [] }) {
   };
 
   const renderEventCard = (event) => (
-    <Card className="group relative bg-gradient-to-b from-gray-900 to-black border-gray-800/50 hover:border-gray-700/50 transition-all duration-300">
+    <Card className="group relative bg-card/30 border border-card/20 rounded-lg transition-all duration-300">
       {event.img && (
         <div className="relative aspect-video overflow-hidden rounded-t-lg">
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent z-10" />
           <Image
             src={event.img}
             alt={event.title}
             fill
-            className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+            className="object-cover transform group-hover:scale-105 transition-transform duration-500"
           />
         </div>
       )}
-      <div className="relative z-20 p-4 sm:p-6 -mt-20">
-        <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 line-clamp-2">
+      <div className="p-4">
+        <h3 className="text-lg font-semibold text-foreground mb-2">
           {event.title}
         </h3>
-        <div className="space-y-2 mb-4">
-          <p className="text-sm text-gray-400 flex items-center">
-            <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
-            <time dateTime={event.time} className="truncate">
-              {new Date(event.time).toLocaleDateString(undefined, {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
+        <p className="text-sm text-muted-foreground flex items-center mb-1">
+          <Calendar className="mr-2 h-4 w-4" />
+          {new Date(event.time).toLocaleDateString(undefined, {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </p>
+        {event.location && (
+          <p className="text-sm text-muted-foreground flex items-center mb-2">
+            <MapPin className="mr-2 h-4 w-4" />
+            {event.location}
           </p>
-          {event.location && (
-            <p className="text-sm text-gray-400 flex items-center">
-              <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
-              <span className="truncate">{event.location}</span>
-            </p>
-          )}
-        </div>
-        <p className="text-sm text-gray-400 mb-4 line-clamp-3">
+        )}
+        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
           {event.description}
         </p>
         {event.audio && renderAudioPlayer(event.audio)}
@@ -208,35 +197,23 @@ export function EventsTab({ events = [], pastEvents = [] }) {
   );
 
   return (
-    <div className="space-y-8 sm:space-y-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="space-y-8">
       <section>
-        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">
-          Upcoming Events
-        </h2>
-        {events.length === 0 ? (
-          <p className="text-gray-400">No upcoming events at the moment.</p>
-        ) : (
-          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {events.map((event, index) => (
-              <div key={event.id || index}>{renderEventCard(event)}</div>
-            ))}
-          </div>
-        )}
+        <h2 className="text-2xl font-bold text-foreground">Upcoming Events</h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+          {events.length
+            ? events.map((event) => renderEventCard(event))
+            : <p className="text-muted-foreground">No upcoming events.</p>}
+        </div>
       </section>
 
       <section>
-        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">
-          Past Events
-        </h2>
-        {pastEvents.length === 0 ? (
-          <p className="text-gray-400">No past events to display.</p>
-        ) : (
-          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {pastEvents.map((event, index) => (
-              <div key={event.id || index}>{renderEventCard(event)}</div>
-            ))}
-          </div>
-        )}
+        <h2 className="text-2xl font-bold text-foreground">Past Events</h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+          {pastEvents.length
+            ? pastEvents.map((event) => renderEventCard(event))
+            : <p className="text-muted-foreground">No past events.</p>}
+        </div>
       </section>
     </div>
   );

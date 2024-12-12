@@ -12,34 +12,38 @@ import FAQs from "@/components/FAQ";
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-black">
+    <div className="relative min-h-screen bg-background">
+      {/* Background grid */}
       <div className="fixed inset-0 -z-10 h-full w-full bg-grid-pattern">
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/0"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/0"></div>
       </div>
 
-      <header className="fixed top-0 w-full z-50 border-b border-white/10">
+      {/* Navbar */}
+      <header className="fixed top-0 w-full z-50 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <NavBar />
         </div>
       </header>
 
       <main className="relative">
+        {/* Hero Section */}
         <section id="hero" className="py-16 relative">
           <Hero />
         </section>
 
-
+        {/* Features Section */}
         <section id="features" className="py-8 relative">
           <Features />
         </section>
 
+        {/* Community Tabs Section */}
         <section id="community" className="py-16 relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center space-y-4 mb-4">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-gradient">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">
                 How to join?
               </h2>
-              <p className="max-w-2xl mx-auto text-lg text-zinc-400">
+              <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
                 Stay connected and engaged with our vibrant developer community
               </p>
             </div>
@@ -48,11 +52,14 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
+        {/* Stats Section */}
         <section id="stats" className="relative px-8 mb-8">
           <StatsSection />
         </section>
 
-        <section id="contact" className="relative bg-black/50">
+        {/* Contact & FAQs Section */}
+        <section id="contact" className="relative bg-card">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <ContactForm />
@@ -62,6 +69,7 @@ export default function LandingPage() {
         </section>
       </main>
 
+      {/* Footer */}
       <Footer />
     </div>
   );

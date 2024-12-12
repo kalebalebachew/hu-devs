@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Lightbulb, Rocket, Heart, Phone } from "lucide-react";
+import { Lightbulb, Rocket, Heart } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -43,56 +43,52 @@ const ListItem = React.forwardRef(
 ListItem.displayName = "ListItem";
 
 export function HUDCNavigationMenu() {
-    return (
-      <NavigationMenu className="m-0 p-0 inline-flex">
-        <NavigationMenuList className="m-0 p-0">
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors m-0 p-0">
-              About
-            </NavigationMenuTrigger>
-            <NavigationMenuContent className="mt-2">
-              <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
-                  <NavigationMenuLink asChild>
-                    <a
-                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
-                      
-                    >
-                      <Rocket className="h-6 w-6 text-gray-400" />
-                      <div className="mb-2 mt-4 text-lg font-medium text-white">
-                        Haramaya University Developer Community
-                      </div>
-                      <p className="text-sm leading-tight text-neutral-300">
-                        Learning and building together at Haramaya University and
-                        beyond
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-                <ListItem
-                  title="Our Vision"
-                  icon={<Lightbulb className="h-4 w-4" />}
-                >
-                  Giving students access to modern tools and technologies.
-                </ListItem>
-                <ListItem
-                  title="Our Mission"
-                  icon={<Heart className="h-4 w-4" />}
-                >
-                  Every student can access quality education and resources.
-                </ListItem>
-                <ListItem
-                  title="Our Goal"
-                  icon={<Rocket className="h-4 w-4" />}
-                >
-                  To lead in university-industry collaboration for student
-                  opportunities.
-                </ListItem>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-    );
-  }
-  
+  return (
+    <NavigationMenu className="m-0 p-0 inline-flex w-full">
+      <NavigationMenuList className="m-0 p-0">
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            About
+          </NavigationMenuTrigger>
+          <NavigationMenuContent className="mt-2 w-full md:w-auto">
+            <ul className="grid gap-3 p-4 sm:p-6 grid-cols-1 sm:grid-cols-[.75fr_1fr] w-full md:w-[400px] lg:w-[500px]">
+              <li className="row-span-3">
+                <NavigationMenuLink asChild>
+                  <a className="flex flex-col h-full w-full select-none justify-end rounded-md bg-gradient-to-b p-4 sm:p-6 no-underline outline-none focus:shadow-md">
+                    <Rocket className="h-6 w-6 text-gray-400" />
+                    <div className="mb-2 mt-4 text-lg font-medium text-white">
+                      Haramaya University Developer Community
+                    </div>
+                    <p className="text-sm leading-tight text-neutral-300">
+                      Learning and building together at Haramaya University and
+                      beyond
+                    </p>
+                  </a>
+                </NavigationMenuLink>
+              </li>
+              <ListItem
+                title="Our Vision"
+                icon={<Lightbulb className="h-4 w-4" />}
+              >
+                Giving students access to modern tools and technologies.
+              </ListItem>
+              <ListItem
+                title="Our Mission"
+                icon={<Heart className="h-4 w-4" />}
+              >
+                Every student can access quality education and resources.
+              </ListItem>
+              <ListItem
+                title="Our Goal"
+                icon={<Rocket className="h-4 w-4" />}
+              >
+                To lead in university-industry collaboration for student
+                opportunities.
+              </ListItem>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}

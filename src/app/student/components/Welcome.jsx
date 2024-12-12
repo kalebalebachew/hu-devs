@@ -6,17 +6,19 @@ import {
   BookOpen,
   Code,
   Calendar,
-  Lightbulb,
-  ChevronRight,
   Sparkles,
   ArrowRight,
   GraduationCap,
   Bell,
   Check,
   Clock,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+import Banner from "./Banner";
 
 const quickLinks = [
   {
@@ -42,12 +44,13 @@ const quickLinks = [
 const announcements = [
   {
     title: "New Course Available",
-    description: "🎉 Introduction to backend development course registration started",
+    description:
+      "🎉 Introduction to backend development course registration started",
     icon: Calendar,
     type: "info",
     date: "Today",
-    bgColor: "bg-blue-100 dark:bg-blue-800",
-    iconColor: "text-blue-500",
+    bgColor: "bg-primary/10",
+    iconColor: "text-primary",
   },
   {
     title: "Project Submission",
@@ -55,8 +58,8 @@ const announcements = [
     icon: Check,
     type: "success",
     date: "Anytime",
-    bgColor: "bg-green-100 dark:bg-green-800",
-    iconColor: "text-green-500",
+    bgColor: "bg-success/10",
+    iconColor: "text-success",
   },
   {
     title: "Upcoming Live Session",
@@ -64,14 +67,15 @@ const announcements = [
     icon: Clock,
     type: "reminder",
     date: "This Weekend",
-    bgColor: "bg-orange-100 dark:bg-orange-800",
-    iconColor: "text-orange-500",
+    bgColor: "bg-warning/10",
+    iconColor: "text-warning",
   },
 ];
 
 export default function Dashboard() {
   const [progress, setProgress] = useState(0);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const timer = setTimeout(() => setProgress(65), 500);
@@ -86,55 +90,45 @@ export default function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="space-y-6"
         >
-          <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4">
-            <div className="text-blue-500 p-4 rounded-full sm:hidden">
-              <GraduationCap className="w-8 h-8" />
-            </div>
-            <div className="hidden sm:block p-4 rounded-full">
-              <GraduationCap className="w-10 h-10 text-blue-500" />
-            </div>
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4">
+              <div className="text-primary p-4 rounded-full sm:hidden">
+                <GraduationCap className="w-8 h-8" />
+              </div>
+              <div className="hidden sm:block p-4 rounded-full">
+                <GraduationCap className="w-10 h-10 text-primary" />
+              </div>
 
-            <div className="text-center sm:text-left">
-              <h1 className="text-xl sm:text-2xl font-extrabold text-gray-900 dark:text-gray-100 leading-snug">
-                Welcome, Student
-              </h1>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                Start your HUDC learning journey today and achieve your goals.
-              </p>
-            </div>
-          </div>
-
-          <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-            <CardContent className="p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between">
-              <div>
-                <h2 className="text-lg sm:text-xl font-semibold mb-2 flex items-center">
-                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                  Backend Development Course
-                </h2>
-                <p className="text-sm sm:text-base max-w-md">
-                  No experience needed—core knowledge to get started.
+              <div className="text-center sm:text-left">
+                <h1 className="text-xl sm:text-2xl font-extrabold text-foreground leading-snug">
+                  Welcome, Student
+                </h1>
+                <p className="text-sm sm:text-base text-muted-foreground">
+                  Start your HUDC learning journey today and achieve your goals.
                 </p>
               </div>
+            </div>
+
+            <div>
               <Button
                 variant="outline"
-                className="w-full sm:w-auto flex items-center justify-center mt-4 sm:mt-0"
+                className="rounded-full p-2"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
-                <a
-                  href="https://forms.gle/h1fAvVD5DRJNKqjJA"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center"
-                >
-                  Enroll Now <ArrowRight className="ml-2 w-4 h-4" />
-                </a>
+                {theme === "dark" ? (
+                  <Sun className="w-5 h-5 text-primary" />
+                ) : (
+                  <Moon className="w-5 h-5 text-primary" />
+                )}
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
+          <Banner></Banner>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <Card>
               <CardContent className="p-6">
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                <h2 className="text-lg font-semibold text-foreground mb-4">
                   Quick Access
                 </h2>
                 <div className="space-y-2">
@@ -144,20 +138,19 @@ export default function Dashboard() {
                       href={link.href}
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 group"
+                      className="flex items-center p-3 rounded-lg hover:bg-muted/30 transition-all duration-200 group"
                     >
-                      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 dark:bg-blue-900/20">
-                        <link.icon className="w-5 h-5 text-blue-500" />
+                      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-muted">
+                        <link.icon className="w-5 h-5 text-primary" />
                       </div>
                       <div className="ml-4 flex-grow">
-                        <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <h3 className="text-sm font-medium text-foreground">
                           {link.title}
                         </h3>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                        <p className="text-xs text-muted-foreground">
                           {link.description}
                         </p>
                       </div>
-                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors duration-200" />
                     </motion.a>
                   ))}
                 </div>
@@ -167,12 +160,12 @@ export default function Dashboard() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                  <h2 className="text-lg font-semibold text-foreground">
                     Announcements
                   </h2>
                   <div className="relative">
-                    <Bell className="w-5 h-5 text-gray-400" />
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <Bell className="w-5 h-5 text-muted-foreground" />
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
                   </div>
                 </div>
                 <div className="space-y-3">
@@ -184,25 +177,27 @@ export default function Dashboard() {
                       onClick={() => setSelectedAnnouncement(announcement)}
                       className={`flex items-start space-x-3 p-3 rounded-lg cursor-pointer ${
                         selectedAnnouncement === announcement
-                          ? "bg-gray-50 dark:bg-gray-800"
+                          ? "bg-muted/20"
                           : ""
-                      } hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200`}
+                      } hover:bg-muted/30 transition-all duration-200`}
                     >
-                      <div className={`p-2 ${announcement.bgColor} rounded-full`}>
+                      <div
+                        className={`p-2 ${announcement.bgColor} rounded-full`}
+                      >
                         <announcement.icon
                           className={`w-4 h-4 ${announcement.iconColor}`}
                         />
                       </div>
                       <div className="flex-grow min-w-0">
                         <div className="flex items-center justify-between">
-                          <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">
+                          <h4 className="text-sm font-semibold text-foreground truncate">
                             {announcement.title}
                           </h4>
-                          <span className="text-xs text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0">
+                          <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">
                             {announcement.date}
                           </span>
                         </div>
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                        <p className="text-xs text-muted-foreground mt-1">
                           {announcement.description}
                         </p>
                       </div>

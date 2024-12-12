@@ -42,7 +42,7 @@ const fadeInVariants = {
 
 export function StatsSection() {
   return (
-    <section className="relative pb-20 ">
+    <section className="relative pb-20">
       <div className="absolute inset-0 bg-grid-gray-900/[0.04] bg-[size:60px_60px]" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -53,8 +53,8 @@ export function StatsSection() {
           <h2 className="text-3xl text-center font-bold tracking-tight sm:text-4xl text-gradient mb-4">
             Our Achievements
           </h2>
-          <p className="text-center text-lg text-zinc-400 mb-6">
-           What we achieved so far as a community
+          <p className="text-center text-lg text-muted-foreground mb-6">
+            What we achieved so far as a community
           </p>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {stats.map((stat, index) => (
@@ -67,24 +67,23 @@ export function StatsSection() {
                 viewport={{ once: true }}
                 className="relative group"
               >
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-r  opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative flex flex-col items-center p-6  rounded-lg border border-gray-700 transition duration-300 group-hover:border-gray-600">
-                  <div className="mb-4 p-3 rounded-full">
-                    <stat.icon className="h-6 w-6 text-gray-300" />
+                <div className="relative flex flex-col items-center p-6 rounded-lg bg-card border border-border transition duration-300 group-hover:shadow-lg">
+                  <div className="mb-4 p-3 rounded-full bg-muted/10">
+                    <stat.icon className="h-8 w-8 text-primary" />
                   </div>
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                     className="text-center"
                   >
-                    <dt className="text-3xl font-bold text-white mb-2">
+                    <dt className="text-3xl font-bold text-primary mb-2">
                       {stat.value}
                     </dt>
-                    <dd className="text-lg font-medium text-gray-300 mb-1">
+                    <dd className="text-lg font-semibold text-muted-foreground">
                       {stat.name}
                     </dd>
-                    <dd className="text-sm text-gray-400">
+                    <dd className="text-sm text-muted-foreground mt-1">
                       {stat.description}
                     </dd>
                   </motion.div>
@@ -97,11 +96,3 @@ export function StatsSection() {
     </section>
   );
 }
-
-// Add this to your global CSS file
-const styles = `
-.bg-grid-gray-900 {
-  background-image: linear-gradient(to right, #1f2937 1px, transparent 1px),
-    linear-gradient(to bottom, #1f2937 1px, transparent 1px);
-}
-`;
