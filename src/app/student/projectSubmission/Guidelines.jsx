@@ -71,7 +71,7 @@ export default function SubmitProject() {
               <div className="text-gray-100">
                 <h2 className="text-lg font-semibold">Submission Guidelines</h2>
                 <p className="text-sm text-gray-400">
-                  Ensure your project meets our community's quality standards.
+                  Ensure your project meets our quality standards.
                 </p>
               </div>
               <SubmissionGuidelinesModal />
