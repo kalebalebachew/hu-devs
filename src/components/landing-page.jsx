@@ -16,9 +16,9 @@ import DashboardPreview from "./DashboardPreview";
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen bg-background">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -left-4 top-0 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute -right-4 bottom-0 h-[500px] w-[500px] rounded-full bg-secondary/5 blur-3xl" />
+     <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -left-20 top-0 h-[500px] w-[500px] lg:h-[700px] lg:w-[700px] rounded-full bg-gradient-to-tr from-primary/20 to-secondary/10 blur-2xl" />
+        <div className="absolute -right-20 bottom-0 h-[500px] w-[500px] lg:h-[700px] lg:w-[700px] rounded-full bg-gradient-to-tl from-secondary/20 to-primary/10 blur-2xl" />
       </div>
 
       {/* Navbar */}

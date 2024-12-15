@@ -51,6 +51,7 @@ export function Courses() {
     <>
       <section className="py-8 bg-gradient-to-br from-background via-background to-primary/5 mb-8" ref={ref}>
         <div className="container mx-auto px-4 max-w-5xl">
+            
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

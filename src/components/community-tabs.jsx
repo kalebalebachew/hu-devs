@@ -1,343 +1,200 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+"use client";
+
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
+  CardDescription,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  LinkedinIcon,
-  SendIcon,
-  Users2Icon,
-  GithubIcon,
-  ArrowRight,
-  BookOpenIcon,
-  RocketIcon,
-  CheckCircle2,
-  Lock,
-  Sparkles,
-  Bell,
-} from "lucide-react";
-import { useRegistration } from "@/hooks/useRegistration";
 import { useToast } from "@/hooks/use-toast";
-import { cn } from "@/lib/utils";
-
-const tabVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
-  exit: { opacity: 0, x: 20, transition: { duration: 0.3, ease: "easeIn" } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: { duration: 0.4, ease: "easeOut" }
-  },
-  hover: { 
-    scale: 1.02,
-    transition: { duration: 0.2 }
-  }
-};
-
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/company/haramaya-university-developers-community",
-    icon: LinkedinIcon,
-    description: "Professional networking and updates",
-    color: "bg-[#0077B5]/10 hover:bg-[#0077B5]/20",
-    iconColor: "text-[#0077B5]",
-  },
-  {
-    name: "Telegram",
-    href: "https://t.me/hudevhub",
-    icon: SendIcon,
-    description: "Community chat and discussions",
-    color: "bg-[#0088cc]/10 hover:bg-[#0088cc]/20",
-    iconColor: "text-[#0088cc]",
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/hudevhub",
-    icon: GithubIcon,
-    description: "Open source collaborations",
-    color: "bg-gray-800/10 hover:bg-gray-800/20",
-    iconColor: "text-gray-800 dark:text-white",
-  },
-];
-
-const features = [
-  { icon: CheckCircle2, text: "Access to exclusive workshops" },
-  { icon: Lock, text: "Private networking events" },
-  { icon: Sparkles, text: "Early access to new resources" },
-];
+import { useRegistration } from "@/hooks/useRegistration";
+import { ArrowRight } from "lucide-react";
 
 export function CommunityTabsComponent() {
-  const [membershipForm, setMembershipForm] = useState({
-    email: "",
-    studentId: "",
-    password: "",
-  });
-  const [activeTab, setActiveTab] = useState("exclusive");
   const { isLoading, registerMembership } = useRegistration();
   const { toast } = useToast();
 
   const handleMembershipSubmit = async (e) => {
     e.preventDefault();
+    const form = e.target;
+    const data = {
+      email: form.email.value,
+      studentId: form.studentId.value,
+      password: form.password.value,
+    };
+
     try {
-      const success = await registerMembership(membershipForm);
+      const success = await registerMembership(data);
       toast({
-        title: success ? "Welcome Aboard! 🎉" : "Registration Failed",
+        title: success ? "Registration Successful" : "Registration Failed",
         description: success
-          ? "You're now part of our exclusive developer community!"
-          : "Please check your details and try again.",
+          ? "Welcome to the HUDC Community!"
+          : "Please try again later.",
         variant: success ? "success" : "destructive",
       });
+
       if (success) {
-        setMembershipForm({ email: "", studentId: "", password: "" });
+        form.reset();
       }
     } catch (error) {
       toast({
-        title: "System Error",
-        description: "We're experiencing technical difficulties. Please try again later.",
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
     }
   };
 
+  const timelineData = [
+    {
+      step: 1,
+      title: "Register for Membership",
+      description:
+        "Sign up to gain exclusive access to resources, premium courses, and a thriving network of developers.",
+      content: (
+        <form onSubmit={handleMembershipSubmit} className="space-y-6">
+          <div>
+            <Label htmlFor="email" className="text-sm">
+              Email
+            </Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="your.name@hu.edu.et"
+              className="w-full mt-1"
+            />
+          </div>
+          <div>
+            <Label htmlFor="studentId" className="text-sm">
+              Student ID
+            </Label>
+            <Input
+              id="studentId"
+              name="studentId"
+              type="text"
+              placeholder="Enter your Student ID"
+              className="w-full mt-1"
+            />
+          </div>
+          <div>
+            <Label htmlFor="password" className="text-sm">
+              Password
+            </Label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Create a secure password"
+              className="w-full mt-1"
+            />
+          </div>
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+          >
+            {isLoading ? "Registering..." : "Create Account"}
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+        </form>
+      ),
+    },
+    {
+      step: 2,
+      title: "Connect with Developers",
+      description:
+        "Join our active discussions on LinkedIn, Telegram, and GitHub to network with like-minded individuals.",
+      content: (
+        <div className="space-y-4">
+          {[
+            {
+              name: "LinkedIn",
+              href: "https://www.linkedin.com/company/haramaya-university-developers-community",
+              description: "Professional networking and updates",
+            },
+            {
+              name: "Telegram",
+              href: "https://t.me/hudevhub",
+              description: "Community chat and discussions",
+            },
+            {
+              name: "GitHub",
+              href: "https://github.com/hudevhub",
+              description: "Open source collaborations",
+            },
+          ].map((platform) => (
+            <a
+              key={platform.name}
+              href={platform.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-4 py-2 rounded-lg bg-muted/10 hover:bg-muted/20 transition"
+            >
+              <div className="flex justify-between items-center">
+                <div>
+                  <h4 className="text-lg font-semibold">{platform.name}</h4>
+                  <p className="text-sm text-muted-foreground">
+                    {platform.description}
+                  </p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-primary" />
+              </div>
+            </a>
+          ))}
+        </div>
+      ),
+    },
+    {
+      step: 3,
+      title: "Join Organizer's Team",
+      description: "",
+      content: (
+        <div className="text-center space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Applications for 2024 organizers open soon! Stay tuned for
+            announcements.
+          </p>
+        </div>
+      ),
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80 p-4 md:p-8">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
-        >
-        </motion.div>
- <Tabs 
-          value={activeTab} 
-          onValueChange={setActiveTab}
-          className="w-full"
-        >
-          <TabsList className="grid w-full grid-cols-3 p-1 bg-muted/5 backdrop-blur-sm rounded-2xl mb-8 border border-muted/20">
-            {[
-              { value: "exclusive", label: "Join Us", icon: BookOpenIcon },
-              { value: "social", label: "Connect", icon: Users2Icon },
-              { value: "organizers", label: "Lead", icon: RocketIcon }
-            ].map(({ value, label, icon: Icon }) => (
-              <TabsTrigger
-                key={value}
-                value={value}
-                className={cn(
-                  "relative px-6 py-3 rounded-xl transition-all duration-300",
-                  "data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
-                  "data-[state=active]:shadow-lg data-[state=active]:scale-105"
-                )}
-              >
-                <span className="flex items-center gap-2">
-                  <Icon className="w-5 h-5" />
-                  <span className="hidden sm:inline font-medium">{label}</span>
-                </span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
+    <section className="bg-background">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative border-l-2 border-muted/30">
+          {timelineData.map((item, index) => (
+            <motion.div
+              key={index}
+              className="relative mb-12 ml-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+            >
+              <div className="absolute -left-4 flex items-center justify-center h-8 w-8 rounded-full bg-primary text-secondary text-sm font-medium shadow-lg">
+                {item.step}
+              </div>
 
-          <AnimatePresence mode="wait">
-            <TabsContent value="exclusive">
-              <motion.div
-                variants={tabVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <Card className="border border-muted/20 bg-card/95 backdrop-blur-sm">
-                  <form onSubmit={handleMembershipSubmit}>
-                    <CardHeader>
-                      <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                        Exclusive Membership
-                      </CardTitle>
-                      <CardDescription className="text-base">
-                        Unlock premium developer resources and opportunities
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-6">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                          {features.map(({ icon: Icon, text }, index) => (
-                            <motion.div
-                              key={index}
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: index * 0.1 }}
-                              className="flex items-center gap-2 p-3 rounded-lg bg-muted/10"
-                            >
-                              <Icon className="w-5 h-5 text-primary" />
-                              <span className="text-sm font-medium">{text}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                        <div className="space-y-4">
-                          {[
-                            { id: "email", type: "email", label: "Email Address", placeholder: "you@example.com" },
-                            { id: "studentId", type: "text", label: "Student ID", placeholder: "Enter your student ID" },
-                            { id: "password", type: "password", label: "Password", placeholder: "Create a secure password" }
-                          ].map(({ id, type, label, placeholder }) => (
-                            <div key={id} className="space-y-2">
-                              <Label htmlFor={id} className="text-sm font-medium">
-                                {label}
-                              </Label>
-                              <Input
-                                id={id}
-                                type={type}
-                                placeholder={placeholder}
-                                value={membershipForm[id]}
-                                onChange={(e) =>
-                                  setMembershipForm({
-                                    ...membershipForm,
-                                    [id]: e.target.value,
-                                  })
-                                }
-                                className="bg-background/50 border-muted/30 focus:border-primary"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-70 bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-6"
-                      >
-                        {isLoading ? (
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                            className="mr-2"
-                          >
-                            ⚡
-                          </motion.div>
-                        ) : (
-                          "Register"
-                        )}
-                        <ArrowRight className="w-5 h-5 ml-2" />
-                      </Button>
-                    </CardFooter>
-                  </form>
-                </Card>
-              </motion.div>
-            </TabsContent>
-
-            <TabsContent value="social">
-              <motion.div
-                variants={tabVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <Card className="border border-muted/20 bg-card/95 backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                      Connect & Collaborate
-                    </CardTitle>
-                    <CardDescription className="text-base">
-                      Join our vibrant developer community across platforms
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="grid gap-4">
-                    {socialLinks.map((link, index) => (
-                      <motion.a
-                        key={link.name}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        variants={cardVariants}
-                        initial="hidden"
-                        animate="visible"
-                        whileHover="hover"
-                        transition={{ delay: index * 0.1 }}
-                        className={cn(
-                          "group flex items-center justify-between p-4 rounded-xl",
-                          "transition-all duration-300",
-                          link.color
-                        )}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={cn(
-                            "p-3 rounded-lg transition-colors",
-                            "bg-background/80",
-                            link.iconColor
-                          )}>
-                            <link.icon className="w-6 h-6" />
-                          </div>
-                          <div className="flex flex-col">
-                            <span className="text-base font-semibold">
-                              {link.name}
-                            </span>
-                            <span className="text-sm text-muted-foreground">
-                              {link.description}
-                            </span>
-                          </div>
-                        </div>
-                        <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all duration-300" />
-                      </motion.a>
-                    ))}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </TabsContent>
-
-            <TabsContent value="organizers">
-              <motion.div
-                variants={tabVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <Card className="border border-muted/20 bg-card/95 backdrop-blur-sm overflow-hidden">
-                  <CardHeader>
-                    <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                      Become an Organizer
-                    </CardTitle>
-                    <CardDescription className="text-base">
-                      Lead initiatives and shape our community`&apos;`s future
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="relative">
-                    <div className="text-center py-12">
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                        className="w-24 h-24 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center"
-                      >
-                        <RocketIcon className="w-12 h-12 text-primary" />
-                      </motion.div>
-                      <h3 className="text-xl font-bold text-primary mb-2">
-                        Applications Opening Soon
-                      </h3>
-                      <p className="text-muted-foreground max-w-md mx-auto">
-                        We`&apos;`re preparing an exciting opportunity for passionate developers to join our organizing team. Stay tuned!
-                      </p>
-                    </div>
-                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background/20 to-transparent" />
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </TabsContent>
-          </AnimatePresence>
-        </Tabs>
+              <Card className="shadow-md bg-card border border-muted/30">
+                <CardHeader className="bg-muted/10 py-4">
+                  <CardTitle className="text-lg font-semibold">
+                    {item.title}
+                  </CardTitle>
+                  <CardDescription>{item.description}</CardDescription>
+                </CardHeader>
+                <CardContent>{item.content}</CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

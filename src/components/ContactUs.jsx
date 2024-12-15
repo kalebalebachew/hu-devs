@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -44,9 +51,19 @@ export const ContactForm = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {[ 
-              { id: "name", label: "Name", type: "text", placeholder: "Your full name" },
-              { id: "email", label: "Email", type: "email", placeholder: "you@example.com" },
+            {[
+              {
+                id: "name",
+                label: "Name",
+                type: "text",
+                placeholder: "Your full name",
+              },
+              {
+                id: "email",
+                label: "Email",
+                type: "email",
+                placeholder: "you@example.com",
+              },
             ].map(({ id, label, type, placeholder }, index) => (
               <motion.div
                 key={id}
@@ -63,7 +80,9 @@ export const ContactForm = () => {
                   type={type}
                   placeholder={placeholder}
                   value={formState[id]}
-                  onChange={(e) => setFormState({ ...formState, [id]: e.target.value })}
+                  onChange={(e) =>
+                    setFormState({ ...formState, [id]: e.target.value })
+                  }
                   className="bg-muted/10 border border-border text-primary placeholder:text-muted-foreground"
                   required
                 />
@@ -75,14 +94,19 @@ export const ContactForm = () => {
               transition={{ delay: 0.3 }}
               className="space-y-2"
             >
-              <Label htmlFor="message" className="text-muted-foreground text-sm">
+              <Label
+                htmlFor="message"
+                className="text-muted-foreground text-sm"
+              >
                 Message
               </Label>
               <Textarea
                 id="message"
                 placeholder="Your message..."
                 value={formState.message}
-                onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                onChange={(e) =>
+                  setFormState({ ...formState, message: e.target.value })
+                }
                 className="min-h-[100px] bg-muted/10 border border-border text-primary placeholder:text-muted-foreground"
                 required
               />
