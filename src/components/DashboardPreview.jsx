@@ -22,8 +22,8 @@ const DashboardPreview = ({ dashboardImage }) => {
               className="inline-flex items-center rounded-full border border-border bg-background/95 px-4 py-1.5 text-sm font-medium text-foreground backdrop-blur-sm"
             >
               <span className="relative flex h-2 w-2 mr-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full  opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full "></span>
               </span>
               Unlock the HUDC Dashboard – Built for Innovators Like You
             </motion.div>
@@ -63,9 +63,9 @@ const DashboardPreview = ({ dashboardImage }) => {
             <div className="overflow-hidden rounded-xl bg-card shadow-2xl ring-1 ring-border/5">
               <div className="relative bg-muted px-6 py-3">
                 <div className="flex items-center space-x-2">
-                  <div className="h-3 w-3 rounded-full bg-destructive/60" />
-                  <div className="h-3 w-3 rounded-full bg-primary/60" />
-                  <div className="h-3 w-3 rounded-full bg-secondary/60" />
+                  <div className="h-3 w-3 rounded-full bg-green-500" />
+                  <div className="h-3 w-3 rounded-full bg-red-400" />
+                  <div className="h-3 w-3 rounded-full bg-red-600" />
                 </div>
               </div>
 
