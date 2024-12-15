@@ -310,7 +310,7 @@ export function CommunityTabsComponent() {
                       Become an Organizer
                     </CardTitle>
                     <CardDescription className="text-base">
-                      Lead initiatives and shape our community's future
+                      Lead initiatives and shape our community`&apos;`s future
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="relative">
@@ -327,7 +327,7 @@ export function CommunityTabsComponent() {
                         Applications Opening Soon
                       </h3>
                       <p className="text-muted-foreground max-w-md mx-auto">
-                        We're preparing an exciting opportunity for passionate developers to join our organizing team. Stay tuned!
+                        We`&apos;`re preparing an exciting opportunity for passionate developers to join our organizing team. Stay tuned!
                       </p>
                     </div>
                     <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background/20 to-transparent" />
