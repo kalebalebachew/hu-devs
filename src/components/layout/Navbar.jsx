@@ -4,9 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sun, Moon, ChevronRight } from "lucide-react";
+import { Menu, X, Sun, Moon, ArrowRight } from "lucide-react";
 import { LoginDialog } from "../LoginDialog";
-import { HUDCNavigationMenu } from "./About";
 
 const menuVariants = {
   hidden: { opacity: 0, y: -5 },
@@ -41,47 +40,35 @@ export function NavBar() {
       animate={{ y: 0 }}
       className="fixed top-4 left-0 right-0 z-50 flex justify-center"
     >
-      <nav className="bg-background/80 backdrop-blur-lg shadow-lg rounded-2xl max-w-4xl w-11/12 border border-border">
+      <nav className="bg-background/90 backdrop-blur-lg shadow-lg rounded-lg max-w-6xl w-11/12 border border-border">
         <div className="px-4">
-          <div className="flex items-center justify-between h-16">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center"
+          <div className="flex items-center justify-between h-14">
+            <Link
+              href="/"
+              className="text-2xl font-bold bg-clip-text bg-gradient-to-r from-primary to-muted"
             >
-              <Link
-                href="/"
-                className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground"
-              >
-                HUDC
-              </Link>
-            </motion.div>
+              HUDC
+            </Link>
+
             <div className="hidden md:flex md:items-center md:space-x-6">
-              <button
-                onClick={() => scrollToSection("#hero")}
-                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => scrollToSection("#community")}
-                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-              >
-                Join
-              </button>
-              <button
-                onClick={() => scrollToSection("#contact")}
-                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-              >
-                Contact
-              </button>
-              <HUDCNavigationMenu />
+              {["Home", "Courses", "Features", "Join", "Contact"].map(
+                (item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollToSection(`#${item.toLowerCase()}`)}
+                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {item}
+                  </button>
+                )
+              )}
             </div>
 
             <div className="flex items-center space-x-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 onClick={toggleTheme}
-                className="text-foreground/80 hover:text-foreground p-2 rounded-lg transition-colors"
+                className="text-muted-foreground hover:text-foreground p-2 rounded-lg transition-colors"
                 aria-label="Toggle Theme"
               >
                 {theme === "dark" ? (
@@ -91,34 +78,29 @@ export function NavBar() {
                 )}
               </motion.button>
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="relative group"
+              <Button
+                onClick={toggleLogin}
+                variant="ghost"
+                className="hidden md:inline-flex px-6 py-2 h-9 bg-primary text-primary-foreground border border-border hover:bg-primary/90 transition-all duration-300"
               >
-                <Button
-                  onClick={toggleLogin}
-                  variant="ghost"
-                  className="relative overflow-hidden group px-6 py-2 h-9 bg-gradient-to-r from-neutral-950 to-neutral-800 hover:from-neutral-900 hover:to-neutral-700 text-white border border-neutral-800 hover:border-neutral-700 transition-all duration-300"
-                >
-                  <span className="relative z-10 flex items-center text-sm font-medium">
-                    Sign in
-                    <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-0.5 transition-transform duration-300" />
-                  </span>
-                </Button>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-              </motion.div>
+                Sign in
+              </Button>
+
+              <Button
+                onClick={() => scrollToSection("#community")}
+                variant="ghost"
+                className="hidden md:inline-flex px-6 py-2 h-9 bg-foreground text-background border border-border hover:bg-foreground/90 transition-all duration-300"
+              >
+                Membership
+              </Button>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
-                className="md:hidden text-foreground/80 hover:text-foreground p-2 rounded-lg transition-colors"
+                className="md:hidden text-muted-foreground hover:text-foreground p-2 rounded-lg transition-colors"
                 onClick={toggleMenu}
                 aria-label="Toggle menu"
               >
-                {isOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
+                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </motion.button>
             </div>
           </div>
@@ -133,24 +115,31 @@ export function NavBar() {
             className="md:hidden"
           >
             <div className="flex flex-col items-center space-y-4 py-4">
-              <button
-                onClick={() => scrollToSection("#hero")}
-                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+              {["Home", "Courses", "Benefits", "Join", "Contact"].map(
+                (item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollToSection(`#${item.toLowerCase()}`)}
+                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {item}
+                  </button>
+                )
+              )}
+              <Button
+                onClick={toggleLogin}
+                variant="ghost"
+                className="w-full px-6 py-2 h-9 bg-primary text-primary-foreground border border-border hover:bg-secondary/90 transition-all duration-300"
               >
-                Home
-              </button>
-              <button
+                Sign in
+              </Button>
+              <Button
                 onClick={() => scrollToSection("#community")}
-                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+                variant="ghost"
+                className="w-full px-6 py-2 h-9 bg-foreground text-background border border-border hover:bg-secondary/90 transition-all duration-300"
               >
-                Join
-              </button>
-              <button
-                onClick={() => scrollToSection("#contact")}
-                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-              >
-                Contact
-              </button>
+                Membership
+              </Button>
             </div>
           </motion.div>
         )}

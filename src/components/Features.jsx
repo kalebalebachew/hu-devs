@@ -55,7 +55,7 @@ export function Features() {
           className="text-center space-y-4 mb-16"
         >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
-            Why join our community?
+            Why Join Our Community?
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
             Discover the benefits of being part of HUDC

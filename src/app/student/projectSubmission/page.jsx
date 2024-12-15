@@ -1,16 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { ChevronRight, Rocket, Stars, Github, Globe } from "lucide-react";
-import { motion } from "framer-motion";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  ChevronRight,
+  Rocket,
+  Stars,
+  Github,
+  Globe,
+  Loader2,
+} from "lucide-react";
 import { toast } from "sonner";
 import SubmissionGuidelinesModal from "./Guidelines";
 
@@ -28,6 +41,7 @@ const formSchema = z.object({
 });
 
 export default function SubmitProject() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,6 +53,7 @@ export default function SubmitProject() {
   });
 
   async function onSubmit(values) {
+    setIsSubmitting(true);
     const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
     const getAuthToken = () => localStorage.getItem("auth_token");
 
@@ -55,13 +70,13 @@ export default function SubmitProject() {
 
       if (response.ok) {
         toast.success(
-          <>
-            <p>Your project has been successfully submitted!</p>
-            <p>
-              It is now under review. HUDC admins will evaluate your submission
-              based on the provided guidelines.
+          <div className="flex flex-col gap-2">
+            <p className="font-semibold">Project submitted successfully!</p>
+            <p className="text-sm">
+              HUDC admins will review your submission based on the provided
+              guidelines.
             </p>
-          </>
+          </div>
         );
         form.reset();
       } else {
@@ -69,46 +84,64 @@ export default function SubmitProject() {
         throw new Error(error.message || "Failed to submit project.");
       }
     } catch (error) {
-      toast.error(error.message || "Failed to submit project. Please try again.");
+      toast.error(
+        <div className="flex flex-col gap-2">
+          <p className="font-semibold">Submission failed</p>
+          <p className="text-sm">
+            {error instanceof Error ? error.message : "Please try again later."}
+          </p>
+        </div>
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container px-4 py-8 mx-auto max-w-5xl">
-       
-          <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4">
-            <div className="text-primary p-4 rounded-full sm:hidden">
-              <Rocket className="w-8 h-8" />
-            </div>
-            <div className="hidden sm:block p-4 rounded-full">
-              <Rocket className="w-10 h-10 text-primary" />
-            </div>
-            <div className="text-center sm:text-left">
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground">
-                Submit Your Project
-              </h1>
-              <p className="text-sm sm:text-lg text-muted-foreground mt-2">
-                Share your innovative project with our developer community.
-              </p>
-            </div>
+    <div className="min-h-screen px-4 py-4 bg-background text-foreground">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-6"
+      >
+        <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4">
+          <div className="text-primary p-4 rounded-full sm:hidden">
+            <Rocket className="w-8 h-8" />
           </div>
+          <div className="hidden sm:block p-4 rounded-full">
+            <Rocket className="w-10 h-10 text-primary" />
+          </div>
+          <div className="text-center sm:text-left">
+            <h1 className="text-2xl sm:text-3xl font-extrabold leading-snug">
+              Submit Your Project
+            </h1>
+            <p className="text-sm sm:text-lg mt-2 text-muted-foreground">
+              Share your innovative project with our developer community
+            </p>
+          </div>
+        </div>
 
-          <Card className="bg-card shadow-md">
-            <CardContent className="flex items-center justify-between p-6">
-              <div className="text-foreground">
+        <Card>
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
                 <h2 className="text-lg font-semibold">Submission Guidelines</h2>
                 <p className="text-sm text-muted-foreground">
-                  Ensure your project meets our quality standards.
+                  Ensure your project meets our quality standards
                 </p>
               </div>
               <SubmissionGuidelinesModal />
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
 
-          <Card className="p-4 sm:p-6 bg-card/50 backdrop-blur-md">
+        <Card>
+          <CardContent className="p-4 sm:p-6">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
                 <FormField
                   control={form.control}
                   name="projectName"
@@ -121,7 +154,7 @@ export default function SubmitProject() {
                       <Input
                         placeholder="Enter your project name"
                         {...field}
-                        className="transition-transform duration-300 focus:scale-105"
+                        className="bg-background"
                       />
                       <FormMessage />
                     </FormItem>
@@ -136,7 +169,7 @@ export default function SubmitProject() {
                       <FormLabel>Project Description</FormLabel>
                       <Textarea
                         placeholder="Describe your project..."
-                        className="min-h-[100px] resize-none transition-transform duration-300 focus:scale-105"
+                        className="min-h-[120px] bg-background resize-none"
                         {...field}
                       />
                       <FormMessage />
@@ -157,7 +190,7 @@ export default function SubmitProject() {
                         <Input
                           placeholder="https://your-project.com"
                           {...field}
-                          className="transition-transform duration-300 focus:scale-105"
+                          className="bg-background"
                         />
                         <FormMessage />
                       </FormItem>
@@ -175,7 +208,7 @@ export default function SubmitProject() {
                         <Input
                           placeholder="https://github.com/username/repo"
                           {...field}
-                          className="transition-transform duration-300 focus:scale-105"
+                          className="bg-background"
                         />
                         <FormMessage />
                       </FormItem>
@@ -183,16 +216,28 @@ export default function SubmitProject() {
                   />
                 </div>
 
-                <div className="flex justify-end">
-                  <Button variant="secondary" className="transition-transform duration-300">
-                    Submit
-                    <ChevronRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </div>
+                <Button
+                  type="submit"
+                  className="w-full sm:w-auto"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      Submit Project
+                      <ChevronRight className="ml-2 h-5 w-5" />
+                    </>
+                  )}
+                </Button>
               </form>
             </Form>
-          </Card>
-      </div>
+          </CardContent>
+        </Card>
+      </motion.div>
     </div>
   );
 }
